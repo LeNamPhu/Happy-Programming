@@ -4,6 +4,6 @@ Dự án Happy Programming của group 4:
 Thành viên:
 Lê Nam Phú
 Lê Trí Quyền
-LÊ Nguyễn Đăng Trường
+Lê Nguyễn Đăng Trường
 Trần Quốc Trí
 Đỗ Trọng Tín
