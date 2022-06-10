@@ -8,9 +8,45 @@ and open the template in the editor.
     Author     : admin
 */
 
-header{
+
+
+a{
+     text-decoration: none
+}
+.header{
     background-color: #90caf9;
     border-bottom: 1px solid #0a84ff;
-    vertical-align: middle;
+   
+    padding:5px 50px 5px 50px;
+   
     
+        
+}
+.header a{
+    color:black;
+    font-size:larger; 
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    width:60px;
+    height:auto;
+    border: solid black 1px;
+    border-radius: 50%;
+    
+    
+}
+.footer{
+    background-color: #bbdefb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+   
+    padding: 17px 0px 17px 0px;
+}
+.footer p{
+    margin:0;
 }
