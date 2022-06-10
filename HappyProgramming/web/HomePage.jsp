@@ -14,5 +14,8 @@
     <header>
         <%@include file = "UnregisteredHeader.jsp" %>
     </header>
+    <footer>
+        <%@include file = "Footer.jsp" %>
+    </footer>
     
 </html>
