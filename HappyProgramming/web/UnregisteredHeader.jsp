@@ -20,9 +20,9 @@
                 <div class="row">
                     <a class="col-md-7" href="HomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
                     <a class="col-md-1" href="HomePage.jsp" >Home</a>
-                    <a class="col-md-1" href="#" >Mentor</a>
-                    <a class="col-md-1" href="#" >Skill</a>
-                    <a class="col-md-1" href="#" >Sign in</a>
+                    <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
+                    <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
+                    <a class="col-md-1" href="SignIn.jsp" >Sign in</a>
                     <a class="col-md-1" href="SignUp.jsp" >Sign up</a>
                 </div>
 
