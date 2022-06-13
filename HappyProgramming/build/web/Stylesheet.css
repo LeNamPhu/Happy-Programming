@@ -7,7 +7,13 @@ and open the template in the editor.
     Created on : Jun 9, 2022, 9:07:15 PM
     Author     : admin
 */
-
+body{
+    position: relative;
+    min-height: 100vh;
+}
+.body{
+     padding-bottom: 58px;    /* Footer height */
+}
 
 
 a{
@@ -16,7 +22,8 @@ a{
 .header{
     background-color: #90caf9;
     border-bottom: 1px solid #0a84ff;
-    padding:5px 50px 5px 50px;   
+    padding:5px 50px 5px 50px;  
+    top:0;
 }
 .header a{
     color:black;
@@ -38,6 +45,9 @@ a{
     align-items: center;
     justify-content: center;
     margin: 0;
+    bottom:0;
+    position: absolute;
+    width:100%;
     padding: 17px 0px 17px 0px;
 }
 .footer p{
@@ -46,15 +56,17 @@ a{
 .carousel-inner {
     position: relative;
     width: 100%;
-    max-height:100vh;
+    max-height:92.672vh;
     overflow: hidden;
 }
 
 .carousel-item{
-    max-height:100vh;
+    max-height:92.672vh;
     min-width: 100%;
 }
-
+.d-block{
+    height:92.67vh;
+}
 
 .carousel-control-next,
 .carousel-control-prev /*, .carousel-indicators */ {

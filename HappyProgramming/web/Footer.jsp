@@ -17,7 +17,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="footer navbar fixed-bottom">
+        <div class="footer navbar ">
             <p>©Copyright by Team 4</p>
         </div>
     </body>
