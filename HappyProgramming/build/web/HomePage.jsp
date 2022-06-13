@@ -23,11 +23,12 @@
         </script>
     </head>
     <body>
+       
         <header>
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
         <section>
-
+ <div class="">
             <!-- Carousel -->
             <div id="demo" class="carousel slide" data-bs-ride="carousel" >
 
@@ -61,11 +62,9 @@
 
             </div>
         </section>
-        <br><br>
-        <footer>
-            <%@include file = "Footer.jsp" %>
-        </footer>
-
+       
+        
+        </div>
     </body>
 </body>
 </html>
