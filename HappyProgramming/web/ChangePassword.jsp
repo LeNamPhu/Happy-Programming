@@ -19,11 +19,7 @@
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
         
-        
-        <div class="body">
-            <h1 style="text-align: center; padding-top: 3%">Please enter your email and password</h1>
-            
-        </div>
+       
         <footer>
             <%@include file = "Footer.jsp" %>
         </footer>
