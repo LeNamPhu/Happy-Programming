@@ -24,15 +24,15 @@
                 <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
                 <a class="col-md-1" href="SignIn.jsp" >Request</a>
                 <div class="col-md-1 d-flex">
-                    <a  href="HomePage.jsp"><img  class="avatar" src="image/cafe2.png" /></a>
+                    <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>
                     <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle dropdownbutton" data-bs-toggle="dropdown">
+                        <button type="button" class="btn  dropdownbutton" data-bs-toggle="dropdown">
                             
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                            <li><a class="dropdown-item" href="#">Link 2</a></li>
-                            <li><a class="dropdown-item" href="#">Link 3</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </div> 
                 </div>
