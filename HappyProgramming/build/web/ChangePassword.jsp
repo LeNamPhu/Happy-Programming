@@ -16,9 +16,11 @@
     </head>
     <body>
         <header>
-            <%@include file = "UnregisteredHeader.jsp" %>
+            <%@include file = "UserHeader.jsp" %>
         </header>
-        
+        <div class="body">
+            
+        </div>
        
         <footer>
             <%@include file = "Footer.jsp" %>
