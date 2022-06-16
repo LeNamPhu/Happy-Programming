@@ -48,6 +48,7 @@
             </table>
             <div >
                 <input type="submit" class="signup" value="Sign up" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
+                <input type="submit" class="signup" value="Cancel" style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: rgba(0,0,0,1); border:2px solid rgba(80,80,80,0.8)" >
             </div>
         </div>
         <footer>
