@@ -21,7 +21,7 @@
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
             
-        <div class="body">
+       
             <div class="body">
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Sign up</h1>
             <table style=";font-size: 25px" class="d-flex justify-content-center" id="signuptable">
@@ -50,7 +50,7 @@
                 <input type="submit" class="signup" value="Sign up" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
             </div>
         </div> 
-        </div>
+        
         <footer>
             <%@include file = "Footer.jsp" %>
         </footer>

@@ -19,26 +19,40 @@ body{
 a{
      text-decoration: none
 }
+.logo{
+    width:60px;
+    height:auto;
+   
+      
+}
+.logo img{
+    width:60px; 
+      width:60px;
+    height:auto;
+    border: solid black 1px;
+    border-radius: 50%;
+}
 .header{
     background-color: #90caf9;
     border-bottom: 1px solid #0a84ff;
     padding:5px 50px 5px 50px;  
     top:0;
+    
+    
 }
+
 .header a{
     color:black;
     font-size:larger; 
     vertical-align: middle;
     display: flex;
     align-items: center;
+    justify-content:center;
+}
+.header a:first-child{
+      justify-content:flex-start;
 }
 
-.logo{
-    width:60px;
-    height:auto;
-    border: solid black 1px;
-    border-radius: 50%;
-}
 .footer{
     background-color: #bbdefb;
     display:flex;
@@ -153,7 +167,7 @@ a{
     height:50px;
 }
 .avatar{
-    width:65px;
+    width:60px;
     height:auto;
     border-radius: 50%;
 }
@@ -170,4 +184,17 @@ a{
     padding:0;
     margin-top:23px;
     padding:0;
+}
+.cvlabel{
+    width:300px;
+    margin:auto;
+    height:60px;
+   
+}
+.cvlabel label{
+    vertical-align: middle;
+}
+.cvform{
+    height:60px;
+    width:600px; 
 }
