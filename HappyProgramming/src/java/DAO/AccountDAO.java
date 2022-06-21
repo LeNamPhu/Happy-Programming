@@ -10,6 +10,7 @@ import Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -55,5 +56,41 @@ public class AccountDAO {
         }
         return list;
 
+    }
+    
+    public Account checkSignIn(String accountName, String password) throws SQLException{
+        Account account = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql ="SELECT ID, RoleID FROM Account WHERE AccountName=? and Password=?" ;
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, accountName);
+                stm.setString(2, password);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("ID");
+                    int role = rs.getInt("RoleID");
+                    account = new Account(id, accountName, password, role);
+                    
+                }
+
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }        
+        return account;
     }
 }

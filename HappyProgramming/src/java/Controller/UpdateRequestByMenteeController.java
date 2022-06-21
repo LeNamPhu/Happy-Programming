@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UpdateRequestByMenteeController", urlPatterns = {"/UpdateRequestByMenteeController"})
 public class UpdateRequestByMenteeController extends HttpServlet {
 
-    public final String ERROR = "Error.jsp";
-    public final String SUCCESS = "ListRequestByMentee.jsp";
+    private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "ListRequestByMentee.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -5,50 +5,63 @@
  */
 package Controller;
 
+import DAO.AccountDAO;
+import DTO.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ThienNho
  */
-public class MainController extends HttpServlet {
-
-    public static final String ERROR = "Error.jsp";
-    public static final String LIST_REQUEST_BY_MENTEE = "ListRequestByMenteeController";
-    public static final String DELETE_REQUEST_BY_MENTEE = "DeleteRequestByMenteeController";
-    public static final String UPDATE_REQUEST_BY_MENTEE = "UpdateRequestByMenteeController";
-    public static final String SIGN_IN = "SignInController";
-     
+@WebServlet(name = "SignInController", urlPatterns = {"/SignInController"})
+public class SignInController extends HttpServlet {
+private final String ERROR = "Error.jsp";
+private final String ADMIN = "AdminHomePage.jsp";
+private final String MENTER = "MentorHomePage.jsp";
+private final String MENTEE = "UserHomePage.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-             String action = request.getParameter("action");
-             if("ListRequestByMentee".equals(action)){
-                url = LIST_REQUEST_BY_MENTEE;
-            }else if("DeleteRequest".equals(action)){
-                url = DELETE_REQUEST_BY_MENTEE;
-            }else if("UpdateRequest".equals(action)){
-                url = UPDATE_REQUEST_BY_MENTEE;
-            }else if("Sign in".equals(action)){
-                url = SIGN_IN;
+            String acountName = request.getParameter("txtemail");
+            String password = request.getParameter("txtpass");
+            AccountDAO dao = new AccountDAO();
+            Account account = dao.checkSignIn(acountName, password);
+            if(account != null){
+                switch (account.getRoleId()) {
+                    case 1:
+                        url = MENTEE;
+                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        break;
+                    case 2:
+                        url = MENTER;
+                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        break;
+                    case 3:
+                        url = ADMIN;
+                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        break;
+                    default:
+                        request.setAttribute("ERROR_MESSAGE", "YOUR ROLE IS NOT SUPPORTED!");
+                        break;
+                }
+            }else{
+                request.setAttribute("ERROR_MESSAGE", "INCORRECT EMAIL OR ");
             }
-            else{
-                HttpSession session = request.getSession();
-                session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-            }        
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at SignInController: " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
