@@ -10,12 +10,12 @@
                 
                 <div class="col-md-7">
                     
-                    <a class="logo "href="HomePage.jsp"><img    src="image/cafe2.png" /></a>
+                    <a class="logo "href="MentorHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>
-                <a class="col-md-1" href="HomePage.jsp" >Home</a>
+                <a class="col-md-1" href="MentorHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
                 <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
-                <a class="col-md-1" href="SignIn.jsp" >Request</a>
+                <a class="col-md-1" href="" >Request</a>
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar_male.png" /></a>
                     <div class="dropdown">

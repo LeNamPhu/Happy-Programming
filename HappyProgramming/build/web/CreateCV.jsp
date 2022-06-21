@@ -23,7 +23,7 @@
         </header>
         <div class="body"style="font-size:  30px;">
             <form >
-                <div style="width: 60%; margin:auto">
+                <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <div id="sample-select"></div>
+                            <div id="sample-select" class="p-2"></div>
                             <script src="SkillDropdownJS.js"></script>
                         </div>
                     </div>

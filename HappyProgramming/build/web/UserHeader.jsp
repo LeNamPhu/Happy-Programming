@@ -18,11 +18,11 @@
     <body>
         <nav class="container-fluid header ">
             <div class="row">
-                <a class="col-md-7" href="HomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
-                <a class="col-md-1" href="HomePage.jsp" >Home</a>
+                <a class="col-md-7" href="UserHomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
+                <a class="col-md-1" href="UserHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
                 <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
-                <a class="col-md-1" href="SignIn.jsp" >Request</a>
+                <a class="col-md-1" href="" >Request</a>
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>
                     <div class="dropdown">
