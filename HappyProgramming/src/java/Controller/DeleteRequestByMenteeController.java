@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DeleteRequestByMenteeController", urlPatterns = {"/DeleteRequestByMenteeController"})
 public class DeleteRequestByMenteeController extends HttpServlet {
 
-    public final String ERROR = "Error.jsp";
-    public final String SUCCESS = "ListRequestByMentee.jsp";
+    private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "ListRequestByMentee.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

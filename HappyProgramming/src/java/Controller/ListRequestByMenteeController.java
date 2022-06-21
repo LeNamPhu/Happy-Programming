@@ -26,15 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListRequestByMenteeController", urlPatterns = {"/ListRequestByMenteeController"})
 public class ListRequestByMenteeController extends HttpServlet {
 
-  public final String ERROR = "Error.jsp";
-  public final String SUCCESS = "ListRequestByMentee.jsp";
+  private final String ERROR = "Error.jsp";
+  private final String SUCCESS = "ListRequestByMentee.jsp";
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try{       
-        Account user = (Account) request.getAttribute("LOGIN_ACCOUNT");
+        Account user = (Account) request.getAttribute("SIGNIN_ACCOUNT");
         int id = user.getId();
         MenteeDAO dao = new MenteeDAO();
         SkillDAO abc = new SkillDAO();
