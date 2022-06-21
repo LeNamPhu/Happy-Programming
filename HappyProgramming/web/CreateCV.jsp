@@ -11,21 +11,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-       
+
+        <script type="text/javascript" src="virtual-select.min.js"></script>
+        <link href="virtual-select.min.css" rel="stylesheet" type="text/css">
 
     </head>
+
     <body>
         <header>
 
             <%@include file = "MentorHeader.jsp" %>
 
         </header>
-        <div class=""style="font-size:  30px;">
-            <form >
+        <div class="body"style="font-size:  30px;">
+            <form>
                 <div style="width: 60%; margin:auto">
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
@@ -87,7 +86,7 @@
 
                         </div>
                     </div>
-                    <div class="row " style="margin:0!important">
+                    <div class="row" style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Profession </label>
@@ -143,7 +142,23 @@
                         </div>
                     </div>
 
+                    <div class="row " style="margin:0!important">
+                        <div class="col-md-4 pt-3 ">
+                            <div class="cvlabel p-2">
+                                <label>Skill</label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pt-2  ">
+                            <div id="sample-select" style="width:600px;" class="m-2 "></div>
+                            <script type="text/javascript" src="SkillDropdownJS.js"></script>
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+
             </form>
         </div>
         <footer>
