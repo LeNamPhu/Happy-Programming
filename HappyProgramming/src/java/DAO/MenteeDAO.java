@@ -1,0 +1,295 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.Request;
+import Utils.DBUtils;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ *
+ * @author ThienNho
+ */
+public class MenteeDAO {
+
+    public static final String LIST_REQUEST_BY_MENTEE = "SELECT ID, Title, Status, Content, DeadlineDate, DeadlineHour FROM Request WHERE MenteeID=?";
+    public static final String GET_SKILL_ID = "SELECT skillID FROM RequestSkill WHERE RequestID=?";
+    public static final String GET_SKILL_NAME = "SELECT Name FROM Skill WHERE ID=?";
+    public static final String DELETE_REQUEST = "UPDATE Request SET Status=? WHERE ID=?";
+    public static final String UPDATE_REQUEST = "UPDATE Request SET Title=?, Status=?, Content=?, DeadlineDate=?, DeadlineHour=? WHERE ID=?";
+    public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
+
+    public ArrayList<Request> listRequestByMentee(int menteeID) throws SQLException {
+        ArrayList<Request> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = LIST_REQUEST_BY_MENTEE;
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, menteeID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    if (!"Cancel".equals(rs.getString("Status"))) {
+                        int ID = rs.getInt("ID");
+                        String title = rs.getString("Title");
+                        String status = rs.getString("Status");
+                        String content = rs.getString("Content");
+                        Date deadlineDate = rs.getDate("DeadlineDate");
+                        int deadlineHour = rs.getInt("DeadlineHour");
+                        list.add(new Request(ID, title, status, content, menteeID, deadlineDate, deadlineHour));
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> getIDSkillReq(Request req) throws SQLException {
+        ArrayList<Integer> listID = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = GET_SKILL_ID;
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, req.getId());
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("skillID");
+                    listID.add(id);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listID;
+    }
+
+    public void getNameSkillReq(ArrayList<Integer> listID, Request req, Map<Request, String> map) throws SQLException {
+        String listNameSkill = "";
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (Integer id : listID) {
+                    String sql = GET_SKILL_NAME;
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, id);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        String skillName = rs.getString("Name");
+                        listNameSkill += skillName + " ";
+                    }
+                }
+                map.put(req, listNameSkill);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public void deleteReq(int reqID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = DELETE_REQUEST;
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "Cancel");
+                stm.setInt(2, reqID);
+                int value = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public void updateReq(Request req) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = UPDATE_REQUEST;
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, req.getTitle());
+                stm.setString(2, req.getStatus());
+                stm.setString(3, req.getContent());
+                stm.setDate(4, req.getDeadlineDate());
+                stm.setInt(5, req.getDeadlineHour());
+                stm.setInt(6, req.getId());
+                int value = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public void updateSkillReq(int reqID, String skill1, String skill2, String skill3) throws SQLException {
+        deleteSkillReq(reqID);
+        ArrayList<Integer> listSkillID = getSkillIDByName(skill1, skill2, skill3);
+        insertSkillIDToRequestSkill(reqID, listSkillID);
+    }
+
+    public void deleteSkillReq(int reqID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "DELETE RequestSkill WHERE RequestID =? ";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, reqID);
+                int value = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public ArrayList<Integer> getSkillIDByName(String skill1, String skill2, String skill3) throws SQLException {
+        ArrayList<String> listName = new ArrayList<>();
+        listName.add(skill1);
+        listName.add(skill2);
+        listName.add(skill3);
+        ArrayList<Integer> listSkillID = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (String Name : listName) {
+                    String sql = "SELECT ID FROM Skill WHERE Name=? and Status='active'";
+                    stm = conn.prepareStatement(sql);
+                    stm.setString(1, Name);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        listSkillID.add(rs.getInt("ID"));
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return listSkillID;
+    }
+
+    public void insertSkillIDToRequestSkill(int reqID, ArrayList<Integer> listSkillID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (Integer ID : listSkillID) {
+                    String sql = "INSERT INTO RequestSkill (SkillID,RequestID) VALUES (?,?)";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, ID);
+                    stm.setInt(2, reqID);
+                     int value = stm.executeUpdate();
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+}
