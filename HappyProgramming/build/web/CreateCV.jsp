@@ -13,7 +13,7 @@
         <title></title>
         <link rel="stylesheet" href="virtual-select.min.css">
         <script src="virtual-select.min.js"></script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </head>
     <body>
         <header>
@@ -27,7 +27,15 @@
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
-                                <img class="rounded-circle border" src="image/avatar.png">
+                                <div style="height:162px; width:162px;position:relative;margin:auto">
+                                    <img id="avt" class="rounded-circle border"  src="image/avatar.png" style="height:100%;width:100%">
+                                    
+                                    <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
+                                        <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
+                                       <input type="file" accept="image/*"
+                                              onchange="document.getElementById('avt').src = window.URL.createObjectURL(this.files[0])" style="width: 100%; height:100%; opacity: 0;">
+                                    </div>
+                                </div>
                             </div>
                             <input style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="Account Name" class="form-control" name="accName"> 
                         </div>

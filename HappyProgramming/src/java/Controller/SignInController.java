@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,7 @@ private final String MENTEE = "UserHomePage.jsp";
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession(true);
             String acountName = request.getParameter("txtemail");
             String password = request.getParameter("txtpass");
             AccountDAO dao = new AccountDAO();
@@ -39,18 +41,18 @@ private final String MENTEE = "UserHomePage.jsp";
                 switch (account.getRoleId()) {
                     case 1:
                         url = MENTEE;
-                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        session.setAttribute("SIGNIN_ACCOUNT", account);
                         break;
                     case 2:
                         url = MENTER;
-                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        session.setAttribute("SIGNIN_ACCOUNT", account);
                         break;
                     case 3:
                         url = ADMIN;
-                        request.setAttribute("SIGNIN_ACCOUNT", account);
+                        session.setAttribute("SIGNIN_ACCOUNT", account);
                         break;
                     default:
-                        request.setAttribute("ERROR_MESSAGE", "YOUR ROLE IS NOT SUPPORTED!");
+                        session.setAttribute("ERROR_MESSAGE", "YOUR ROLE IS NOT SUPPORTED!");
                         break;
                 }
             }else{
