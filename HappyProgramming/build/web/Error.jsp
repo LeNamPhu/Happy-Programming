@@ -16,5 +16,7 @@
         String abc = (String) request.getAttribute("ERROR_MESSAGE");
         %>
         <%=abc%>
+        </br>
+        <a href="HomePage.jsp" style="font-style: oblique; font-size: 42px; color:red">Back to HomePage</a>
     </body>
 </html>

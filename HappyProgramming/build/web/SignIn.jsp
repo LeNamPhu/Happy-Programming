@@ -14,6 +14,7 @@
             <%@include file = "UnregisteredHeader.jsp"%>
         </header>           
         <div class="body">
+            <font style="color: red;">${requestScope.WARNING}</font>
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Sign In</h1>
             <table style=";font-size: 25px" class="d-flex justify-content-center">
                 <tr><td>Email</td></tr>
@@ -22,7 +23,7 @@
                 <tr><td>Password</td></tr>
                 <tr><td><input type="password" name="txtpass" style="width: 400px"></td></tr>
                 <tr><td style="padding: 10px 0px 10px 200px"><a href="ForgotPassword.jsp" style="color: #439dbb">Forgot Password?</a></td></tr>
-                <tr><td><input type="submit" value="Sign in" style="width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" ></td></tr>
+                <tr><td><input type="submit" value="Sign in" name="action" style="width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" ></td></tr>
             </table>
         </div>
         <footer>
