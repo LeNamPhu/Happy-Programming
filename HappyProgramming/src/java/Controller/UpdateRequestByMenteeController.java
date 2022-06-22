@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DAO.MenteeDAO;
+import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
 import java.io.IOException;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateRequestByMenteeController extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListRequestByMentee.jsp";
+    private final String SUCCESS = "ListRequestByMenteeController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class UpdateRequestByMenteeController extends HttpServlet {
         try {
             Account user = (Account) request.getAttribute("LOGIN_USER");
             int menteeID = 1;
-            int reqID = Integer.parseInt(request.getParameter("reqID"));
+            int reqID = Integer.parseInt(request.getParameter("reqIDForUpdate"));
             String title = request.getParameter("title");
             String status = request.getParameter("status");        
             
@@ -47,7 +47,7 @@ public class UpdateRequestByMenteeController extends HttpServlet {
             String skill1 = request.getParameter("skill1");
             String skill2 = request.getParameter("skill2");
             String skill3 = request.getParameter("skill3");           
-            MenteeDAO dao = new MenteeDAO();
+            RequestDAO dao = new RequestDAO();
             dao.updateReq(req);
             dao.updateSkillReq(reqID, skill1, skill2, skill3);          
             url = SUCCESS;
