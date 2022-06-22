@@ -93,4 +93,40 @@ public class AccountDAO {
         }        
         return account;
     }
+    
+    public static Account getAccount(String name, String pass){
+        Connection cn = null;
+        Account acc = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select ID,AccountName,Password,RoleID\n"
+                        + "from dbo.Account\n"
+                        + "where AccountName = ? and Password = ? COLLATE Latin1_General_CS_AS";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setString(2, pass);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    int id = rs.getInt("ID");
+                    String accName = rs.getString("AccountName");
+                    String password = rs.getString("Password");
+                    int roleID = rs.getInt("RoleID");
+                    acc = new Account(id, accName, password, roleID);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return acc;
+        }
+        
+    }
 }
