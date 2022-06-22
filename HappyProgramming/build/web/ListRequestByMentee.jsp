@@ -16,6 +16,11 @@
         <title>List Request By Mentee Page</title>
     </head>
     <body>
+        <header>
+             <%@include file = "UserHeader.jsp" %>
+        
+        </header>
+             <div class="body">
         <form action="MainController">
             <input type="submit" name="action" value="ListRequestByMentee"/>
         </form>
@@ -33,20 +38,7 @@
             }
         %>
         <table border="1">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Deadline Date</th>
-                    <th>Deadline Hour</th>
-                    <th>Description</th>
-                    <th>Skill 1</th>
-                    <th>Skill 2</th>
-                    <th>Skill 3</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
+            
             <tbody>
                 <%
                  for (Request req : list) {
@@ -140,6 +132,9 @@
 
 }
         %>
-        
+             </div>
+             <footer>
+                 <%@include file = "Footer.jsp" %>
+             </footer>
     </body>
 </html>

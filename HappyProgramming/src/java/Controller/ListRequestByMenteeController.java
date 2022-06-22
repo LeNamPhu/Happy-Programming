@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +34,9 @@ public class ListRequestByMenteeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        HttpSession session = request.getSession(true);
         try{       
-        Account user = (Account) request.getAttribute("SIGNIN_ACCOUNT");
+        Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
         int id = user.getId();
         MenteeDAO dao = new MenteeDAO();
         SkillDAO abc = new SkillDAO();
