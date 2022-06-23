@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class SkillDAO {
 
-    public static final String GET_LIST_SKILL = "SELECT Name FROM Skill";
+    public static final String GET_LIST_SKILL = "SELECT Name, Status FROM Skill";
 
     public ArrayList<String> getListSkillName() throws SQLException {
         ArrayList<String> listSkill = new ArrayList<>();
@@ -32,8 +32,10 @@ public class SkillDAO {
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
+                    if("active".equals(rs.getString("Status"))){
                     String name = rs.getString("Name");
                     listSkill.add(name);
+                    }
                 }
             }
         } catch (Exception e) {

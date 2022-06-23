@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DAO.MenteeDAO;
+import DAO.RequestDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteRequestByMenteeController extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListRequestByMentee.jsp";
+    private final String SUCCESS = "ListRequestByMenteeController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class DeleteRequestByMenteeController extends HttpServlet {
         String url = ERROR;
         try {
             int reqID = Integer.parseInt(request.getParameter("reqID"));
-            MenteeDAO dao = new MenteeDAO();
+            RequestDAO dao = new RequestDAO();
             dao.deleteReq(reqID);
             url = SUCCESS;
         } catch (Exception e) {

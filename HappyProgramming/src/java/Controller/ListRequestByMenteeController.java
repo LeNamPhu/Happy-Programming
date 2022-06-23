@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import DAO.MenteeDAO;
+import DAO.RequestDAO;
 import DAO.SkillDAO;
 import DTO.Account;
 import DTO.Request;
@@ -37,19 +37,19 @@ public class ListRequestByMenteeController extends HttpServlet {
         HttpSession session = request.getSession(true);
         try{       
         Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-        int id = user.getId();
-        MenteeDAO dao = new MenteeDAO();
+        int id = 1;
+        RequestDAO dao = new RequestDAO();
         SkillDAO abc = new SkillDAO();
         ArrayList<Request> list = dao.listRequestByMentee(id);
-        request.setAttribute("LIST_SKILL", abc.getListSkillName());
+        session.setAttribute("LIST_SKILL", abc.getListSkillName());
         
-            request.setAttribute("LIST_REQUEST_BY_MENTEE", list);            
+            session.setAttribute("LIST_REQUEST_BY_MENTEE", list);            
             Map<Request, String> map = new HashMap<>();
             for (Request a : list){
                 ArrayList<Integer> listIDSkillReq = dao.getIDSkillReq(a);
                 dao.getNameSkillReq(listIDSkillReq, a, map);
             }
-            request.setAttribute("SKILL_REQUEST", map);
+            session.setAttribute("SKILL_REQUEST", map);
             url = SUCCESS;
         
         }catch(Exception e){
