@@ -1,25 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DTO;
 
-/**
- *
- * @author admin
- */
+
 public class Skill {
 
     private String id;
     private String name;
     private String status;
 
-    public Skill(String id, String name, String status) {
+    private String image;
+
+    public Skill(String id, String name, String status, String image) {
         this.id = id;
         this.name = name;
         this.status = status;
-
+        this.image = image;
     }
 
     public String getId() {
@@ -45,5 +40,15 @@ public class Skill {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+  
 
 }

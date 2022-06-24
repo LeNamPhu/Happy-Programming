@@ -38,8 +38,13 @@ public class MainController extends HttpServlet {
             }else if("UpdateRequest".equals(action)){
                 url = UPDATE_REQUEST_BY_MENTEE;
             }else if("Sign in".equals(action)){
-                url = SIGN_IN;
+                url = "changeStatusSkill";
+            }else if("addSkill".equals(action)){
+                url = "addSkill";
+            }else if("updateSkill".equals(action)){
+                url = "updateSkill";
             }
+            
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");

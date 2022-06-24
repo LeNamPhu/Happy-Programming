@@ -199,6 +199,16 @@ a{
     width:600px; 
 }
 
+
+
+.btn-group .active{
+  background-color:black;
+  color:white;
+}
+.btn-group .inactive{
+  background-color:white;
+  color:black;
+}
 .reset{
     display:block;
     margin:auto;
@@ -216,4 +226,5 @@ a{
     width:400px;
     height:50px;
     
+
 }

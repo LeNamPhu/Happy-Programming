@@ -18,33 +18,10 @@
     </head>
     <body>
     <header>
-            <nav class="container-fluid header ">
-            <div class="row">
-                <a class="col-md-8" href="HomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
-                <a class="col-md-1" href="HomePage.jsp" >Home</a>
-                <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
-                <a class="col-md-1" href="ViewMentee.jsp" >Mentee</a>
-
-                <div class="col-md-1 d-flex">
-                    <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>
-                    <div class="dropdown">
-                        <button type="button" class="btn  dropdownbutton" data-bs-toggle="dropdown">
-                            
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Skill</a></li>
-                            <li><a class="dropdown-item" href="#">Request</a></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
-                        </ul>
-                    </div> 
-                </div>
-            </div>
-
-
-        </nav>
+        <%@include file="AdminHeader.jsp" %>
         </header>
    <section>
- <div class="">
+ <div class="body">
             <!-- Carousel -->
             <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
 
