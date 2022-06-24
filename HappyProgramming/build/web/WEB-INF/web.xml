@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>mainController</servlet-name>
+        <servlet-class>Servlet.mainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeStatusSkill</servlet-name>
+        <servlet-class>Servlet.changeStatusSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addSkill</servlet-name>
+        <servlet-class>Servlet.addSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateSkill</servlet-name>
+        <servlet-class>Servlet.updateSkill</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainController</servlet-name>
+        <url-pattern>/mainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeStatusSkill</servlet-name>
+        <url-pattern>/changeStatusSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addSkill</servlet-name>
+        <url-pattern>/addSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSkill</servlet-name>
+        <url-pattern>/updateSkill</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

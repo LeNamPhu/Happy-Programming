@@ -13,13 +13,14 @@ public class Skill {
 
     private String id;
     private String name;
-    private int status;
+    private String status;
+    private String image;
 
-    public Skill(String id, String name, int status) {
+    public Skill(String id, String name, String status, String image) {
         this.id = id;
         this.name = name;
         this.status = status;
-
+        this.image = image;
     }
 
     public String getId() {
@@ -38,12 +39,20 @@ public class Skill {
         this.name = name;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

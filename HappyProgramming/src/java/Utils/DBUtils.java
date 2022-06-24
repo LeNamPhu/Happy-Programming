@@ -17,11 +17,11 @@ public class DBUtils {
     public static Connection makeConnection() throws Exception {
         Connection cn = null;
         String IP = "localhost";
-        String instanceName = "LAPTOP-G9SL61KO";
+        String instanceName = "DESKTOP-S5VO4G4";
         String port = "1433";
         String uid = "sa";
-        String pwd = "Mashe3012";
-        String db = "HappyProg1";
+        String pwd = "12345";
+        String db = "HappyProgramming";
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         String url = "jdbc:sqlserver://" + IP + "\\" + instanceName + ":" + port
                 + ";databasename=" + db + ";user=" + uid + ";password=" + pwd;
