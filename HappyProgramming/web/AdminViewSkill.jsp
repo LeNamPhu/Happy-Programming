@@ -50,13 +50,15 @@
             <table class="skillad">
                 <tr><th >STT</th>
                     <th>ID</th>
+                    <th></th>
                     <th>Skill name</th>
                     <th>Status</th>
                     <th>Option</th></tr>
                         <%    for (Skill sk : list) {
                         %>               
                 <tr><td><%=count++%></td>
-                    <td ><%=sk.getId()%></td>
+                    <td><%=sk.getId()%></td>
+                    <td><img src="<%=sk.getImage()%>"style="width:150px; height:120px;"></td>
                     <td><%=sk.getName()%></td>
 
 
