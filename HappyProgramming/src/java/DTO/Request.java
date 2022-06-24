@@ -14,13 +14,13 @@ import java.sql.Date;
 public class Request {
     private int id;
     private String title;
-    private int status;
+    private String status;
     private String content;
     private int menteeID;
     private Date deadlineDate;
     private int deadlineHour;
 
-    public Request(int id, String title, int status, String content, int menteeID, Date deadlineDate, int deadlineHour) {
+    public Request(int id, String title, String status, String content, int menteeID, Date deadlineDate, int deadlineHour) {
         this.id = id;
         this.title = title;
         this.status = status;
@@ -46,11 +46,11 @@ public class Request {
         this.title = title;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

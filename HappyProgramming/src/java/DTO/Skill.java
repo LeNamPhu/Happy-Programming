@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DTO;
 
-/**
- *
- * @author admin
- */
+
 public class Skill {
 
     private String id;
     private String name;
     private String status;
+
     private String image;
 
     public Skill(String id, String name, String status, String image) {
@@ -54,5 +48,7 @@ public class Skill {
     public void setImage(String image) {
         this.image = image;
     }
+
+  
 
 }

@@ -11,12 +11,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-       
-
+        <link rel="stylesheet" href="virtual-select.min.css">
+        <script src="virtual-select.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </head>
     <body>
         <header>
@@ -24,13 +21,21 @@
             <%@include file = "MentorHeader.jsp" %>
 
         </header>
-        <div class=""style="font-size:  30px;">
+        <div class="body"style="font-size:  30px;">
             <form >
-                <div style="width: 60%; margin:auto">
+                <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
-                                <img class="rounded-circle border" src="image/avatar.png">
+                                <div style="height:162px; width:162px;position:relative;margin:auto">
+                                    <img id="avt" class="rounded-circle border"  src="image/avatar.png" style="height:100%;width:100%">
+                                    
+                                    <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
+                                        <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
+                                       <input type="file" accept="image/*"
+                                              onchange="document.getElementById('avt').src = window.URL.createObjectURL(this.files[0])" style="width: 100%; height:100%; opacity: 0;">
+                                    </div>
+                                </div>
                             </div>
                             <input style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="Account Name" class="form-control" name="accName"> 
                         </div>
@@ -140,6 +145,17 @@
                         <div class="col-md-8 pt-2">
                             <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="profession"></textarea>
 
+                        </div>
+                    </div>
+                    <div class="row " style="margin:0!important">
+                        <div class="col-md-4 pt-3 ">
+                            <div class="cvlabel p-2">
+                                <label> Skill</label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pt-2">
+                            <div id="sample-select" class="p-2"></div>
+                            <script src="SkillDropdownJS.js"></script>
                         </div>
                     </div>
 

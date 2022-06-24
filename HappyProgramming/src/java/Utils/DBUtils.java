@@ -7,12 +7,14 @@ package Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author admin
  */
 public class DBUtils {
+
 
     public static Connection makeConnection() throws Exception {
         Connection cn = null;
@@ -28,6 +30,8 @@ public class DBUtils {
         Class.forName(driver);
         cn = DriverManager.getConnection(url);
         return cn;
+
+
     }
 
 }

@@ -1,18 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+
+
+
+
 package DAO;
 
-import DTO.Skill;
+
 import Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import DTO.Skill;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
+
  * @author DELL
  */
 public class SkillDAO {
@@ -129,5 +133,39 @@ public class SkillDAO {
             e.printStackTrace();
         }
         return sk;
+    }
+    public static final String GET_LIST_SKILL = "SELECT Name, Status FROM Skill";
+
+    public ArrayList<String> getListSkillName() throws SQLException {
+        ArrayList<String> listSkill = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = GET_LIST_SKILL;
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    if("active".equals(rs.getString("Status"))){
+                    String name = rs.getString("Name");
+                    listSkill.add(name);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listSkill;
     }
 }

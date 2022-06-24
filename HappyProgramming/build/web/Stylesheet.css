@@ -200,6 +200,7 @@ a{
 }
 
 
+
 .btn-group .active{
   background-color:black;
   color:white;
@@ -207,4 +208,23 @@ a{
 .btn-group .inactive{
   background-color:white;
   color:black;
+}
+.reset{
+    display:block;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+#resetpass{
+    width:300px!important;
+}
+#resettable td{
+    width:400px;
+    height:60px;
+}
+#resetform{
+    width:400px;
+    height:50px;
+    
+
 }
