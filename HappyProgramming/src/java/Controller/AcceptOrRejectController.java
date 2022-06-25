@@ -6,13 +6,9 @@
 package Controller;
 
 import DAO.RequestDAO;
-import DAO.SkillDAO;
 import DTO.Account;
-import DTO.Request;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,40 +20,31 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "ListRequestByMenteeController", urlPatterns = {"/ListRequestByMenteeController"})
-public class ListRequestByMenteeController extends HttpServlet {
+@WebServlet(name = "AcceptOrRejectController", urlPatterns = {"/AcceptOrRejectController"})
+public class AcceptOrRejectController extends HttpServlet {
 
-  private final String ERROR = "Error.jsp";
-  private final String SUCCESS = "ListRequestByMentee.jsp";
-  
+    private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "ListInviteController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        HttpSession session = request.getSession(true);
-        try{       
-        Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-        int id = user.getId();
-        RequestDAO dao = new RequestDAO();
-        SkillDAO abc = new SkillDAO();
-        ArrayList<Request> list = dao.listRequestByMentee(id);
-        session.setAttribute("LIST_SKILL", abc.getListSkillName());
-        
-            session.setAttribute("LIST_REQUEST_BY_MENTEE", list);            
-            Map<Request, String> map = new HashMap<>();
-            for (Request a : list){
-                ArrayList<Integer> listIDSkillReq = dao.getIDSkillReq(a);
-                dao.getNameSkillReq(listIDSkillReq, a, map);
-            }
-            session.setAttribute("SKILL_REQUEST", map);
+         String url = ERROR;
+        try {
+            HttpSession session = request.getSession();
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int mentorID = 3;
+            int reqID = Integer.parseInt(request.getParameter("reqID"));
+            String statusReq = (String) request.getParameter("status");
+            String statusInvite = (String) request.getParameter("statusInvite");
+            RequestDAO dao = new RequestDAO();
+            dao.updateStatusRequest(reqID, statusReq);
+            dao.updateStatusInvite(reqID, mentorID, statusInvite);           
             url = SUCCESS;
-        
-        }catch(Exception e){
-            log("Error at ListRequestByMenteeController" + e.toString());
+        } catch (Exception e) {
+            log("Error at DeleteRequestByMenteeController " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

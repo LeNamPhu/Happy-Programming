@@ -23,6 +23,8 @@ public class MainController extends HttpServlet {
     public static final String LIST_REQUEST_BY_MENTEE = "ListRequestByMenteeController";
     public static final String DELETE_REQUEST_BY_MENTEE = "DeleteRequestByMenteeController";
     public static final String UPDATE_REQUEST_BY_MENTEE = "UpdateRequestByMenteeController";
+    public static final String ACCEPT_OR_REJECT_REQUEST = "AcceptOrRejectController";
+    public static final String LIST_INVITE_REQUEST = "ListInviteController";
     public static final String SIGN_IN = "SignInController";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,8 +45,11 @@ public class MainController extends HttpServlet {
                 url = "addSkill";
             }else if("updateSkill".equals(action)){
                 url = "updateSkill";
-            }
-            
+            }else if("Reject Request".equals(action) || "Accept Request".equals(action)){
+                url = ACCEPT_OR_REJECT_REQUEST;
+            }else if("Invite Request".equals(action)){
+                url = LIST_INVITE_REQUEST;
+            }           
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");

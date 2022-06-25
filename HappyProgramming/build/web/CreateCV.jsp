@@ -32,7 +32,7 @@
                                     
                                     <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
                                         <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
-                                       <input type="file" accept="image/*"
+                                        <input type="file" name="avatar" accept="image/*"
                                               onchange="document.getElementById('avt').src = window.URL.createObjectURL(this.files[0])" style="width: 100%; height:100%; opacity: 0;">
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="email"> 
+                            <input style=" " type="text"  class="form-control m-2 cvform" name="dob"> 
 
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2" >
-                            <select class="form-select m-2 cvform" style="width:200px;" ><option>Male</option>
+                            <select class="form-select m-2 cvform" name="gender" style="width:200px;" ><option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option></select>
 
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="email"> 
+                            <input style=" " type="text"  class="form-control m-2 cvform" name="address"> 
 
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="email"> 
+                            <input style=" " type="text"  class="form-control m-2 cvform" name="profession"> 
 
                         </div>
                     </div>
@@ -110,18 +110,18 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="profession"></textarea>
+                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="professionIntro"></textarea>
 
                         </div>
                     </div>
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
-                                <label> Service </label>
+                                <label> Framework </label>
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="email"> 
+                            <input style=" " type="text"  class="form-control m-2 cvform" name="framework"> 
 
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="profession"></textarea>
+                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceIntro"></textarea>
 
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="profession"></textarea>
+                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="achievement"></textarea>
 
                         </div>
                     </div>
