@@ -37,7 +37,7 @@ public class ListRequestByMenteeController extends HttpServlet {
         HttpSession session = request.getSession(true);
         try{       
         Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-        int id = 1;
+        int id = 2;
         RequestDAO dao = new RequestDAO();
         SkillDAO abc = new SkillDAO();
         ArrayList<Request> list = dao.listRequestByMentee(id);
