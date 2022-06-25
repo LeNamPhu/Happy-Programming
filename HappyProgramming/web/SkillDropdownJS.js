@@ -16,5 +16,11 @@ VirtualSelect.init({
     multiple: true,
     search: true,
     maxValues: 3,
+    setValueAsArray:true,
+    showValueAsTags: true,
+});
+document.querySelector('#sample-select').addEventListener('change', function() {
+  document.querySelector('#sample-select').value;
+  
 });
 

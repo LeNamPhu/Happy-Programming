@@ -42,7 +42,7 @@ public class RequestDAO {
                 stm.setInt(1, menteeID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    if ("Open".equals(rs.getString("Status")) || "Processing".equals(rs.getString("Status"))) {
+                    if ("Open".equals(rs.getString("Status")) /*|| "Open".equals(rs.getString("Status"))*/) {
                         int ID = rs.getInt("ID");
                         String title = rs.getString("Title");
                         String status = rs.getString("Status");

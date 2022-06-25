@@ -18,16 +18,16 @@
         <link href="Stylesheet.css" rel="stylesheet" type="text/css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <style>
-            table, table tr{
-                border: 1px solid;
-                width:50%;
-                margin: auto;
-                margin-top: 5%;
+            table{
+                
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 4%;
                 text-align: center;
+                font-size: 30px;
+                
             }
-            table th,td{
-                width: 15%;
-            }
+            
         </style>
     </head>
     <body>
@@ -40,19 +40,21 @@
                 int count = 1;%>
             <%if (list != null && !list.isEmpty()) {
             %>
-            <table >
-                <tr><th >STT</th>
-                    <td></td>
-                    <th >Skill name</th>                  
+            
+                                
                         <%    for (Skill sk : list) {
                                 if (sk.getStatus().equals("active")) {
-                        %>               
-                <tr><td ><%=count++%></td>
-                    <td><img src="<%=sk.getImage()%>"style="width:150px; height:120px;"></td>
-                    <td><%=sk.getName()%></td></tr>
+                        %>   
+                        <div >
+                            <table class="border border-secondary border-3 " >
+                        <tr><td style="width:200px;"><%=count++%></td>
+                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%;" class="border border-secondary m-2"></td>
+                    <td style="width:300px;"><%=sk.getName()%></td></tr>
+                        </table>   
+            </div>
                     <% }
                         }%>
-            </table>   
+            
             <%    }%>
         </div>
         <footer>
