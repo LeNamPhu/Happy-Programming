@@ -5,9 +5,16 @@
  */
 package Controller;
 
+import DAO.InviteDAO;
+import DAO.MentorDAO;
+import DAO.RequestDAO;
+import DTO.Account;
+import DTO.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,52 +24,45 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "StatisticByMenteeController", urlPatterns = {"/StatisticByMenteeController"})
+public class StatisticByMenteeController extends HttpServlet {
 
-    public static final String ERROR = "Error.jsp";
-    public static final String LIST_REQUEST_BY_MENTEE = "ListRequestByMenteeController";
-    public static final String DELETE_REQUEST_BY_MENTEE = "DeleteRequestByMenteeController";
-    public static final String UPDATE_REQUEST_BY_MENTEE = "UpdateRequestByMenteeController";
-    public static final String ACCEPT_REQUEST = "AcceptRequestController";
-    public static final String REJECT_REQUEST = "RejectRequestController";
-    public static final String LIST_INVITE_REQUEST = "ListInviteController";
-    public static final String SIGN_IN = "SignInController";
-    public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
-     
+    private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "StatisticByMentee.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-             String action = request.getParameter("action");
-             if("ListRequestByMentee".equals(action)){
-                url = LIST_REQUEST_BY_MENTEE;
-            }else if("DeleteRequest".equals(action)){
-                url = DELETE_REQUEST_BY_MENTEE;
-            }else if("UpdateRequest".equals(action)){
-                url = UPDATE_REQUEST_BY_MENTEE;
-            }else if("Sign in".equals(action)){
-                url = SIGN_IN;
-            }else if("addSkill".equals(action)){
-                url = "addSkill";
-            }else if("updateSkill".equals(action)){
-                url = "updateSkill";
-            }else if("Reject Request".equals(action)){
-                url = REJECT_REQUEST;
-            }else if("Invite Request".equals(action)){
-                url = LIST_INVITE_REQUEST;
-            }else if("Accept Request".equals(action)){
-                url = ACCEPT_REQUEST;
-            }else if("Statistic by Mentee".equals(action)){
-                url = STATISTIC_BY_MENTEE;
-            }         
-            else{
-                HttpSession session = request.getSession();
-                session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-            }        
+            HttpSession session = request.getSession();
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int menteeID = 2;
+            RequestDAO reqDAO = new RequestDAO();
+            ArrayList<Request> listReq = reqDAO.getListClosedReq(menteeID);
+            ArrayList<Integer> listReqID = new ArrayList<>();
+            int totalHour = 0;
+            int totalRequest = 0;
+            ArrayList<String> listTitle = new ArrayList<>();
+            for (Request req : listReq) {
+                totalRequest = totalRequest + 1;
+                totalHour = totalHour + req.getDeadlineHour();
+                listTitle.add(req.getTitle());
+                listReqID.add(req.getId());
+            }
+            InviteDAO inviteDAO = new InviteDAO();
+            ArrayList<Integer> listMentorID = inviteDAO.getListMentorIDByReqID(listReqID);
+            MentorDAO mentorDAO = new MentorDAO();
+            ArrayList<String> listMentor = mentorDAO.getListNameMentor(listMentorID);  
+            String abc = String.valueOf(totalHour);
+            String xyz = String.valueOf(totalRequest);
+            request.setAttribute("TOTAL_REQUEST", xyz);
+            request.setAttribute("TOTAL_HOUR", abc);
+            request.setAttribute("LIST_TITLE", listTitle);
+            request.setAttribute("LIST_MENTOR", listMentor);
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
-        }finally{
+            log("Error at DeleteRequestByMenteeController " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

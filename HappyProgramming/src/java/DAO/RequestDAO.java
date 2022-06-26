@@ -389,19 +389,30 @@ public class RequestDAO {
         }
     }
     
-    public void updateStatusInvite(int reqID, int mentorID, String status) throws SQLException{
-        Connection conn = null;
+    public ArrayList<Request> getListClosedReq(int menteeID) throws SQLException{
+         ArrayList<Request> list = new ArrayList<>();
+         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.makeConnection();
             if (conn != null) {
-                String sql = "UPDATE Invite SET Status=? WHERE ReqID=? and MentorID=? ";
+                String sql = LIST_REQUEST_BY_MENTEE;
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, status);  
-                stm.setInt(2, reqID);                                         
-                stm.setInt(2, mentorID);                                         
-                int value = stm.executeUpdate();
+                 stm.setInt(1, menteeID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    if ("Closed".equals(rs.getString("Status"))) {
+                        int ID = rs.getInt("ID");
+                        String title = rs.getString("Title");
+                        String status = rs.getString("Status");
+                        String content = rs.getString("Content");
+                        Date deadlineDate = rs.getDate("DeadlineDate");
+                        int deadlineHour = rs.getInt("DeadlineHour");
+                        list.add(new Request(ID, title, status, content, menteeID, deadlineDate, deadlineHour));
+                    }
+                }
+
             }
         } catch (Exception e) {
         } finally {
@@ -415,5 +426,7 @@ public class RequestDAO {
                 conn.close();
             }
         }
+        return list;
     }
+
 }

@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.InviteDAO;
 import DAO.RequestDAO;
 import DTO.Account;
 import java.io.IOException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "AcceptOrRejectController", urlPatterns = {"/AcceptOrRejectController"})
-public class AcceptOrRejectController extends HttpServlet {
+@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
+public class AcceptRequestController extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
     private final String SUCCESS = "ListInviteController";
@@ -35,13 +36,14 @@ public class AcceptOrRejectController extends HttpServlet {
             int mentorID = 3;
             int reqID = Integer.parseInt(request.getParameter("reqID"));
             String statusReq = (String) request.getParameter("status");
-            String statusInvite = (String) request.getParameter("statusInvite");
+            String inviteStatus = (String) request.getParameter("inviteStatus");
             RequestDAO dao = new RequestDAO();
             dao.updateStatusRequest(reqID, statusReq);
-            dao.updateStatusInvite(reqID, mentorID, statusInvite);           
+            InviteDAO abc = new InviteDAO();
+            abc.updateStatusInvite(reqID, mentorID, inviteStatus);           
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at DeleteRequestByMenteeController " + e.toString());
+            log("Error at AcceptRequestController " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }

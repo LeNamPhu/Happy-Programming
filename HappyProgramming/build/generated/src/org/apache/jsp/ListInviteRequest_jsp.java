@@ -66,7 +66,7 @@ public final class ListInviteRequest_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        ");
 
             ArrayList<Request> listInviteRequest = (ArrayList) session.getAttribute("LIST_INVITE");
-            Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_REQUEST");
+            Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_INVITE_REQUEST");
             if (listInviteRequest != null) {               
         
       out.write("\n");
@@ -134,15 +134,13 @@ public final class ListInviteRequest_jsp extends org.apache.jasper.runtime.HttpJ
       out.print( req.getId() );
       out.write("\"/>\n");
       out.write("                        <input type=\"hidden\" name=\"status\" value=\"Closed\"/>\n");
-      out.write("                        <input type=\"hidden\" name=\"inviteStatus\" value=\"closed\"/>\n");
+      out.write("                        <input type=\"hidden\" name=\"inviteStatus\" value=\"Closed\"/>\n");
       out.write("                    \n");
       out.write("                    </th>                          \n");
       out.write("                    <th><input type=\"submit\" name=\"action\" value=\"Reject Request\"/>\n");
       out.write("                        <input type=\"hidden\" name=\"reqID\" value=\"");
       out.print( req.getId() );
-      out.write("\"/>\n");
-      out.write("                        <input type=\"hidden\" name=\"status\" value=\"Processing\"/>\n");
-      out.write("                        <input type=\"hidden\" name=\"inviteStatus\" value=\"closed\"/>\n");
+      out.write("\"/>                       \n");
       out.write("                    </th>                    \n");
       out.write("                </tr>\n");
       out.write("            </form>\n");

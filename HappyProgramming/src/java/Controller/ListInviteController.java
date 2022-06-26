@@ -37,7 +37,7 @@ public class ListInviteController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int id = user.getId();
+            int id = 3;
             RequestDAO dao = new RequestDAO();
              ArrayList<Request> listInvite = dao.getListInviteRequest(dao.getListInviteRequestID(id));
             session.setAttribute("LIST_INVITE", listInvite);

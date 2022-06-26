@@ -71,13 +71,11 @@
                     <th> <input type="submit" name="action" value="Accept Request"/>
                         <input type="hidden" name="reqID" value="<%= req.getId() %>"/>
                         <input type="hidden" name="status" value="Closed"/>
-                        <input type="hidden" name="inviteStatus" value="closed"/>
+                        <input type="hidden" name="inviteStatus" value="Closed"/>
                     
                     </th>                          
                     <th><input type="submit" name="action" value="Reject Request"/>
-                        <input type="hidden" name="reqID" value="<%= req.getId() %>"/>
-                        <input type="hidden" name="status" value="Processing"/>
-                        <input type="hidden" name="inviteStatus" value="closed"/>
+                        <input type="hidden" name="reqID" value="<%= req.getId() %>"/>                       
                     </th>                    
                 </tr>
             </form>
