@@ -5,9 +5,13 @@
  */
 package Controller;
 
+import DAO.InviteDAO;
+import DAO.RequestDAO;
+import DTO.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,51 +21,29 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
+public class AcceptRequestController extends HttpServlet {
 
-    public static final String ERROR = "Error.jsp";
-    public static final String LIST_REQUEST_BY_MENTEE = "ListRequestByMenteeController";
-    public static final String DELETE_REQUEST_BY_MENTEE = "DeleteRequestByMenteeController";
-    public static final String UPDATE_REQUEST_BY_MENTEE = "UpdateRequestByMenteeController";
-    public static final String ACCEPT_REQUEST = "AcceptRequestController";
-    public static final String REJECT_REQUEST = "RejectRequestController";
-    public static final String LIST_INVITE_REQUEST = "ListInviteController";
-    public static final String SIGN_IN = "SignInController";
-    public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
-     
+    private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "ListInviteController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+         String url = ERROR;
         try {
-             String action = request.getParameter("action");
-             if("ListRequestByMentee".equals(action)){
-                url = LIST_REQUEST_BY_MENTEE;
-            }else if("DeleteRequest".equals(action)){
-                url = DELETE_REQUEST_BY_MENTEE;
-            }else if("UpdateRequest".equals(action)){
-                url = UPDATE_REQUEST_BY_MENTEE;
-            }else if("Sign in".equals(action)){
-                url = SIGN_IN;
-            }else if("addSkill".equals(action)){
-                url = "addSkill";
-            }else if("updateSkill".equals(action)){
-                url = "updateSkill";
-            }else if("Reject Request".equals(action)){
-                url = REJECT_REQUEST;
-            }else if("Invite Request".equals(action)){
-                url = LIST_INVITE_REQUEST;
-            }else if("Accept Request".equals(action)){
-                url = ACCEPT_REQUEST;
-            }else if("Statistic by Mentee".equals(action)){
-                url = STATISTIC_BY_MENTEE;
-            }         
-            else{
-                HttpSession session = request.getSession();
-                session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-            }        
+            HttpSession session = request.getSession();
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int mentorID = 3;
+            int reqID = Integer.parseInt(request.getParameter("reqID"));
+            String statusReq = (String) request.getParameter("status");
+            String inviteStatus = (String) request.getParameter("inviteStatus");
+            RequestDAO dao = new RequestDAO();
+            dao.updateStatusRequest(reqID, statusReq);
+            InviteDAO abc = new InviteDAO();
+            abc.updateStatusInvite(reqID, mentorID, inviteStatus);           
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at AcceptRequestController " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }

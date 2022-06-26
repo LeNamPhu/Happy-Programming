@@ -42,7 +42,7 @@ public class RequestDAO {
                 stm.setInt(1, menteeID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    if ("Open".equals(rs.getString("Status")) /*|| "Open".equals(rs.getString("Status"))*/) {
+                    if ("Open".equals(rs.getString("Status"))  || "Processing".equals(rs.getString("Status")) /*|| "Open".equals(rs.getString("Status"))*/) {
                         int ID = rs.getInt("ID");
                         String title = rs.getString("Title");
                         String status = rs.getString("Status");
@@ -289,6 +289,144 @@ public class RequestDAO {
                 conn.close();
             }
         }
+    }
+
+    public ArrayList<Integer> getListInviteRequestID(int id) throws SQLException{
+        ArrayList<Integer> listInviteRequestID = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "SELECT ReqID FROM Invite WHERE MentorID =? and Status =?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, id);
+                stm.setString(2, "Processing");
+                rs = stm.executeQuery();
+                while(rs.next()){
+                    int reqID = rs.getInt("ReqID");
+                    listInviteRequestID.add(reqID);
+                }
+                
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return listInviteRequestID;
+    }
+    
+    public ArrayList<Request> getListInviteRequest(ArrayList<Integer> listInviteRequestID) throws SQLException{
+        ArrayList<Request> listInviteRequest = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (Integer reqID : listInviteRequestID) {
+                    String sql = "SELECT Title, Content, MenteeID, DeadlineDate, DeadlineHour FROM Request WHERE ID=? and Status=?";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, reqID);
+                    stm.setString(2, "Processing");
+                    rs = stm.executeQuery();
+                    if (rs.next()) {                        
+                        listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processiong", rs.getString("Content"), rs.getInt("MenteeID") , rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
+                    }
+                }
+                
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return listInviteRequest;
+    }
+    
+    public void updateStatusRequest(int reqID, String status) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "UPDATE Request SET Status=? WHERE ID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, status);  
+                stm.setInt(2, reqID);                                         
+                int value = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+    
+    public ArrayList<Request> getListClosedReq(int menteeID) throws SQLException{
+         ArrayList<Request> list = new ArrayList<>();
+         Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = LIST_REQUEST_BY_MENTEE;
+                stm = conn.prepareStatement(sql);
+                 stm.setInt(1, menteeID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    if ("Closed".equals(rs.getString("Status"))) {
+                        int ID = rs.getInt("ID");
+                        String title = rs.getString("Title");
+                        String status = rs.getString("Status");
+                        String content = rs.getString("Content");
+                        Date deadlineDate = rs.getDate("DeadlineDate");
+                        int deadlineHour = rs.getInt("DeadlineHour");
+                        list.add(new Request(ID, title, status, content, menteeID, deadlineDate, deadlineHour));
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
     }
 
 }

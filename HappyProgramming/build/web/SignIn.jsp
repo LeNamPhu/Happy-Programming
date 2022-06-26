@@ -17,7 +17,7 @@
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Sign In</h1>
             <form action="MainController">
                 <table style=";font-size: 25px" class="d-flex justify-content-center">
-                    <tr><td>Email</td></tr>
+                    <tr><td>Account Name</td></tr>
                     <tr><td><input type="text" name="txtemail" style="width: 400px"></td></tr>
                     <tr><td>Password</td></tr>
                     <tr><td><input type="password" name="txtpass" style="width: 400px"></td></tr>
