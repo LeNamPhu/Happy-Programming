@@ -28,6 +28,7 @@ public class RequestDAO {
     public static final String DELETE_REQUEST = "UPDATE Request SET Status=? WHERE ID=?";
     public static final String UPDATE_REQUEST = "UPDATE Request SET Title=?, Content=?, DeadlineDate=?, DeadlineHour=? WHERE ID=?";
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
+    public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
 
     public ArrayList<Request> listRequestByMentee(int menteeID) throws SQLException {
         ArrayList<Request> list = new ArrayList<>();
@@ -53,6 +54,41 @@ public class RequestDAO {
                     }
                 }
 
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Request> listRequestByMentor(int MentorID) throws SQLException {
+        ArrayList<Request> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = LIST_REQUEST_BY_MENTOR;
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, MentorID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String title = rs.getString("Title");
+                    String content = rs.getString("Content");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    list.add(new Request(0, title, "null", content, 0, deadlineDate, deadlineHour));
+                }
             }
         } catch (Exception e) {
         } finally {
@@ -171,7 +207,7 @@ public class RequestDAO {
             if (conn != null) {
                 String sql = UPDATE_REQUEST;
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, req.getTitle());             
+                stm.setString(1, req.getTitle());
                 stm.setString(2, req.getContent());
                 stm.setDate(3, req.getDeadlineDate());
                 stm.setInt(4, req.getDeadlineHour());
@@ -274,7 +310,7 @@ public class RequestDAO {
                     stm = conn.prepareStatement(sql);
                     stm.setInt(1, ID);
                     stm.setInt(2, reqID);
-                     int value = stm.executeUpdate();
+                    int value = stm.executeUpdate();
                 }
             }
         } catch (Exception e) {

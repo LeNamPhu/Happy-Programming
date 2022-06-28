@@ -8,6 +8,26 @@
         <servlet-name>GetAllSkillController</servlet-name>
         <servlet-class>Controller.GetAllSkillController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusSkill</servlet-name>
+        <servlet-class>Controller.ChangeStatusSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSkill</servlet-name>
+        <servlet-class>Controller.AddSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSkill</servlet-name>
+        <servlet-class>Controller.UpdateSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MentorRequestController</servlet-name>
+        <servlet-class>Controller.MentorRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowingRequestController</servlet-name>
+        <servlet-class>Controller.FollowingRequestController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -16,12 +36,32 @@
         <servlet-name>GetAllSkillController</servlet-name>
         <url-pattern>/GetAllSkillController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusSkill</servlet-name>
+        <url-pattern>/ChangeStatusSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSkill</servlet-name>
+        <url-pattern>/AddSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSkill</servlet-name>
+        <url-pattern>/UpdateSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MentorRequestController</servlet-name>
+        <url-pattern>/MentorRequestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FollowingRequestController</servlet-name>
+        <url-pattern>/FollowingRequestController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>ListRequestByMentee.jsp</welcome-file>
+        <welcome-file>HomePage.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

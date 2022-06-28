@@ -47,7 +47,7 @@
             <%ArrayList<Skill> list = SkillDAO.getAllSkill();
                 int count = 1;%>
             <%if (list != null && !list.isEmpty()) {%>
-            <table class="skillad">
+            <table >
                 <tr><th >STT</th>
                     <th>ID</th>
                     <th></th>
@@ -63,8 +63,8 @@
 
 
                     <td><div class="btn-group ">
-                            <a onclick="location.href = 'mainController?action=changeStatus&id=<%=sk.getId()%>&status=active'" class="btn <%=sk.getId()%> act"  data-bs-toggle="button" style="border: 1px solid">Active </a>
-                            <a onclick="location.href = 'mainController?action=changeStatus&id=<%=sk.getId()%>&status=inactive'" class="btn <%=sk.getId()%> inact"  data-bs-toggle="button" style="border: 1px solid">Inactive</a>
+                            <a onclick="location.href = 'MainController?action=changeStatus&id=<%=sk.getId()%>&status=active'" class="btn <%=sk.getId()%> act"  data-bs-toggle="button" style="border: 1px solid">Active </a>
+                            <a onclick="location.href = 'MainController?action=changeStatus&id=<%=sk.getId()%>&status=inactive'" class="btn <%=sk.getId()%> inact"  data-bs-toggle="button" style="border: 1px solid">Inactive</a>
                         </div>
                         <%if (sk.getStatus().equalsIgnoreCase("active")) {%>
                         <script>

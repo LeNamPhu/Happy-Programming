@@ -1,9 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Servlet;
+package Controller;
 
+import DAO.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author DELL
+ * @author ADMIN
  */
-public class mainController extends HttpServlet {
+public class ChangeStatusSkill extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,22 +31,12 @@ public class mainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String action = request.getParameter("action");
-            String url = "";
-            switch(action) {
-                case "changeStatus":
-                    url="changeStatusSkill";
-                    break;
-                case "addSkill":
-                    url="addSkill";
-                    break;
-                case "updateSkill":
-                    url="updateSkill";
-                    break;
+        try (PrintWriter out = response.getWriter()) {
+            String ID = request.getParameter("id") ;
+            String status = request.getParameter("status");
+            if(SkillDAO.changeStatus(ID,status)) {
+                response.sendRedirect("AdminViewSkill.jsp");
             }
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

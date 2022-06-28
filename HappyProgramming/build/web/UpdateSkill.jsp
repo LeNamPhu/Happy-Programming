@@ -42,7 +42,7 @@
             Skill sk = SkillDAO.getASkill(id);
         %>
         <div class="body">
-            <form action="mainController" method="post">
+            <form action="MainController" method="post">
                 <input type="hidden" name="id" value="<%=sk.getId()%>">
                 <table>
                     <tr>
