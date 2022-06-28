@@ -10,7 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-   
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link href="Stylesheet.css" rel="stylesheet" type="text/css">
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
     <body>
@@ -25,7 +27,7 @@
                 <a class="col-md-1" href="MentorHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
                 <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
-                <a class="col-md-1" href="MainController?action=ListRequestByMentor" >Request</a>
+                <a class="col-md-1" href="" >Request</a>
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar_male.png" /></a>
                     <div class="dropdown">
@@ -34,8 +36,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">CV</a></li>
-                            <li><a class="dropdown-item" href="ChangePassword.jsp">Change Password</a></li>
-                            <li><a class="dropdown-item" href="HomePage.jsp">Log out</a></li>
+                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </div> 
                 </div>

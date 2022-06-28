@@ -35,7 +35,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="AdminViewSkill.jsp">Skill</a></li>
                             <li><a class="dropdown-item" href="#">Request</a></li>
-                            <li><a class="dropdown-item" href="HomePage.jsp">Log out</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
                         </ul>
                     </div> 
                 </div>
