@@ -18,7 +18,10 @@
     <body>
         <nav class="container-fluid header ">
             <div class="row">
-                <a class="col-md-8" href="AdminHomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
+                <div class="col-md-7">
+
+                    <a class="logo "href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
+                </div>                <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
                 <a class="col-md-1" href="ViewMentee.jsp" >Mentee</a>

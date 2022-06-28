@@ -35,7 +35,7 @@
             <%@include file="AdminHeader.jsp" %>
         </header>
         <div class="body">
-            <form action="mainController" method="post">
+            <form action="MainController" method="post">
         <table>
             <tr>
                 <td>Skill name</td>

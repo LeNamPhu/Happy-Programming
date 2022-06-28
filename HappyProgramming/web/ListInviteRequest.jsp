@@ -27,17 +27,7 @@
         %>
         <table border="1">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Deadline Date</th>
-                    <th>Deadline Hour</th>
-                    <th>Skill 1</th>
-                    <th>Skill 2</th>
-                    <th>Skill 3</th>                                              
-                    <th>Accept</th>                          
-                    <th>Reject</th>
-                </tr>
+                
             </thead>
             <tbody>
 
