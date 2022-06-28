@@ -27,21 +27,21 @@ public class MainController extends HttpServlet {
     public static final String REJECT_REQUEST = "RejectRequestController";
     public static final String LIST_INVITE_REQUEST = "ListInviteController";
     public static final String SIGN_IN = "SignInController";
+
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
-     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-             String action = request.getParameter("action");
-             if("ListRequestByMentee".equals(action)){
+            String action = request.getParameter("action");
+            if ("ListRequestByMentee".equals(action)) {
                 url = LIST_REQUEST_BY_MENTEE;
-            }else if("DeleteRequest".equals(action)){
+            } else if ("DeleteRequest".equals(action)) {
                 url = DELETE_REQUEST_BY_MENTEE;
-            }else if("UpdateRequest".equals(action)){
+            } else if ("UpdateRequest".equals(action)) {
                 url = UPDATE_REQUEST_BY_MENTEE;
-            }else if("Sign in".equals(action)){
+            } else if ("Sign in".equals(action)) {
                 url = SIGN_IN;
             }else if("addSkill".equals(action)){
                 url = "addSkill";
@@ -57,14 +57,15 @@ public class MainController extends HttpServlet {
                 url = ACCEPT_REQUEST;
             }else if("Statistic by Mentee".equals(action)){
                 url = STATISTIC_BY_MENTEE;
-            }         
-            else{
+            } else if ("ListRequestByMentor".equals(action)) {
+                url = "MentorRequestController";
+            }
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-            }        
+            }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

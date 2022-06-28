@@ -1,3 +1,7 @@
 
 *.class
-*.class
+
+/HappyProgramming/nbproject/private/
+/HappyProgramming/build/
+/HappyProgramming/dist/
+
