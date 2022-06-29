@@ -341,7 +341,7 @@ public class RequestDAO {
                     stm.setString(2, "Processing");
                     rs = stm.executeQuery();
                     if (rs.next()) {                        
-                        listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processiong", rs.getString("Content"), rs.getInt("MenteeID") , rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
+                        listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processing", rs.getString("Content"), rs.getInt("MenteeID") , rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
                     }
                 }
                 
