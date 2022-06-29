@@ -57,7 +57,9 @@ public class MainController extends HttpServlet {
                 url = ACCEPT_REQUEST;
             }else if("Statistic by Mentee".equals(action)){
                 url = STATISTIC_BY_MENTEE;
-            }         
+            }   else if("LogOut".equals(action)){
+                url = "LogOutController";
+            }        
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");

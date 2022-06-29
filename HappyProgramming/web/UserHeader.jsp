@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Change Password</a></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
                         </ul>
                     </div> 
                 </div>
