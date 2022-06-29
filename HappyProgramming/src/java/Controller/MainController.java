@@ -23,6 +23,7 @@ public class MainController extends HttpServlet {
     public static final String LIST_REQUEST_BY_MENTEE = "ListRequestByMenteeController";
     public static final String DELETE_REQUEST_BY_MENTEE = "DeleteRequestByMenteeController";
     public static final String UPDATE_REQUEST_BY_MENTEE = "UpdateRequestByMenteeController";
+    public static final String CREATE_REQUEST_BY_MENTEE = "CreateRequestByMenteeController";
     public static final String ACCEPT_REQUEST = "AcceptRequestController";
     public static final String REJECT_REQUEST = "RejectRequestController";
     public static final String LIST_INVITE_REQUEST = "ListInviteController";
@@ -41,7 +42,10 @@ public class MainController extends HttpServlet {
                 url = DELETE_REQUEST_BY_MENTEE;
             }else if("UpdateRequest".equals(action)){
                 url = UPDATE_REQUEST_BY_MENTEE;
-            }else if("Sign in".equals(action)){
+
+            } else if("CreateRequest".equals(action)){
+                url = CREATE_REQUEST_BY_MENTEE;
+            } else if ("Sign in".equals(action)) {
                 url = SIGN_IN;
             }else if("addSkill".equals(action)){
                 url = "addSkill";
@@ -63,7 +67,11 @@ public class MainController extends HttpServlet {
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
+
             }        
+
+            
+
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         }finally{
