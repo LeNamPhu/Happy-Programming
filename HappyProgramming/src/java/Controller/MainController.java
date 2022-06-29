@@ -43,6 +43,12 @@ public class MainController extends HttpServlet {
                 url = "addSkill";
             }else if("updateSkill".equals(action)){
                 url = "updateSkill";
+            }else if("changeStatus".equals(action)) {
+                url = "changeStatusSkill";
+            }else if("changeMentorStatus".equals(action)) {
+                url = "changeMentorStatus";
+            }else if("searchMentor".equals(action)) {
+                url = "searchMentor";
             }
             
             else{

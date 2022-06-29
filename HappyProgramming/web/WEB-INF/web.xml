@@ -4,9 +4,49 @@
         <servlet-name>MainController</servlet-name>
         <servlet-class>Controller.MainController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>changeStatusSkill</servlet-name>
+        <servlet-class>Controller.changeStatusSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addSkill</servlet-name>
+        <servlet-class>Controller.addSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateSkill</servlet-name>
+        <servlet-class>Controller.updateSkill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeMentorStatus</servlet-name>
+        <servlet-class>Controller.changeMentorStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchMentor</servlet-name>
+        <servlet-class>Controller.searchMentor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeStatusSkill</servlet-name>
+        <url-pattern>/changeStatusSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addSkill</servlet-name>
+        <url-pattern>/addSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSkill</servlet-name>
+        <url-pattern>/updateSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeMentorStatus</servlet-name>
+        <url-pattern>/changeMentorStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchMentor</servlet-name>
+        <url-pattern>/searchMentor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Servlet;
+package Controller;
 
-import DAO.SkillDAO;
+import DAO.MentorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class addSkill extends HttpServlet {
+public class changeMentorStatus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +32,10 @@ public class addSkill extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("txtname");
-            String status = request.getParameter("newstatus");
-            String image = request.getParameter("newimage");
-            if(SkillDAO.addASkill(name, status, image)) {
-                response.sendRedirect("AdminViewSkill.jsp");
+            int roleID = Integer.parseInt(request.getParameter("roleID"));
+            int mentorID = Integer.parseInt(request.getParameter("id"));
+            if(MentorDAO.changeMentorStatus(roleID, mentorID)) {
+                response.sendRedirect("AdminViewMentor.jsp");
             }
         }
     }

@@ -4,7 +4,6 @@
  */
 package Controller;
 
-import Servlet.*;
 import DAO.SkillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;

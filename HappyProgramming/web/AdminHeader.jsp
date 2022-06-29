@@ -20,7 +20,7 @@
             <div class="row">
                 <a class="col-md-8" href="AdminHomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
                 <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
-                <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
+                <a class="col-md-1" href="AdminViewMentor.jsp?page=1" >Mentor</a>
                 <a class="col-md-1" href="ViewMentee.jsp" >Mentee</a>
 
                 <div class="col-md-1 d-flex">
