@@ -5,6 +5,8 @@
  */
 package Controller;
 
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author admin
  */
+
 public class LogOutController extends HttpServlet {
 
     /**
@@ -31,10 +34,12 @@ public class LogOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             session.invalidate();
             response.sendRedirect("HomePage.jsp");
+
         }
     }
 

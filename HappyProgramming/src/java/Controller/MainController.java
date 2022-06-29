@@ -53,6 +53,7 @@ public class MainController extends HttpServlet {
                 url = "changeStatusSkill";
             }else if("updateSkill".equals(action)){
                 url = "updateSkill";
+
             }else if("Reject Request".equals(action)){
                 url = REJECT_REQUEST;
             }else if("Invite Request".equals(action)){
@@ -63,7 +64,16 @@ public class MainController extends HttpServlet {
                 url = STATISTIC_BY_MENTEE;
             }   else if("LogOut".equals(action)){
                 url = "LogOutController";
-            }        
+                    
+
+           
+            }else if("changeMentorStatus".equals(action)) {
+                url = "changeMentorStatus";
+            }else if("searchMentor".equals(action)) {
+                url = "searchMentor";
+            }
+            
+
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");

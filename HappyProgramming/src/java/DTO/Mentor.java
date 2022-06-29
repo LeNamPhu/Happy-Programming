@@ -26,8 +26,10 @@ public class Mentor {
     private String achievementDesc;
     private String framework;
     private String avatar;
+    private String job;
+    private String introduction;
 
-    public Mentor(int id, String email, String fullname, String address, String phone, Date dob, String sex, String profession, String professionIntro, String serviceDesc, String achievementDesc, String framework, String avatar) {
+    public Mentor(int id, String email, String fullname, String address, String phone, Date dob, String sex, String profession, String professionIntro, String serviceDesc, String achievementDesc, String framework, String avatar, String job, String introduction) {
         this.id = id;
         this.email = email;
         this.fullname = fullname;
@@ -41,6 +43,8 @@ public class Mentor {
         this.achievementDesc = achievementDesc;
         this.framework = framework;
         this.avatar = avatar;
+        this.job = job;
+        this.introduction = introduction;
     }
 
     public int getId() {
@@ -146,5 +150,22 @@ public class Mentor {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
     
-}
+    
+}    

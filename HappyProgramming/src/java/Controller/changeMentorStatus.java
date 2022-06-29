@@ -5,53 +5,43 @@
  */
 package Controller;
 
-import DAO.InviteDAO;
-import DAO.RequestDAO;
-import DTO.Account;
 
 import DAO.MentorDAO;
-import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 /**
  *
- * @author ThienNho
+ * @author admin
  */
-@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
-public class AcceptRequestController extends HttpServlet {
 
-    private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListInviteController";
+public class changeMentorStatus extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            HttpSession session = request.getSession();
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
-            int reqID = Integer.parseInt(request.getParameter("reqID"));
-            String statusReq = (String) request.getParameter("status");
-            String inviteStatus = (String) request.getParameter("inviteStatus");
-            RequestDAO dao = new RequestDAO();
-            dao.updateStatusRequest(reqID, statusReq);
-            InviteDAO abc = new InviteDAO();
-            abc.updateStatusInvite(reqID, mentorID, inviteStatus);
-            url = SUCCESS;
-        } catch (Exception e) {
-            log("Error at AcceptRequestController " + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
 
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int roleID = Integer.parseInt(request.getParameter("roleID"));
+            int mentorID = Integer.parseInt(request.getParameter("id"));
+            if(MentorDAO.changeMentorStatus(roleID, mentorID)) {
+                response.sendRedirect("AdminViewMentor.jsp");
+            }
         }
     }
 

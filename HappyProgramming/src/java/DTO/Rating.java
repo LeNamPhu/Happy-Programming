@@ -12,12 +12,12 @@ package DTO;
 public class Rating {
 
     private int id;
-    private int rate;
+    private double rate;
     private String comment;
     private int menteeId;
     private int mentorId;
 
-    public Rating(int id, int rate, String comment, int menteeId, int mentorId) {
+    public Rating(int id, double rate, String comment, int menteeId, int mentorId) {
         this.id = id;
         this.rate = rate;
         this.comment = comment;
@@ -33,11 +33,11 @@ public class Rating {
         this.id = id;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

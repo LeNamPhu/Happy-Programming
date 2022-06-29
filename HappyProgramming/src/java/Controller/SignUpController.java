@@ -104,7 +104,7 @@ public class SignUpController extends HttpServlet {
                         }
                     }
                     else if(roleID == 2){
-                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,null);
+                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,null,null,null);
                         boolean insertMentor = dao.insertMentor(tor);
                         if(insertMentor){
                             url = SUCCESS;

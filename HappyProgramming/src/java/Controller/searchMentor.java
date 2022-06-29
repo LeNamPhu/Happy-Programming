@@ -5,9 +5,6 @@
  */
 package Controller;
 
-import DAO.InviteDAO;
-import DAO.RequestDAO;
-import DTO.Account;
 
 import DAO.MentorDAO;
 import DTO.Mentor;
@@ -25,33 +22,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
-public class AcceptRequestController extends HttpServlet {
+
+public class searchMentor extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
     private final String SUCCESS = "ListInviteController";
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            HttpSession session = request.getSession();
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
-            int reqID = Integer.parseInt(request.getParameter("reqID"));
-            String statusReq = (String) request.getParameter("status");
-            String inviteStatus = (String) request.getParameter("inviteStatus");
-            RequestDAO dao = new RequestDAO();
-            dao.updateStatusRequest(reqID, statusReq);
-            InviteDAO abc = new InviteDAO();
-            abc.updateStatusInvite(reqID, mentorID, inviteStatus);
-            url = SUCCESS;
-        } catch (Exception e) {
-            log("Error at AcceptRequestController " + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-
+         String url = ERROR;
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String keyword = request.getParameter("txtsearch");
+            ArrayList<Mentor> allMentor = MentorDAO.searchMentorByAccountName(keyword);
+            request.getRequestDispatcher("AdminViewMentorSearch.jsp?page=1").forward(request, response);
         }
     }
 

@@ -171,7 +171,7 @@ public class RequestDAO {
             if (conn != null) {
                 String sql = UPDATE_REQUEST;
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, req.getTitle());             
+                stm.setString(1, req.getTitle());
                 stm.setString(2, req.getContent());
                 stm.setDate(3, req.getDeadlineDate());
                 stm.setInt(4, req.getDeadlineHour());
@@ -274,7 +274,7 @@ public class RequestDAO {
                     stm = conn.prepareStatement(sql);
                     stm.setInt(1, ID);
                     stm.setInt(2, reqID);
-                     int value = stm.executeUpdate();
+                    int value = stm.executeUpdate();
                 }
             }
         } catch (Exception e) {
@@ -290,6 +290,7 @@ public class RequestDAO {
             }
         }
     }
+
 
     public ArrayList<Integer> getListInviteRequestID(int id) throws SQLException{
         ArrayList<Integer> listInviteRequestID = new ArrayList<>();
@@ -427,6 +428,28 @@ public class RequestDAO {
             }
         }
         return list;
+    }
+
+
+    public static int countRequestOfMentor(int mentorId, String status) {
+        Connection cn = null;
+        int num = 0;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select count(Invite.Status) as numberOfRequest \n"
+                        + "from Request join Invite on Request.ID = ReqID\n"
+                        + "where MentorID = ? and Invite.Status = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, mentorId);
+                pst.setString(2, status);
+                ResultSet rs = pst.executeQuery();
+                if(rs!=null && rs.next())
+                    num = rs.getInt("numberOfRequest");
+            }
+        } catch (Exception e) {
+        }
+        return num;
     }
 
 }
