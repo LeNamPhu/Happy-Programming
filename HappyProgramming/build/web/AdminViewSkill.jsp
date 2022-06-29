@@ -47,7 +47,7 @@
             <%ArrayList<Skill> list = SkillDAO.getAllSkill();
                 int count = 1;%>
             <%if (list != null && !list.isEmpty()) {%>
-            <table >
+            <table class="skillad">
                 <tr><th >STT</th>
                     <th>ID</th>
                     <th></th>

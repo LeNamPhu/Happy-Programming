@@ -1,4 +1,4 @@
-lines (67 sloc)  3.75 KB
+
 
 <%-- 
     Document   : SignUp
@@ -61,8 +61,8 @@ lines (67 sloc)  3.75 KB
                             </label></div></td></tr>
 
             </table>
-            <div >
-                <input type="submit" name ="action" value="Create" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
+                <div style="text-align: center" >
+                <input type="submit" name ="action" value="Create" style="margin:auto;font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
             </div>
         </div>
         </form>

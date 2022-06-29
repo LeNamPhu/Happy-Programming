@@ -9,7 +9,6 @@
         <servlet-class>Controller.GetAllSkillController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>changeStatusSkill</servlet-name>
         <servlet-class>Controller.changeStatusSkill</servlet-class>
     </servlet>
@@ -22,12 +21,8 @@
         <servlet-class>Controller.updateSkill</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MentorRequestController</servlet-name>
-        <servlet-class>Controller.MentorRequestController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>FollowingRequestController</servlet-name>
-        <servlet-class>Controller.FollowingRequestController</servlet-class>
+        <servlet-name>LogOutController</servlet-name>
+        <servlet-class>Controller.LogOutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -50,12 +45,8 @@
         <url-pattern>/updateSkill</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MentorRequestController</servlet-name>
-        <url-pattern>/MentorRequestController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FollowingRequestController</servlet-name>
-        <url-pattern>/FollowingRequestController</url-pattern>
+        <servlet-name>LogOutController</servlet-name>
+        <url-pattern>/LogOutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -63,9 +54,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-
-
-        <welcome-file>HomePage.jsp</welcome-file>
-
+        <welcome-file>ListInviteRequest.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

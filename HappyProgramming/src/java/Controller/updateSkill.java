@@ -5,59 +5,42 @@
  */
 package Controller;
 
-import DAO.RequestDAO;
 import DAO.SkillDAO;
-import DTO.Account;
-import DTO.Request;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ThienNho
+ * @author admin
  */
-@WebServlet(name = "ListRequestByMenteeController", urlPatterns = {"/ListRequestByMenteeController"})
-public class ListRequestByMenteeController extends HttpServlet {
+public class updateSkill extends HttpServlet {
 
-  private final String ERROR = "Error.jsp";
-  private final String SUCCESS = "ListRequestByMentee.jsp";
-  
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        HttpSession session = request.getSession(true);
-        try{       
-        Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-        int id = 2;
-        RequestDAO dao = new RequestDAO();
-        SkillDAO abc = new SkillDAO();
-        ArrayList<Request> list = dao.listRequestByMentee(id);
-        session.setAttribute("LIST_SKILL", abc.getListSkillName());
-        
-            session.setAttribute("LIST_REQUEST_BY_MENTEE", list);            
-            Map<Request, String> map = new HashMap<>();
-            for (Request a : list){
-                ArrayList<Integer> listIDSkillReq = dao.getIDSkillReq(a);
-                dao.getNameSkillReq(listIDSkillReq, a, map);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+           String id = request.getParameter("id");
+            String name = request.getParameter("txtname");
+            String status = request.getParameter("newstatus");
+            String image = request.getParameter("newimage");
+            if(SkillDAO.updateASkill(id, name, status, image)) {
+                response.sendRedirect("AdminViewSkill.jsp");
             }
-            session.setAttribute("SKILL_REQUEST", map);
-            url = SUCCESS;
-        
-        }catch(Exception e){
-            log("Error at ListRequestByMenteeController" + e.toString());
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -20,6 +20,10 @@
         <servlet-name>updateSkill</servlet-name>
         <servlet-class>Controller.updateSkill</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogOutController</servlet-name>
+        <servlet-class>Controller.LogOutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>updateSkill</servlet-name>
         <url-pattern>/updateSkill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutController</servlet-name>
+        <url-pattern>/LogOutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
