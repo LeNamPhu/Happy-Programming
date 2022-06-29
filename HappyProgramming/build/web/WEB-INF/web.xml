@@ -22,7 +22,19 @@
         <servlet-name>updateSkill</servlet-name>
         <servlet-class>Controller.updateSkill</servlet-class>
     </servlet>
-    
+
+    <servlet>
+        <servlet-name>MentorRequestController</servlet-name>
+        <servlet-class>Controller.MentorRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowingRequestController</servlet-name>
+        <servlet-class>Controller.FollowingRequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvitingRequestController</servlet-name>
+        <servlet-class>Controller.InvitingRequestController</servlet-class>
+    </servlet>
 
         <servlet>
             <servlet-name>LogOutController</servlet-name>
@@ -73,12 +85,25 @@
             <url-pattern>/searchMentor</url-pattern>
             
         </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>MentorRequestController</servlet-name>
+        <url-pattern>/MentorRequestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FollowingRequestController</servlet-name>
+        <url-pattern>/FollowingRequestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvitingRequestController</servlet-name>
+        <url-pattern>/InvitingRequestController</url-pattern>
+    </servlet-mapping>
         <session-config>
             <session-timeout>
                 30
             </session-timeout>
         </session-config>
         <welcome-file-list>
-            <welcome-file>ListInviteRequest.jsp</welcome-file>
+            <welcome-file>HomePage.jsp</welcome-file>
         </welcome-file-list>
+
 </web-app>

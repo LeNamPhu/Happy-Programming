@@ -47,6 +47,7 @@ public class MainController extends HttpServlet {
                 url = CREATE_REQUEST_BY_MENTEE;
             } else if ("Sign in".equals(action)) {
                 url = SIGN_IN;
+
             }else if("addSkill".equals(action)){
                 url = "addSkill";
             } else if("changeStatus".equals(action)){
@@ -71,16 +72,24 @@ public class MainController extends HttpServlet {
                 url = "changeMentorStatus";
             }else if("searchMentor".equals(action)) {
                 url = "searchMentor";
+            }else if ("ListRequestByMentor".equals(action)) {
+                url = "MentorRequestController";
+            }else if ("FollowingRequest".equals(action)) {
+                url = "FollowingRequestController";
+            }else if ("StatisticRequest".equals(action)) {
+                url = "HomePage.jsp";
+            }else if ("InvitingRequest".equals(action)) {
+                url = "InvitingRequestController";
             }
             
 
             else{
+
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
 
             }        
 
-            
 
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
