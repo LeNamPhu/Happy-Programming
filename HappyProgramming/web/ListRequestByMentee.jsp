@@ -21,6 +21,10 @@
 
         </header>
         <div class="body" style="font-size:30px">
+            <div class="m-2">
+                <form action="CreateRequest.jsp" >
+                    <input class="rounded" style=" margin:auto; width:10% ;background-color:#0076ff;border:none; color:white; font-size: 15px; padding:10px 10px;" type="submit" value="CreateRequest"/>                               
+            </div>
             <!--        <form action="MainController">
                         <input type="submit" name="action" value="ListRequestByMentee"/>
                     </form>-->
@@ -83,31 +87,31 @@
                         <div >
                             <div class="d-flex flex-row m-2">
                                 <div class="me-1">
-                                <form action="MainController">
+                                    <form action="MainController">
 
-                                    <input class="rounded" type="submit" name="action" value="DeleteRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
-                                    <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                      
+                                        <input class="rounded" type="submit" name="action" value="DeleteRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
+                                        <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                      
 
-                                </form>
+                                    </form>
                                 </div>
-                                    <div class="ms-1">
-                                <form action="UpdateRequest.jsp">
+                                <div class="ms-1">
+                                    <form action="UpdateRequest.jsp">
 
-                                    <input class="rounded" type="submit" value="UpdateRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
-                                    <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
+                                        <input class="rounded" type="submit" value="UpdateRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
+                                        <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
-                                </form>
-                                    </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                                    <div class="m-2">
-                        <form action="#">
+                        <div class="m-2">
+                            <form action="#">
 
-                            <input class="rounded" style="width:100% ;background-color:#0076ff;border:none; color:white; font-size: 25px; padding:10px 10px;" type="submit" value="ShowMentorSuggestion"/>
-                            <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
+                                <input class="rounded" style="width:100% ;background-color:#0076ff;border:none; color:white; font-size: 25px; padding:10px 10px;" type="submit" value="ShowMentorSuggestion"/>
+                                <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
-                        </form>
-                                    </div>
+                            </form>
+                        </div>
                     </div>
 
                     <%

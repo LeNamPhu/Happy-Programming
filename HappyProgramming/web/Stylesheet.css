@@ -228,3 +228,23 @@ a{
     
 
 }
+
+.createrequest{
+    display:block;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+#createrequestpass{
+    width:300px!important;
+}
+#createrequesttable td{
+    width:400px;
+    height:60px;
+}
+#createrequestform{
+    width:400px;
+    height:50px;
+    
+
+}
