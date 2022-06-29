@@ -1,11 +1,9 @@
 <%-- 
-    Document   : MentorRequest.jsp
-    Created on : Jun 26, 2022, 3:03:25 PM
+    Document   : FollowingRequest
+    Created on : Jun 28, 2022, 1:44:27 PM
     Author     : ADMIN
 --%>
 
-<%@page import="DAO.SkillDAO"%>
-<%@page import="DAO.RequestDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Request"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,13 +42,31 @@
             column-gap: 150px; 
             border-radius: 10px;
             border-radius: 50%;
+
         }
         button{
             background-color: blue;
             color: white;
             border: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+            margin-left: 15px;
         }
         h1 {text-align: center;}
+        .container {
+            height: 200px;
+            position: relative;
+            border: 3px solid green;
+        }
+
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
     </Style>
     <head>
         <meta charset="utf-8">
@@ -68,7 +84,7 @@
     </header>
 </head>
 <body>
-    <%ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_REQUEST_BY_MENTOR");%>
+    <%ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_FOLLOWING_REQUEST");%>
     <%if (list.isEmpty()) {%>
     <h1>You Have No Request!</h1>
     <% } else {
@@ -94,18 +110,11 @@
 
         <%}%>
     </table>
-    <form action="MainController">
-        <div class="button">
-            <tr><td><button type="submit" name="action" value="FollowingRequest" >Following Request</button></td>
-                <td><button type="submit" name="action" value="StatisticRequest">Statistic Request</button></td>
-                <td><button type="submit" name="action" value="InvitingRequest">Inviting Request</button></td>
-            </tr>
-        </div>
-    </form>
     <%}%>
+    <a href="MentorRequest.jsp" class="button">Back</a>
 
-    <footer>
-        <%@include file = "Footer.jsp" %>
-    </footer>
 </body>
+<footer>
+    <%@include file = "Footer.jsp" %>
+</footer>
 </html>

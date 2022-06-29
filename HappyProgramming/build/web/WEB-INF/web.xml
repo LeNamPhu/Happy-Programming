@@ -28,6 +28,10 @@
         <servlet-name>FollowingRequestController</servlet-name>
         <servlet-class>Controller.FollowingRequestController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InvitingRequestController</servlet-name>
+        <servlet-class>Controller.InvitingRequestController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>FollowingRequestController</servlet-name>
         <url-pattern>/FollowingRequestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvitingRequestController</servlet-name>
+        <url-pattern>/InvitingRequestController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

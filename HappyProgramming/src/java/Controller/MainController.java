@@ -47,7 +47,15 @@ public class MainController extends HttpServlet {
                 url = "ChangeStatusSkill";
             } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
-            }else {
+            }else if ("FollowingRequest".equals(action)) {
+                url = "FollowingRequestController";
+            }else if ("StatisticRequest".equals(action)) {
+                url = "HomePage.jsp";
+            }else if ("InvitingRequest".equals(action)) {
+                url = "InvitingRequestController";
+            }
+            
+            else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
             }

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ADMIN
  */
-public class FollowingRequestController extends HttpServlet {
+public class InvitingRequestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,9 +41,9 @@ public class FollowingRequestController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             int id = 3;
             RequestDAO dao = new RequestDAO();
-            ArrayList<Request> list = dao.listFollowingByMentor(id);
-            session.setAttribute("LIST_FOLLOWING_REQUEST", list);
-            request.getRequestDispatcher("FollowingRequest.jsp").forward(request, response);
+            ArrayList<Request> list = dao.listInvitingRequest(id);
+            session.setAttribute("LIST_INVITING_REQUEST", list);
+            request.getRequestDispatcher("InvitingRequest.jsp").forward(request, response);
         }
     }
 
@@ -62,7 +62,7 @@ public class FollowingRequestController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(FollowingRequestController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InvitingRequestController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -80,7 +80,7 @@ public class FollowingRequestController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(FollowingRequestController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InvitingRequestController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
