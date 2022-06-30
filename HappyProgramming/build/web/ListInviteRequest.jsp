@@ -23,9 +23,7 @@
         </header> 
         <div class="body">
             <div style="width: 60%; margin: auto;">
-                <form action="MainController">
-                    <input type="submit" name="action" value="Invite Request"/>
-                </form>
+               
 
                 <%
                     ArrayList<Request> listInviteRequest = (ArrayList) session.getAttribute("LIST_INVITE");

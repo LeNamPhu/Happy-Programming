@@ -29,7 +29,11 @@ public class MainController extends HttpServlet {
     public static final String LIST_INVITE_REQUEST = "ListInviteController";
     public static final String SIGN_IN = "SignInController";
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
-     
+    public static final String SIGN_UP = "Create";
+    public static final String SIGNUP_Controller = "SignUpController";
+    
+    public static final String ADD = "Add";
+    public static final String CREATE_REQUEST = "CreateRequestController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,9 +69,6 @@ public class MainController extends HttpServlet {
                 url = STATISTIC_BY_MENTEE;
             }   else if("LogOut".equals(action)){
                 url = "LogOutController";
-                    
-
-           
             }else if("changeMentorStatus".equals(action)) {
                 url = "changeMentorStatus";
             }else if("searchMentor".equals(action)) {
@@ -81,6 +82,12 @@ public class MainController extends HttpServlet {
             }else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
             }
+             else if(ADD.equals(action)){
+                url = CREATE_REQUEST;
+            }         
+            else if(SIGN_UP.equals(action)){
+                url = SIGNUP_Controller;
+            }  
             
 
             else{

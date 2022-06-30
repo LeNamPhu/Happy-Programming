@@ -55,19 +55,20 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<!--        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mentor Request</title>
+    
+</head>
+<body>
     <header>
 
         <%@include file = "MentorHeader.jsp" %>
 
     </header>
-</head>
-<body>
     <%ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_REQUEST_BY_MENTOR");%>
     <%if (list.isEmpty()) {%>
     <h1>You Have No Request!</h1>
@@ -98,7 +99,7 @@
         <div class="button">
             <tr><td><button type="submit" name="action" value="FollowingRequest" >Following Request</button></td>
                 <td><button type="submit" name="action" value="StatisticRequest">Statistic Request</button></td>
-                <td><button type="submit" name="action" value="InvitingRequest">Inviting Request</button></td>
+                <td><button type="submit" name="action" value="Invite Request">Inviting Request</button></td>
             </tr>
         </div>
     </form>

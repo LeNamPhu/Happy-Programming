@@ -30,7 +30,7 @@ public class RequestDAO {
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
 
     public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
-    public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Close'";
+    public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
 
 

@@ -21,7 +21,7 @@
                 <div class="col-md-7">
 
                     <a class="logo "href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
-                </div>                <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
+                </div>                <a class="col-md-1" href="AdminHomePage.jsp" ></a>
                 <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
                 <a class="col-md-1" href="AdminViewMentor.jsp?page=1" >Mentor</a>
                 <a class="col-md-1" href="ViewMentee.jsp" >Mentee</a>

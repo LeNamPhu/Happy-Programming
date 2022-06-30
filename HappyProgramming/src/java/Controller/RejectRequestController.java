@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.InviteDAO;
+import DAO.RequestDAO;
 import DTO.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -33,8 +34,8 @@ public class RejectRequestController extends HttpServlet {
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
             int mentorID = 3;
             int reqID = Integer.parseInt(request.getParameter("reqID"));           
-            InviteDAO dao = new InviteDAO();
-            dao.deleteInvite(reqID, mentorID);
+            InviteDAO dao = new DAO.InviteDAO();
+            dao.updateStatusInvite(reqID, mentorID, "Rejected");
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at RejectRequestController " + e.toString());
