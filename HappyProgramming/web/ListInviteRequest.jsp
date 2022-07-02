@@ -59,13 +59,13 @@
                                 <td style="width: 10%; text-align: center;"><%=x%></td>
                                 <td rowspan="3" style=" width: 10%;"><%=req.getStatus()%></td>
                                 <td rowspan="3" style="width: 25%;text-align: center;">
-                                    <span> <input class="rounded"  style="color:white;  padding:7px; border:none; background-color:#0076ff;" type="submit" name="action" value="Accept Request"/>
+                                    <span> <input class="btn btn-primary"   type="submit" name="action" value="Accept Request"/>
                                     <input type="hidden" name="reqID" value="<%= req.getId()%>"/>
                                     <input type="hidden" name="status" value="Closed"/>
                                     <input type="hidden" name="inviteStatus" value="Closed"/>
                                     
                                 </span>                          
-                                    <span><input class="rounded" style="color:white;  padding:7px;border:none; background-color:#0076ff;"type="submit" name="action" value="Reject Request"/>
+                                    <span><input class="btn btn-primary" type="submit" name="action" value="Reject Request"/>
                                     <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                       
                                 </span> 
                                 </td>

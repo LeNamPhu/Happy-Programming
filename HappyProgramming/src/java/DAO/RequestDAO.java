@@ -28,7 +28,7 @@ public class RequestDAO {
     public static final String DELETE_REQUEST = "UPDATE Request SET Status=? WHERE ID=?";
     public static final String UPDATE_REQUEST = "UPDATE Request SET Title=?, Content=?, DeadlineDate=?, DeadlineHour=? WHERE ID=?";
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
-
+    public static final String INSERT_REQUEST = "INSERT INTO Request(Title, Status, Content, MenteeID, DeadlineDate, DeadlineHour) VALUES (?,?,?,?,?,?)";
     public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
     public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
@@ -562,5 +562,32 @@ public class RequestDAO {
         }
         return num;
     }
+    public boolean insertREQ(Request req) throws SQLException{
+            boolean check = false;
+            Connection con = null;
+            PreparedStatement stm = null;
+            try{
+                con = DBUtils.makeConnection();
+                if(con!=null){
+                    stm = con.prepareStatement(INSERT_REQUEST);
+                    stm.setString(1, req.getTitle());
+                    stm.setString(2, req.getStatus());
+                    stm.setString(3, req.getContent());
+                    stm.setInt(4, req.getMenteeID());
+                    stm.setDate(5, req.getDeadlineDate());
+                    stm.setInt(6, req.getDeadlineHour());
+                    check = stm.executeUpdate()>0?true:false;
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            finally{
+                if(stm!=null) stm.close();
+                if(con!=null) con.close();
+            }
+
+            return check;
+        }
 
 }

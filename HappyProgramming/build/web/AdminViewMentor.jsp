@@ -102,7 +102,7 @@
                     <input type="text" name="txtsearch" value="${param.txtsearch}" class="form-control" placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
                 </div>
                 <table>
-                    <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>profession</th><th>number of accepted request</th><th>percentage completed</th><th>rate star</th><th>Status</th></tr>
+                    <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>Profession</th><th>Number of accepted request</th><th>Percentage completed</th><th>Rate star</th><th>Status</th></tr>
                             <%for (Mentor mtr : list) {%>
                             <%int totalRequest = RequestDAO.countRequestOfMentor(mtr.getId(), "Accepted") + RequestDAO.countRequestOfMentor(mtr.getId(), "Rejected");%>
                     <tr><td><%=count++%></td>

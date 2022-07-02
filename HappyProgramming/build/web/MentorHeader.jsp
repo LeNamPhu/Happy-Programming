@@ -24,10 +24,10 @@
                     
                     <a class="logo "href="MentorHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>
-                <a class="col-md-1" href="MentorHomePage.jsp" >Home</a>
-                <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
-                <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
-                <a class="col-md-1" href="MainController?action=ListRequestByMentor" >Request</a>
+                <a class="col-md-1 nav-link" href="MentorHomePage.jsp" >Home</a>
+                <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
+                <a class="col-md-1 nav-link" href="MainController?action=ListRequestByMentor" >Request</a>
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar_male.png" /></a>
                     <div class="dropdown">

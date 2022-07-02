@@ -21,11 +21,11 @@
                     <div class="col-md-7">
                     <a class=" logo" href="HomePage.jsp"><img   src="image/cafe2.png" /></a>
                     </div>
-                    <a class="col-md-1" href="HomePage.jsp" >Home</a>
-                    <a class="col-md-1" href="ViewMentor.jsp" >Mentor</a>
-                    <a class="col-md-1" href="ViewSkill.jsp" >Skill</a>
-                    <a class="col-md-1" href="SignIn.jsp" >Sign In</a>
-                    <a class="col-md-1" href="SignUp.jsp" >Sign Up</a>
+                    <a class="col-md-1 nav-link" href="HomePage.jsp" >Home</a>
+                    <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                    <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
+                    <a class="col-md-1 nav-link" href="SignIn.jsp" >Sign In</a>
+                    <a class="col-md-1 nav-link" href="SignUp.jsp" >Sign Up</a>
                 </div>
 
 

@@ -61,8 +61,9 @@
                             </label></div></td></tr>
 
             </table>
-                <div style="text-align: center" >
-                <input type="submit" name ="action" value="Create" style="margin:auto;font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
+                <br>
+                <div style="text-align: center" class="d-grid w-25 m-auto" >
+                    <input type="submit" name ="action" value="Create" class="btn btn-lg btn-primary" >
             </div>
         </div>
         </form>
