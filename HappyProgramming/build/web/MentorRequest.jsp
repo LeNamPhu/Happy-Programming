@@ -11,47 +11,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <Style>
-        table, table tr{
-            border: 1px solid;
-            width:80%;
-            margin: auto;
-            text-align: center;
-            margin-top: 5%;
-
-        }
-        table th,td{
-            width: 15%;
-            border: 1px solid;
-
-        }
-        table {
-            border-collapse: collapse;
-        }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
-
-        table tr:last-child {
-            border: 0;
-        }
-
-        .button {
-            display: flex;
-            justify-content: center;
-            padding: 200px;
-            column-gap: 150px; 
-            border-radius: 10px;
-            border-radius: 50%;
-        }
-        button{
-            background-color: blue;
-            color: white;
-            border: none;
-        }
-        h1 {text-align: center;}
-    </Style>
+    <style>
+        
+    </style>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,42 +31,51 @@
         <%@include file = "MentorHeader.jsp" %>
 
     </header>
+        <div class="body">
+            <div class="w-75 m-auto">
     <%ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_REQUEST_BY_MENTOR");%>
     <%if (list.isEmpty()) {%>
     <h1>You Have No Request!</h1>
     <% } else {
     %>
     <%int i = 1;%>
-    <table> 
-        <tr>
-            <th>STT</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Deadline Date</th>
-            <th>Deadline Hour</th>
-        </tr>
+   
+        
         <%for (Request request1 : list) {%>
-        <tr>
-            <th><%= i%></th>
-            <th><%= request1.getTitle()%></th>
-            <th><%= request1.getContent()%></th>
-            <th><%= request1.getDeadlineDate()%></th>
-            <th><%= request1.getDeadlineHour()%>:00</th>
-                <%i++;%>
+        <div class="border border-dark border-2 p-2 w-75 ms-auto me-auto mt-4 mb-4"> 
+        <table class=" w-100  "> 
+            <tr style="height: 40px " >
+            
+            <td style="width:25%" class="p-2"> <%= request1.getTitle()%></td>
+            <td style="width:45%; border:solid 1px lightgray" class="p-2 " rowspan="2"><%= request1.getContent()%></td>
+            <td style="width:15%; text-align: center;" class="p-2"rowspan="2"span="2">Skill</td>
+            <td  style="width:15%; text-align: center;" class="p-2"rowspan="2"span="2"> <%=request1.getStatus()%></td>
+               
         </tr>
+        <tr style="height: 60px">
+            
+            <td  style="width:20%"  class="p-2"><%= request1.getDeadlineHour()%>:00 
+            <%= request1.getDeadlineDate()%></td>
+        </tr>
+        </table>
+        </div>
+         <%i++;%>
 
         <%}%>
-    </table>
+        
     <form action="MainController">
-        <div class="button">
-            <tr><td><button type="submit" name="action" value="FollowingRequest" >Following Request</button></td>
-                <td><button type="submit" name="action" value="StatisticRequest">Statistic Request</button></td>
-                <td><button type="submit" name="action" value="Invite Request">Inviting Request</button></td>
+        <div class="w-75 d-flex align-content-center justify-content-around m-auto">
+            <tr><td><button class="btn btn-primary btn-lg" type="submit" name="action" value="FollowingRequest" >Following Request</button></td>
+                <td><button class="btn btn-primary btn-lg" type="submit" name="action" value="StatisticRequest">Statistic Request</button></td>
+                <td><button class="btn btn-primary btn-lg"type="submit" name="action" value="Invite Request">Inviting Request</button></td>
             </tr>
         </div>
     </form>
+             
     <%}%>
-
+       
+        </div>
+        </div>
     <footer>
         <%@include file = "Footer.jsp" %>
     </footer>

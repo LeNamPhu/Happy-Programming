@@ -95,14 +95,14 @@
             %>
             <br>
             
-            <form action="AdminViewMentorSearch.jsp?page=1&txtsearch=<%=request.getParameter("txtsearch")%>" method="post">
+            <form action="MainController" method="post">
                 <div class="input-group w-25">
                     <button type="submit" name="action" value="searchMentor" class="btn btn-light btn-outline-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </button>
-                    <input type="text" value="<%=keyword%>" class="form-control" placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
+                    <input type="text" name="txtsearch" value="${param.txtsearch}" class="form-control" placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
                 </div>
                 <table>
                     <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>profession</th><th>number of accepted request</th><th>percentage completed</th><th>rate star</th><th>Status</th></tr>

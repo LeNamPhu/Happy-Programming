@@ -21,8 +21,8 @@
                     <tr><td><input type="text" name="txtemail" style="width: 400px"></td></tr>
                     <tr><td>Password</td></tr>
                     <tr><td><input type="password" name="txtpass" style="width: 400px"></td></tr>
-                    <tr><td style="padding: 10px 0px 10px 200px"><a href="ForgotPassword.jsp" style="color: #439dbb">Forgot Password?</a></td></tr>
-                    <tr><td><input type="submit" name="action" value="Sign in" style="width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" ></td></tr>
+                    <tr><td style="padding: 10px 0px 10px 200px"><a href="ForgotPassword.jsp" style="" class="link-info">Forgot Password?</a></td></tr>
+                    <tr><td><div class="d-grid"><input type="submit" name="action" value="Sign in" class="btn btn-primary btn-lg" ></div></td></tr>
                 </table>
             </form>
         </div>

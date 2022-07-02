@@ -97,7 +97,7 @@
                                 <div class="ms-1">
                                     <form action="UpdateRequest.jsp">
 
-                                        <input class="rounded" type="submit" value="UpdateRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
+                                        <input class="btn btn-primary" type="submit" value="UpdateRequest" style=""/>
                                         <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
                                     </form>
@@ -107,13 +107,13 @@
                         <div class="m-2">
                             <form action="#">
 
-                                <input class="rounded" style="width:100% ;background-color:#0076ff;border:none; color:white; font-size: 25px; padding:10px 10px;" type="submit" value="ShowMentorSuggestion"/>
+                                <input class="btn btn-primary" style="" type="submit" value="ShowMentorSuggestion"/>
                                 <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
                             </form>
                         </div>
                     </div>
-
+                               
                     <%
                         }
                     %>
@@ -121,6 +121,7 @@
 
 
                 </div>
+                   
                 <%
                     }
                     if (flag == 1) {

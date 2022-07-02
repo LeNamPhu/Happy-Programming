@@ -18,13 +18,14 @@
     <body>
         <nav class="container-fluid header ">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-8">
 
                     <a class="logo "href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
-                </div>                <a class="col-md-1" href="AdminHomePage.jsp" ></a>
-                <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
-                <a class="col-md-1" href="AdminViewMentor.jsp?page=1" >Mentor</a>
-                <a class="col-md-1" href="ViewMentee.jsp" >Mentee</a>
+                </div>                
+               
+                <a class="col-md-1 nav-link" href="AdminHomePage.jsp" >Home</a>
+                <a class="col-md-1 nav-link" href="AdminViewMentor.jsp?page=1" >Mentor</a>
+                <a class="col-md-1 nav-link" href="ViewMentee.jsp" >Mentee</a>
 
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>

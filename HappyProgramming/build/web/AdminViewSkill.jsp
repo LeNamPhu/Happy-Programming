@@ -79,7 +79,7 @@
                         <% }%>
 
                     </td>
-                    <td><a href="UpdateSkill.jsp?id=<%=sk.getId()%>" class="btn" style="color:white;background-color: blue;border: 1px solid;width: 60%">Update</a></td></tr>
+                    <td><a href="UpdateSkill.jsp?id=<%=sk.getId()%>"  style="" class="btn btn-primary btn-lg">Update</a></td></tr>
                     <%  }%>
             </table> 
             <%    }%>
