@@ -9,6 +9,10 @@
 <%@page import="DTO.Skill"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+ <%if (session.getAttribute("role")!="Admin") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <html>
     <head>
         <meta charset="utf-8">
@@ -92,3 +96,4 @@
 
     </body> 
 </html>
+<%}%>

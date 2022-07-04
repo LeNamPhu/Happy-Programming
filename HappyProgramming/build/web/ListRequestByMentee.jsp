@@ -10,21 +10,23 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%if (session.getAttribute("role") != "User") {%>
+<%@include file = "Unauthorised.jsp" %>
+<% } else {%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>List Request By Mentee Page</title>
     </head>
     <body>
+
+
         <header>
             <%@include file = "UserHeader.jsp" %>
 
         </header>
         <div class="body" style="font-size:30px">
-            <div class="m-2">
-                <form action="CreateRequest.jsp" >
-                    <input class="rounded" style=" margin:auto; width:10% ;background-color:#0076ff;border:none; color:white; font-size: 15px; padding:10px 10px;" type="submit" value="CreateRequest"/>                               
-            </div>
+
             <!--        <form action="MainController">
                         <input type="submit" name="action" value="ListRequestByMentee"/>
                     </form>-->
@@ -64,56 +66,62 @@
                             z = skills[2];
                         }
                 %>           
-                <div class="d-flex border border-secondary justify-content-around ">
-                    <div class="d-flex flex-column " style="width:608px;height:200px;">
-                        <div class=" d-flex justify-content-between m-2" style="width:600px;height:50px;" >
-                            <div class="m-2 "><span><%= req.getTitle()%></span> </div>                   
-                            <div class="m-2"><span><%= req.getDeadlineHour()%>h</span>
-                                <span class="px-1"></span>
-                                <span><%= req.getDeadlineDate()%></span></div>
-                        </div >
-                        <div class=" d-flex" style="width:608px;height:150px;">
-                            <span class=" d-flex border border-secondary mt-2 me-2 "style="width:508px;height:auto;"><%= req.getContent()%></span>
+                <div class=" border border-dark border-2 pe-2 ps-2">
+                    <table class="w-100 table table-borderless ">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class=""style="width:35%" ><%= req.getTitle()%></td>                   
 
-                            <span class="d-flex align-items-center border border-secondary justify-content-center mt-2"style="width:100px;height:auto;"><%= req.getStatus()%></span>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center m-2 flex-column border border-secondary justify-content-around" style="width:150px; height:200px;">
-                        <p class="m-2"><%= x%></p>
-                        <p class="m-2"><%= y%></p>
-                        <p class="m-2"><%= z%></p>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                        <div >
-                            <div class="d-flex flex-row m-2">
-                                <div class="me-1">
-                                    <form action="MainController">
+                            <td colspan="2" class="" style="text-align: center ; width: 30%"> <%=req.getDeadlineHour()%>h <%= req.getDeadlineDate()%></td>
+                            <td class="w-15 border border-secondary" style="width:10%; text-align: center;"><%= x%></td>
+                            <td rowspan="3" class="" style="width:25%;vertical-align: middle"> 
+                                <div class="d-flex mb-2 justify-content-between " style="">
 
-                                        <input class="rounded" type="submit" name="action" value="DeleteRequest" style="background-color:#0076ff; color:white;;border:none;padding:10px 10px;font-size: 25px;"/>
+                                    <form action="MainController" class="w-50 me-2">
+                                        <input class="btn btn-primary w-100 "  type="submit" name="action" value="DeleteRequest" style="height:40px"/>
                                         <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                      
+                                    </form>
+
+
+                                    <form action="UpdateRequest.jsp" class="w-50 ms-2">
+
+                                        <input class="btn btn-primary w-100 " type="submit" value="UpdateRequest" name="action" style="height:40px"/>
+                                        <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
                                     </form>
-                                </div>
-                                <div class="ms-1">
-                                    <form action="UpdateRequest.jsp">
 
-                                        <input class="btn btn-primary" type="submit" value="UpdateRequest" style=""/>
+                                </div>
+
+                                <div>
+                                    <form action="#" class="d-grid">
+
+                                        <input class="btn btn-primary" style="" type="submit" value="ShowMentorSuggestion"/>
                                         <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="m-2">
-                            <form action="#">
 
-                                <input class="btn btn-primary" style="" type="submit" value="ShowMentorSuggestion"/>
-                                <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
+                            </td>
 
-                            </form>
-                        </div>
-                    </div>
-                               
+                        </tr>
+                        <tr>
+                            <td colspan="3" rowspan="2"  class=" "style="width:65%;height:auto;border: 1px lightgray solid"><%= req.getContent()%></td>
+
+                            <td  colspan="1" rowspan="2" class=""style="width:10%;height:auto;vertical-align: middle; text-align: center;"><%= req.getStatus()%></td>
+                            <td class="border border-secondary" style="text-align: center"><%= y%></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-secondary" style="text-align: center"><%= z%></td>
+                        </tr>
+
+                    </table>       
                     <%
                         }
                     %>
@@ -121,7 +129,16 @@
 
 
                 </div>
-                   
+                <div class="m-5 d-flex justify-content-around">
+                    <form action="CreateRequest.jsp" >
+                        <input class="btn btn-primary btn-lg"  style=" " type="submit" value="CreateRequest"/>                               
+                    </form>
+                    
+                    <form action="MainController">
+                        <input  class="btn btn-primary btn-lg" type="submit" name="action" value="Statistic by Mentee"/>
+                    </form>
+                </div>
+
                 <%
                     }
                     if (flag == 1) {
@@ -135,5 +152,7 @@
         <footer>
             <%@include file = "Footer.jsp" %>
         </footer>
+
     </body>
 </html>
+<% }%>

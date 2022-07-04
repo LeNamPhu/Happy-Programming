@@ -14,8 +14,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update Request</title>
+        <style>
+            #first{
+                width:40%
+                    
+            }
+            #second{
+                width:60%;
+                padding:5px;
+            }
+            #input{
+                width:100%;
+                height:60px;
+            }
+        </style>
     </head>
     <body>
+        <header>
+            <%@include file = "UserHeader.jsp" %>
+
+        </header>
+            <div class="body">
+                <div style="width: 75%;font-size: 30px;" class="mx-auto my-5">
         <%
             ArrayList<String> listSkill = (ArrayList) session.getAttribute("LIST_SKILL");
             Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_REQUEST");
@@ -41,12 +61,22 @@
                     }
         %>
         <form action="MainController">
-            <td><input type="text" name="title" value="<%= req.getTitle()%>"> </td>
-            <td><%= req.getStatus() %> </td>
-            <td><input type="text" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td>
-            <td><input type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
-            <td><input type="text" name="content" value="<%= req.getContent()%>"> </td>                                                                                            
-            <td>
+            <table style="" class="m-auto w-75">
+            <tr>
+                <td id="first">Title</td><td id="second"><input id="input" type="text" name="title" value="<%= req.getTitle()%>"> </td>
+            </tr>
+            
+            <tr>
+            <td  id="first">Deadline Date</td><td id="second"><input id="input" type="text" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td>
+            </tr>
+            <tr>
+            <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
+            </tr>
+            <tr>
+                <td id="first">Content</td><td id="second"><textarea id="input" type="textarea" name="content" style="height:100px;"><%= req.getContent()%></textarea> </td>                                                                                            
+            </tr>
+            <tr>
+            <td id="first">Skill</td><td id="input">
                 <select name="skill1">
                     <option value="<%= x%>"><%= x%></option>
                     <%
@@ -58,8 +88,7 @@
                     %>
                     <option value="X">X</option>
                 </select>
-            </td>                                                                                            
-            <td>
+            
                 <select name="skill2">
                     <option value="<%= y%>"><%= y%></option>
                     <%
@@ -71,8 +100,7 @@
                     %>
                     <option value="X">X</option>
                 </select>
-            </td>                                                                                            
-            <td>
+            
                 <select name="skill3">
                     <option value="<%= z%>"><%= z%></option>
                     <%
@@ -84,17 +112,26 @@
                     %>
                     <option value="X">X</option>
                 </select>
-            </td>  
-            <td>
-                <input type="submit" name="action" value="UpdateRequest"/>
+            </td> 
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; height:150px;">
+                    <input class="btn btn-primary btn-lg"type="submit" name="action" value="UpdateRequest"/>
                 <input type="hidden" name="reqIDForUpdate" value="<%= req.getId()%>"/>                      
             </td>
+            </tr>
+            </table>
         </form>
         <%
                 }
             }
 
         %>
+                </div>
+        </div>
+        <footer>
+            <%@include file = "Footer.jsp" %>
+        </footer>
 
     </body>
 </html>

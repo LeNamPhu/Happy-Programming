@@ -10,6 +10,10 @@
 <%@page import="DAO.SkillDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+ <%if (session.getAttribute("role")!="User") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,3 +76,4 @@
         </footer>
     </body>
 </html> 
+<% } %>

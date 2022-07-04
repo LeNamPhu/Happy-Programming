@@ -42,19 +42,19 @@ private final String MENTEE = "UserHomePage.jsp";
                     case 1:
                         url = MENTEE;
                         session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("header", "UserHeader.jsp");
+                        session.setAttribute("role", "User");
                         session.setAttribute("signin", "true");
                         break;
                     case 2:
                         url = MENTER;
                         session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("header", "MentorHeader.jsp");
+                        session.setAttribute("role", "Mentor");
                         session.setAttribute("signin", "true");
                         break;
                     case 3:
                         url = ADMIN;
                         session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("header", "AdminHeader.jsp");
+                        session.setAttribute("role", "Admin");
                         session.setAttribute("signin", "true");
                         break;
                     default:
