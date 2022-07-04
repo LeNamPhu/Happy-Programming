@@ -13,67 +13,62 @@
         <title>Statistic of Requests</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-         <form action="MainController">
-            <input type="submit" name="action" value="Statistic by Mentee"/>
-        </form>
+        <header>
+            <%@include file = "UserHeader.jsp" %>
+
+        </header>
+            <div class="body"> 
+                <div style="width: 70%" class="m-auto ">
         <%
-        ArrayList<String> listMentor = (ArrayList) request.getAttribute("LIST_MENTOR");
-        ArrayList<String> listTitle = (ArrayList) request.getAttribute("LIST_TITLE");      
-        String totalHour = (String)request.getAttribute("TOTAL_HOUR");
-        String totalRequest = (String)request.getAttribute("TOTAL_REQUEST");
-        if(listTitle != null){
+            ArrayList<String> listMentor = (ArrayList) request.getAttribute("LIST_MENTOR");
+            ArrayList<String> listTitle = (ArrayList) request.getAttribute("LIST_TITLE");
+            String totalHour = (String) request.getAttribute("TOTAL_HOUR");
+            String totalRequest = (String) request.getAttribute("TOTAL_REQUEST");
+            if (listTitle != null) {
         %>
-        <h4>Total Request</h4> <%=totalRequest%>
-        <h4>Total Hour</h4> <%=totalHour%>
-        
-        <table border="1">
+        <div class=" w-75 m-auto mt-5 p-4" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <div class="d-flex justify-content-between m-3" style="font-size: 30px; vertical-align: middle">
+           
+            <div><span>Total Request</span> <%=totalRequest%></div>
+        <div> <span>Total Hour</span> <%=totalHour%></div>
+        <div> <span> Total Mentor</span> <%=listMentor.size()%></div>
+        </div>
+        <table  class="w-75 m-auto table ">
+            
             <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>List Title</th>                       
-                    </tr>
-                </thead>
-                <tbody>                    
-                     <%
-                        int count = 1;
-                        for (String title : listTitle) {
-                    %>
-                    <tr>
-                        <th><%= count++ %></th>
-                        <th><%= title %></th>
-                        
-                    </tr>                   
-                    <%
-                    }
-                    %>
-                </tbody>
-        </table>
-                
-                <table border="1">
-            <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>List Mentor</th>                       
-                    </tr>
-                </thead>
-                <tbody>                    
-                     <%
-                        int a = 1;
-                        for (String mentor : listMentor) {
-                    %>
-                    <tr>
-                        <th><%= a++ %></th>
-                        <th><%= mentor %></th>
-                        
-                    </tr>                   
-                    <%
-                    }
-                    %>
-                </tbody>
-        </table>
+                <tr>
+                    <th>#</th>
+                    <th>Request Title</th>                       
+                </tr>
+            </thead>
+            <tbody>                    
                 <%
-                }
+                    int count = 1;
+                    for (String title : listTitle) {
                 %>
+                <tr>
+                    <th><%= count++%></th>
+                    <th><%= title%></th>
+
+                </tr>                   
+                <%
+                    }
+                %>
+            </tbody>
+        </table>
+
+        <%
+            }
+        %>
+        </div>
+        <div class="" style="text-align: center">
+        <a class="btn btn-lg btn-primary my-5" href="MainController?action=ListRequestByMentee" style=""> Go Back</a>
+        </div>
+                </div>
+       
+            </div>
+        <footer>
+            <%@include file = "Footer.jsp" %>
+        </footer>
     </body>
 </html>

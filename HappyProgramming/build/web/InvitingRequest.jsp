@@ -8,6 +8,10 @@
 <%@page import="DTO.Request"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+ <%if (session.getAttribute("role")!="Mentor") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <html>
     <Style>
         table, table tr{
@@ -123,3 +127,4 @@
     <%@include file = "Footer.jsp" %>
 </footer>
 </html>
+<% } %>

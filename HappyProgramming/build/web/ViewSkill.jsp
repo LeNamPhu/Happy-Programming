@@ -34,12 +34,12 @@
         
         <% String signin = (String) session.getAttribute("signin");
         if (signin==null) {
-                session.setAttribute("header", "UnregisteredHeader.jsp");
+                session.setAttribute("role", "Unregistered");
             }
         %>
 
         <header>
-            <jsp:include page='${sessionScope.header}' />
+            <jsp:include page='${sessionScope.role}Header.jsp' />
         </header>
 
         <div class="body">
