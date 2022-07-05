@@ -77,20 +77,18 @@
             <%  String spageid = request.getParameter("page");
                 int pageid = Integer.parseInt(spageid);
                 int total = 3;
-                if (pageid == 1) {
-                } else {
-                    pageid = pageid - 1;
-                    pageid = pageid * total + 1;
-                }
-                String keyword = request.getParameter("txtsearch");
-                ArrayList<Mentor> list = MentorDAO.mentorPagination(pageid,total);
+
+                pageid = pageid - 1;
+                pageid = pageid * total;
+
+                ArrayList<Mentor> list = MentorDAO.mentorPagination(pageid, total);
                 ArrayList<Mentor> allMentor = MentorDAO.viewAllMentor();
                 int count = 1;
                 int pages = 0;
-                if (allMentor.size() % 3 == 0) {
-                    pages = allMentor.size() / 3;
-                } else if (allMentor.size() > 3) {
-                    pages = allMentor.size() / 3 + 1;
+                if (allMentor.size() % total == 0) {
+                    pages = allMentor.size() / total;
+                } else if (allMentor.size() > total) {
+                    pages = allMentor.size() / total + 1;
                 } else {
                     pages = 1;
                 }
@@ -140,25 +138,25 @@
             </form>
             <nav aria-label="Page navigation example" style="margin-top:100px;margin-left: 450px ">
                 <ul class="pagination">
-                    
-                    <li class="page-item <%if(Integer.parseInt(request.getParameter("page"))==1){%>disabled<%}%>">
-                        <a class="page-link" href="AdminViewMentor.jsp?page=<%=Integer.parseInt(request.getParameter("page"))-1%>" aria-label="Previous">
+
+                    <li class="page-item <%if (Integer.parseInt(request.getParameter("page")) == 1) {%>disabled<%}%>">
+                        <a class="page-link" href="AdminViewMentor.jsp?page=<%=Integer.parseInt(request.getParameter("page")) - 1%>" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
                     </li>
                     <%for (int i = 1; i <= pages; i++) {%>
                     <li class="page-item"><a class="page-link" href="AdminViewMentor.jsp?page=<%=i%>"><%=i%></a></li>
-                       <%  }
+                        <%  }
                         %>
 
-                    <li class="page-item <%if(Integer.parseInt(request.getParameter("page"))==pages){%>disabled<%}%>">
-                        <a class="page-link" href="AdminViewMentor.jsp?page=<%=Integer.parseInt(request.getParameter("page"))+1%>" aria-label="Next">
+                    <li class="page-item <%if (Integer.parseInt(request.getParameter("page")) == pages) {%>disabled<%}%>">
+                        <a class="page-link" href="AdminViewMentor.jsp?page=<%=Integer.parseInt(request.getParameter("page")) + 1%>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
                     </li>
-                     
+
                 </ul>
             </nav>
         </div>

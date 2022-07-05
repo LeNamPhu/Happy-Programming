@@ -19,8 +19,9 @@ public class Request {
     private int menteeID;
     private Date deadlineDate;
     private int deadlineHour;
+    private Date createdDate;
 
-    public Request(int id, String title, String status, String content, int menteeID, Date deadlineDate, int deadlineHour) {
+    public Request(int id, String title, String status, String content, int menteeID, Date deadlineDate, int deadlineHour, Date createdDate) {
         this.id = id;
         this.title = title;
         this.status = status;
@@ -28,6 +29,7 @@ public class Request {
         this.menteeID = menteeID;
         this.deadlineDate = deadlineDate;
         this.deadlineHour = deadlineHour;
+        this.createdDate = createdDate;
     }
 
     public int getId() {
@@ -85,6 +87,14 @@ public class Request {
     public void setDeadlineHour(int deadlineHour) {
         this.deadlineHour = deadlineHour;
     }
-    
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
     
 }

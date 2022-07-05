@@ -18,6 +18,7 @@
     <body>
         <nav class="container-fluid header ">
             <div class="row">
+<<<<<<< Updated upstream
                 <div class="col-md-8">
 
                     <a class="logo "href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
@@ -26,6 +27,12 @@
                 <a class="col-md-1 nav-link" href="AdminHomePage.jsp" >Home</a>
                 <a class="col-md-1 nav-link" href="AdminViewMentor.jsp?page=1" >Mentor</a>
                 <a class="col-md-1 nav-link" href="ViewMentee.jsp" >Mentee</a>
+=======
+                <a class="col-md-8" href="AdminHomePage.jsp"><img  class="logo" src="image/cafe2.png" /></a>
+                <a class="col-md-1" href="AdminHomePage.jsp" >Home</a>
+                <a class="col-md-1" href="AdminViewMentor.jsp?page=1" >Mentor</a>
+                <a class="col-md-1" href="AdminViewStatMentee.jsp" >Mentee</a>
+>>>>>>> Stashed changes
 
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>
@@ -35,8 +42,13 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="AdminViewSkill.jsp">Skill</a></li>
+<<<<<<< Updated upstream
                             <li><a class="dropdown-item" href="#">Request</a></li>
                             <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
+=======
+                            <li><a class="dropdown-item" href="AdminViewRequest.jsp?page=1">Request</a></li>
+                            <li><a class="dropdown-item" href="HomePage.jsp">Log out</a></li>
+>>>>>>> Stashed changes
                         </ul>
                     </div> 
                 </div>
