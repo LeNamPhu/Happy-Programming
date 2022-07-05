@@ -41,7 +41,7 @@
             String id = request.getParameter("id");
             Skill sk = SkillDAO.getASkill(id);
         %>
-        <div class="body">
+        <div class="body" style="font-size: 25px;">
 
             <form action="MainController" method="post">
 
@@ -63,8 +63,8 @@
                         <td><input type="text" name="newimage" value="<%=sk.getImage()%>" required></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" name="action" value="updateSkill" class="btn" style="color:white;background-color: blue;border: 1px solid;width: 80%;margin: 10% 45% 10%">OK</button></td>
-                        <td><a href="AdminViewSkill.jsp" class="btn" style="color:black  ;background-color: white;border: 1px solid;width: 38%;margin-left: 30%;">Cancel</a></td>
+                        <td><button type="submit" name="action" value="updateSkill" class="btn btn-primary btn-lg m-3" style="width:80%">OK</button></td>
+                        <td><a href="AdminViewSkill.jsp" class="btn btn-outline-dark btn-lg m-3 ms-5" style="width: 38%;">Cancel</a></td>
                     </tr>
                 </table>
             </form>
