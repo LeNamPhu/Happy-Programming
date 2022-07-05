@@ -23,7 +23,7 @@
 
 
         <div class="body">
-            <div style="height: 700px; width:850px ; margin:auto; margin-top:50px;" class="d-flex justfy-content-center text-align-center flex-column border border-secondary">
+            <div style="height: 700px; width:850px ; margin:auto; margin-top:50px;" class="d-flex justfy-content-center text-align-center flex-column border border-secondary mb-5">
                 <div style="padding:20px;">
                 <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Forgot Password</h1>
                 <p style="text-align: center;font-size: 35px"class="text-aign-center">No Problem! Enter your email and account name below and we will send you an email with instruction to reset your password</p>
@@ -34,9 +34,10 @@
                 <tr><td>Account Name</td></tr>
                 <tr><td><input type="password" name="txtpass" style="width: 550px"></td></tr>
 
-                
-                <tr><td><input type="submit" value="Send Reset Link" style="margin-top:30px;width:550px;height: 60px;background-color: #0076ff ;color: white; border:none" ></td></tr>
-                <tr><td><a class="d-flex justify-content-center" style="margin-top:20px; color: black ; font-size:25px;" href="SignIn.jsp">Back to Login</a><td><tr>
+               
+                <tr><td> <div class="d-grid"><input class="btn btn-primary btn-lg mt-4 " type="submit" value="Send Reset Link" style="font-size: 25px;" >  </div></td></tr>
+               
+                <tr><td><div class="d-grid"><a class="btn btn-light btn-lg mt-4" style="font-size: 25px;" href="SignIn.jsp">Back to Login</a></div><td><tr>
             </table>
                 </div>
             </div>

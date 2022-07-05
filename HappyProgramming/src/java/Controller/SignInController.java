@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SignInController", urlPatterns = {"/SignInController"})
 public class SignInController extends HttpServlet {
-private final String ERROR = "Error.jsp";
+private final String ERROR = "SignIn.jsp";
 private final String ADMIN = "AdminHomePage.jsp";
 private final String MENTER = "MentorHomePage.jsp";
 private final String MENTEE = "UserHomePage.jsp";
@@ -62,7 +62,8 @@ private final String MENTEE = "UserHomePage.jsp";
                         break;
                 }
             }else{
-                request.setAttribute("ERROR_MESSAGE", "INCORRECT EMAIL OR ");
+                request.setAttribute("ERROR_MESSAGE", "INCORRECT EMAIL OR PASSWORD");
+                
             }
         } catch (Exception e) {
             log("Error at SignInController: " + e.toString());
