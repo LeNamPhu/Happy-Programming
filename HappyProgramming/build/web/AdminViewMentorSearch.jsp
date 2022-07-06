@@ -72,32 +72,29 @@
             <%  String spageid = request.getParameter("page");
                 int pageid = Integer.parseInt(spageid);
                 int total = 3;
-                
-                pageid = pageid - 1;
-                pageid = pageid * total;
-
+                if (pageid == 1) {
+                } else {
+                    pageid = pageid - 1;
+                    pageid = pageid * total + 1;
+                }
                 String keyword = request.getParameter("txtsearch");
-
+               
                 ArrayList<Mentor> allMentor = MentorDAO.searchMentorByAccountName(keyword);
-
-                ArrayList<Mentor> list = MentorDAO.searchMentorByAccountNamePagination(keyword, pageid, total);
-
+              
+                ArrayList<Mentor >list = MentorDAO.searchMentorByAccountNamePagination(keyword, pageid, total);
+               
                 int count = 1;
                 int pages = 0;
-                if (allMentor.size() % total == 0) {
-                    pages = allMentor.size() / total;
-                } else if (allMentor.size() > total) {
-                    pages = allMentor.size() / total + 1;
+                if (allMentor.size() % 3 == 0) {
+                    pages = allMentor.size() / 3;
+                } else if (allMentor.size() > 3) {
+                    pages = allMentor.size() / 3 + 1;
                 } else {
                     pages = 1;
                 }
             %>
             <br>
-<<<<<<< Updated upstream
             
-=======
-
->>>>>>> Stashed changes
             <form action="MainController" method="post">
                 <div class="input-group w-25">
                     <button type="submit" name="action" value="searchMentor" class="btn btn-light btn-outline-dark">
@@ -142,8 +139,8 @@
             </form>
             <nav aria-label="Page navigation example" style="margin-top:100px;margin-left: 450px ">
                 <ul class="pagination">
-                    <li class="page-item <%if (Integer.parseInt(request.getParameter("page")) == 1) {%>disabled<%}%>">
-                        <a class="page-link" href="AdminViewMentorSearch.jsp?page=<%=Integer.parseInt(request.getParameter("page")) - 1%>&txtsearch=<%=request.getParameter("txtsearch")%>" aria-label="Previous">
+                    <li class="page-item <%if(Integer.parseInt(request.getParameter("page"))==1){%>disabled<%}%>">
+                        <a class="page-link" href="AdminViewMentorSearch.jsp?page=<%=Integer.parseInt(request.getParameter("page"))-1%>&txtsearch=<%=request.getParameter("txtsearch")%>" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -153,8 +150,8 @@
                         <%  }
                         %>
 
-                    <li class="page-item <%if (Integer.parseInt(request.getParameter("page")) == pages) {%>disabled<%}%>">
-                        <a class="page-link" href="AdminViewMentorSearch.jsp?page=<%=Integer.parseInt(request.getParameter("page")) + 1%>&txtsearch=<%=request.getParameter("txtsearch")%>" aria-label="Next">
+                    <li class="page-item <%if(Integer.parseInt(request.getParameter("page"))==pages){%>disabled<%}%>">
+                        <a class="page-link" href="AdminViewMentorSearch.jsp?page=<%=Integer.parseInt(request.getParameter("page"))+1%>&txtsearch=<%=request.getParameter("txtsearch")%>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>

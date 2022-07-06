@@ -112,20 +112,12 @@
                     %>
                     <option value="X">X</option>
                 </select>
-<<<<<<< Updated upstream
             </td> 
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center; height:150px;">
                     <input class="btn btn-primary btn-lg"type="submit" name="action" value="UpdateRequest"/>
                 <input type="hidden" name="reqIDForUpdate" value="<%= req.getId()%>"/>                      
-=======
-            </td>  
-            <td>
-                <input type="submit" name="action" value="UpdateRequest"/>
-                <input type="hidden" name="reqIDForUpdate" value="<%= req.getId()%>"/>
-                <input type="hidden" name="createdDate" value="<%=req.getCreatedDate()%>">
->>>>>>> Stashed changes
             </td>
             </tr>
             </table>

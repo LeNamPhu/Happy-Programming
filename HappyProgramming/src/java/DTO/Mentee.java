@@ -19,9 +19,8 @@ public class Mentee {
     private String phone;
     private Date dob;
     private String sex;
-    private String avatar;
 
-    public Mentee(int id, String email, String fullname, String address, String phone, Date dob, String sex, String avatar) {
+    public Mentee(int id, String email, String fullname, String address, String phone, Date dob, String sex) {
         this.id = id;
         this.email = email;
         this.fullname = fullname;
@@ -29,7 +28,6 @@ public class Mentee {
         this.phone = phone;
         this.dob = dob;
         this.sex = sex;
-        this.avatar = avatar;
     }
 
     public int getId() {
@@ -87,15 +85,5 @@ public class Mentee {
     public void setSex(String sex) {
         this.sex = sex;
     }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    
     
 }

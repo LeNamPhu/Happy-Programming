@@ -33,6 +33,8 @@ public class searchMentor extends HttpServlet {
          String url = ERROR;
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String keyword = request.getParameter("txtsearch");
+            ArrayList<Mentor> allMentor = MentorDAO.searchMentorByAccountName(keyword);
             request.getRequestDispatcher("AdminViewMentorSearch.jsp?page=1").forward(request, response);
         }
     }

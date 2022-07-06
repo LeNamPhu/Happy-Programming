@@ -30,9 +30,9 @@ public class MentorDAO {
                 String sql = "select * from Mentor\n"
                         + "order by ID asc \n"
                         + "	OFFSET ? rows\n"
-                        + "	fetch next ? rows only";
+                        + "	fetch next ? rows only;";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1, start);
+                pst.setInt(1, (start-1));
                 pst.setInt(2, total);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
@@ -270,10 +270,10 @@ public class MentorDAO {
                         + "where AccountName like ?\n"
                         + "order by Mentor.ID asc \n"
                         + "	OFFSET ? rows\n"
-                        + "	fetch next ? rows only";
+                        + "	fetch next ? rows only;";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + keyword + "%");
-                pst.setInt(2, start);
+                pst.setInt(2, (start-1));
                 pst.setInt(3, total);
                 ResultSet rs = pst.executeQuery();
                 while (rs != null && rs.next()) {

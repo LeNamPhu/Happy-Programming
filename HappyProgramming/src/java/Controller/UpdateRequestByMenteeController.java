@@ -38,12 +38,12 @@ public class UpdateRequestByMenteeController extends HttpServlet {
             int reqID = Integer.parseInt(request.getParameter("reqIDForUpdate"));
             String title = request.getParameter("title");
             String status = request.getParameter("status");        
-            java.sql.Date createdDate = Date.valueOf(request.getParameter("createdDate"));
+            
             java.sql.Date deadlineDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("deadlineDate")).getTime());
                     
             int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
             String content = request.getParameter("content");           
-            Request req = new Request(reqID, title, status, content, menteeID, deadlineDate, deadlineHour,createdDate);
+            Request req = new Request(reqID, title, status, content, menteeID, deadlineDate, deadlineHour);            
             String skill1 = request.getParameter("skill1");
             String skill2 = request.getParameter("skill2");
             String skill3 = request.getParameter("skill3");           
