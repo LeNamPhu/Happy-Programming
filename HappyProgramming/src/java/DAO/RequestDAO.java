@@ -33,7 +33,6 @@ public class RequestDAO {
     public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
 
-
     public ArrayList<Request> listRequestByMentee(int menteeID) throws SQLException {
         ArrayList<Request> list = new ArrayList<>();
         Connection conn = null;
@@ -47,7 +46,7 @@ public class RequestDAO {
                 stm.setInt(1, menteeID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    if ("Open".equals(rs.getString("Status"))  || "Processing".equals(rs.getString("Status")) /*|| "Open".equals(rs.getString("Status"))*/) {
+                    if ("Open".equals(rs.getString("Status")) || "Processing".equals(rs.getString("Status")) /*|| "Open".equals(rs.getString("Status"))*/) {
                         int ID = rs.getInt("ID");
                         String title = rs.getString("Title");
                         String status = rs.getString("Status");
@@ -73,7 +72,6 @@ public class RequestDAO {
         }
         return list;
     }
-
 
     public ArrayList<Request> listRequestByMentor(int MentorID) throws SQLException {
         ArrayList<Request> list = new ArrayList<>();
@@ -402,8 +400,7 @@ public class RequestDAO {
         }
     }
 
-
-    public ArrayList<Integer> getListInviteRequestID(int id) throws SQLException{
+    public ArrayList<Integer> getListInviteRequestID(int id) throws SQLException {
         ArrayList<Integer> listInviteRequestID = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
@@ -416,11 +413,11 @@ public class RequestDAO {
                 stm.setInt(1, id);
                 stm.setString(2, "Processing");
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     int reqID = rs.getInt("ReqID");
                     listInviteRequestID.add(reqID);
                 }
-                
+
             }
         } catch (Exception e) {
         } finally {
@@ -434,11 +431,11 @@ public class RequestDAO {
                 conn.close();
             }
         }
-        
+
         return listInviteRequestID;
     }
-    
-    public ArrayList<Request> getListInviteRequest(ArrayList<Integer> listInviteRequestID) throws SQLException{
+
+    public ArrayList<Request> getListInviteRequest(ArrayList<Integer> listInviteRequestID) throws SQLException {
         ArrayList<Request> listInviteRequest = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
@@ -452,11 +449,11 @@ public class RequestDAO {
                     stm.setInt(1, reqID);
                     stm.setString(2, "Processing");
                     rs = stm.executeQuery();
-                    if (rs.next()) {                        
-                        listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processing", rs.getString("Content"), rs.getInt("MenteeID") , rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
+                    if (rs.next()) {
+                        listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processing", rs.getString("Content"), rs.getInt("MenteeID"), rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
                     }
                 }
-                
+
             }
         } catch (Exception e) {
         } finally {
@@ -470,11 +467,11 @@ public class RequestDAO {
                 conn.close();
             }
         }
-        
+
         return listInviteRequest;
     }
-    
-    public void updateStatusRequest(int reqID, String status) throws SQLException{
+
+    public void updateStatusRequest(int reqID, String status) throws SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -483,8 +480,8 @@ public class RequestDAO {
             if (conn != null) {
                 String sql = "UPDATE Request SET Status=? WHERE ID=? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, status);  
-                stm.setInt(2, reqID);                                         
+                stm.setString(1, status);
+                stm.setInt(2, reqID);
                 int value = stm.executeUpdate();
             }
         } catch (Exception e) {
@@ -500,10 +497,10 @@ public class RequestDAO {
             }
         }
     }
-    
-    public ArrayList<Request> getListClosedReq(int menteeID) throws SQLException{
-         ArrayList<Request> list = new ArrayList<>();
-         Connection conn = null;
+
+    public ArrayList<Request> getListClosedReq(int menteeID) throws SQLException {
+        ArrayList<Request> list = new ArrayList<>();
+        Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -511,7 +508,7 @@ public class RequestDAO {
             if (conn != null) {
                 String sql = LIST_REQUEST_BY_MENTEE;
                 stm = conn.prepareStatement(sql);
-                 stm.setInt(1, menteeID);
+                stm.setInt(1, menteeID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     if ("Closed".equals(rs.getString("Status"))) {
@@ -541,7 +538,6 @@ public class RequestDAO {
         return list;
     }
 
-
     public static int countRequestOfMentor(int mentorId, String status) {
         Connection cn = null;
         int num = 0;
@@ -555,39 +551,324 @@ public class RequestDAO {
                 pst.setInt(1, mentorId);
                 pst.setString(2, status);
                 ResultSet rs = pst.executeQuery();
-                if(rs!=null && rs.next())
+                if (rs != null && rs.next()) {
                     num = rs.getInt("numberOfRequest");
+                }
             }
         } catch (Exception e) {
         }
         return num;
     }
-    public boolean insertREQ(Request req) throws SQLException{
-            boolean check = false;
-            Connection con = null;
-            PreparedStatement stm = null;
-            try{
-                con = DBUtils.makeConnection();
-                if(con!=null){
-                    stm = con.prepareStatement(INSERT_REQUEST);
-                    stm.setString(1, req.getTitle());
-                    stm.setString(2, req.getStatus());
-                    stm.setString(3, req.getContent());
-                    stm.setInt(4, req.getMenteeID());
-                    stm.setDate(5, req.getDeadlineDate());
-                    stm.setInt(6, req.getDeadlineHour());
-                    check = stm.executeUpdate()>0?true:false;
-                }
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-            finally{
-                if(stm!=null) stm.close();
-                if(con!=null) con.close();
-            }
 
-            return check;
+    public boolean insertREQ(Request req) throws SQLException {
+        boolean check = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.makeConnection();
+            if (con != null) {
+                stm = con.prepareStatement(INSERT_REQUEST);
+                stm.setString(1, req.getTitle());
+                stm.setString(2, req.getStatus());
+                stm.setString(3, req.getContent());
+                stm.setInt(4, req.getMenteeID());
+                stm.setDate(5, req.getDeadlineDate());
+                stm.setInt(6, req.getDeadlineHour());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
 
+        return check;
+    }
+
+    public static int getHoursOfRequestByMenteeID(int menteeID) {
+        Connection cn = null;
+        int result = 0;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select SUM(DATEDIFF(DAY,CreatedDate,DeadlineDate)*24+(DATEPART(HOUR,CreatedDate)-DeadlineHour)) as TotalHoursOfRequest\n"
+                        + "from Request\n"
+                        + "where MenteeID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menteeID);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    result = rs.getInt("TotalHoursOfRequest");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static ArrayList<Request> viewAllRequest() {
+        Connection cn = null;
+        ArrayList<Request> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select *\n"
+                        + "from Request";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    Request req = new Request(ID, title, status, content, menteeID, deadlineDate, deadlineHour);
+                    list.add(req);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Request> requestPagination(int start, int total) {
+        ArrayList<Request> list = new ArrayList<>();
+        Connection cn = null;
+
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select * from Request\n"
+                        + "order by ID asc \n"
+                        + "	OFFSET ? rows\n"
+                        + "	fetch next ? rows only;";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, start);
+                pst.setInt(2, total);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int ID = rs.getInt("ID");
+                        String title = rs.getString("Title");
+                        String status = rs.getString("Status");
+                        String content = rs.getString("Content");
+                        int menteeID = rs.getInt("MenteeID");
+                        Date deadlineDate = rs.getDate("DeadlineDate");
+                        int deadlineHour = rs.getInt("DeadlineHour");
+                        Request req = new Request(ID, title, status, content, menteeID, deadlineDate, deadlineHour);
+                        list.add(req);
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return list;
+
+    }
+
+    public static ArrayList<Request> filterRequest(String keyword, String status, Date from, Date to) {
+        Connection cn = null;
+        ArrayList<Request> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Request.ID,Title, Status,Content, MenteeID, DeadlineDate, DeadlineHour, CreatedDate \n"
+                        + "from Request join Account on MenteeID = Account.ID\n"
+                        + "where AccountName like ? and Status like ? and CreatedDate between ? and ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, "%" + keyword + "%");
+                pst.setString(2, status);
+                pst.setDate(3, from);
+                pst.setDate(4, to);
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String Status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    Request req = new Request(ID, title, Status, content, menteeID, deadlineDate, deadlineHour);
+                    list.add(req);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Request> filterRequestPagination(String keyword, String status, Date from, Date to, int start, int total) {
+        Connection cn = null;
+        ArrayList<Request> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Request.ID,Title, Status,Content, MenteeID, DeadlineDate, DeadlineHour, CreatedDate \n"
+                        + "from Request join Account on MenteeID = Account.ID\n"
+                        + "where AccountName like ? and Status like ? and CreatedDate between ? and ?\n"
+                        + "order by ID asc\n"
+                        + "OFFSET ? rows\n"
+                        + "fetch next ? rows only";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, "%" + keyword + "%");
+                pst.setString(2, status);
+                pst.setDate(3, from);
+                pst.setDate(4, to);
+                pst.setInt(5, start);
+                pst.setInt(6, total);
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String Status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    Request req = new Request(ID, title, Status, content, menteeID, deadlineDate, deadlineHour);
+                    list.add(req);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Request> searchRequestByAccountName(String keyword) {
+        Connection cn = null;
+        ArrayList<Request> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Request.ID,Title, Status,Content, MenteeID, DeadlineDate, DeadlineHour, CreatedDate \n"
+                        + "from Request join Account on MenteeID = Account.ID\n"
+                        + "where AccountName like ? ";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, "%" + keyword + "%");
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String Status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    Request req = new Request(ID, title, Status, content, menteeID, deadlineDate, deadlineHour);
+                    list.add(req);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Request> searchRequestByAccountNamePagination(String keyword, int start, int total) {
+        Connection cn = null;
+        ArrayList<Request> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Request.ID,Title, Status,Content, MenteeID, DeadlineDate, DeadlineHour, CreatedDate \n"
+                        + "from Request join Account on MenteeID = Account.ID\n"
+                        + "where AccountName like ?\n"
+                        + "order by ID asc\n"
+                        + "OFFSET ? rows\n"
+                        + "fetch next ? rows only";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, "%" + keyword + "%");
+                pst.setInt(2, start);
+                pst.setInt(3, total);
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String Status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    Request req = new Request(ID, title, Status, content, menteeID, deadlineDate, deadlineHour);
+                    list.add(req);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static Request getARequestDetail(int requestID) {
+        Connection cn = null;
+        Request req = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select *\n"
+                        + "from Request\n"
+                        + "where ID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, requestID);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String title = rs.getString("Title");
+                    String Status = rs.getString("Status");
+                    String content = rs.getString("Content");
+                    int menteeID = rs.getInt("MenteeID");
+                    Date deadlineDate = rs.getDate("DeadlineDate");
+                    int deadlineHour = rs.getInt("DeadlineHour");
+                    req = new Request(ID, title, Status, content, menteeID, deadlineDate, deadlineHour);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return req;
+    }
+
+    public static Date getCreatedDateByRequestID(int requestID) {
+        Connection cn = null;
+        Date date = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select CreatedDate\n"
+                        + "from Request\n"
+                        + "where ID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, requestID);
+                ResultSet rs = pst.executeQuery();
+                if(rs!=null && rs.next())
+                    date = rs.getDate("CreatedDate");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
 }
