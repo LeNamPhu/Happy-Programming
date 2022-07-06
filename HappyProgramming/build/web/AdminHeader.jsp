@@ -20,12 +20,12 @@
             <div class="row">
                 <div class="col-md-8">
 
-                    <a class="logo "href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
+                    <a class="logo" href="AdminHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>                
                
                 <a class="col-md-1 nav-link" href="AdminHomePage.jsp" >Home</a>
                 <a class="col-md-1 nav-link" href="AdminViewMentor.jsp?page=1" >Mentor</a>
-                <a class="col-md-1 nav-link" href="ViewMentee.jsp" >Mentee</a>
+                <a class="col-md-1 nav-link" href="AdminViewMentee.jsp" >Mentee</a>
 
                 <div class="col-md-1 d-flex">
                     <a  href=""><img style="background-color: white" class="avatar" src="image/avatar.png" /></a>
@@ -35,7 +35,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="AdminViewSkill.jsp">Skill</a></li>
-                            <li><a class="dropdown-item" href="#">Request</a></li>
+                            <li><a class="dropdown-item" href="AdminViewRequest.jsp?page=1">Request</a></li>
                             <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
                         </ul>
                     </div> 

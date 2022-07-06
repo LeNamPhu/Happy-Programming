@@ -1,10 +1,4 @@
-
-
-
-
-
 package DAO;
-
 
 import Utils.DBUtils;
 import java.sql.Connection;
@@ -16,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
-
+ *
  * @author DELL
  */
 public class SkillDAO {
@@ -122,7 +116,7 @@ public class SkillDAO {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
-            if(rs!=null && rs.next()) {
+            if (rs != null && rs.next()) {
                 String ID = rs.getString("ID");
                 String name = rs.getString("Name");
                 String status = rs.getString("Status");
@@ -148,9 +142,9 @@ public class SkillDAO {
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    if("active".equals(rs.getString("Status"))){
-                    String name = rs.getString("Name");
-                    listSkill.add(name);
+                    if ("active".equals(rs.getString("Status"))) {
+                        String name = rs.getString("Name");
+                        listSkill.add(name);
                     }
                 }
             }
@@ -167,5 +161,26 @@ public class SkillDAO {
             }
         }
         return listSkill;
+    }
+
+    public static int totalSkillsofRequests(int menteeID) {
+        Connection cn = null;
+        int result = 0;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Count(MenteeID) as TotalSkillOfRequest\n"
+                        + "from RequestSkill join Request on RequestID = ID\n"
+                        + "where MenteeID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menteeID);
+                ResultSet rs = pst.executeQuery();
+                if(rs!=null && rs.next())
+                    result = rs.getInt("TotalSkillOfRequest");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

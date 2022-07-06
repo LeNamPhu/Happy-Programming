@@ -46,19 +46,16 @@ public class MainController extends HttpServlet {
                 url = DELETE_REQUEST_BY_MENTEE;
             }else if("UpdateRequest".equals(action)){
                 url = UPDATE_REQUEST_BY_MENTEE;
-
             } else if("CreateRequest".equals(action)){
                 url = CREATE_REQUEST_BY_MENTEE;
             } else if ("Sign in".equals(action)) {
                 url = SIGN_IN;
-
             }else if("addSkill".equals(action)){
                 url = "addSkill";
             } else if("changeStatus".equals(action)){
                 url = "changeStatusSkill";
             }else if("updateSkill".equals(action)){
                 url = "updateSkill";
-
             }else if("Reject Request".equals(action)){
                 url = REJECT_REQUEST;
             }else if("Invite Request".equals(action)){
@@ -87,7 +84,11 @@ public class MainController extends HttpServlet {
             }         
             else if(SIGN_UP.equals(action)){
                 url = SIGNUP_Controller;
-            }  
+            }else if("searchRequest".equals(action)){
+                url = "searchRequest";
+            }else if("filterRequest".equals(action)){
+                url = "filterRequest";
+            }   
             
 
             else{

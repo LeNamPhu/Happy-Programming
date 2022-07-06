@@ -48,6 +48,14 @@
         <servlet-name>CreateRequestController</servlet-name>
         <servlet-class>Controller.CreateRequestController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>filterRequest</servlet-name>
+        <servlet-class>Controller.filterRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchRequest</servlet-name>
+        <servlet-class>Controller.searchRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>CreateRequestController</servlet-name>
         <url-pattern>/CreateRequestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>filterRequest</servlet-name>
+        <url-pattern>/filterRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchRequest</servlet-name>
+        <url-pattern>/searchRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
