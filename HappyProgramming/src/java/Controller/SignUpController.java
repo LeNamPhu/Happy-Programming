@@ -97,7 +97,7 @@ public class SignUpController extends HttpServlet {
                 int accountid = dao.getAccountId(acc.getAccountName());
                 if(checkinsert){
                     if(roleID == 1){
-                        Mentee tee = new Mentee(accountid, email, fullName, address, phone, dob, sex);
+                        Mentee tee = new Mentee(accountid, email, fullName, address, phone, dob, sex,null);
                         boolean insertMentee = dao.insertMentee(tee);
                         if(insertMentee){
                             url = SUCCESS;

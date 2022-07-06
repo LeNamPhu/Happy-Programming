@@ -73,6 +73,7 @@ public class MainController extends HttpServlet {
                 url = "changeMentorStatus";
             }else if("searchMentor".equals(action)) {
                 url = "searchMentor";
+<<<<<<< Updated upstream
             }else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
             }else if ("FollowingRequest".equals(action)) {
@@ -81,6 +82,12 @@ public class MainController extends HttpServlet {
                 url = "HomePage.jsp";
             }else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
+=======
+            }else if("searchRequest".equals(action)) {
+                url = "searchRequest";
+            }else if("filterRequest".equals(action)) {
+                url = "filterRequest";
+>>>>>>> Stashed changes
             }
              else if(ADD.equals(action)){
                 url = CREATE_REQUEST;
