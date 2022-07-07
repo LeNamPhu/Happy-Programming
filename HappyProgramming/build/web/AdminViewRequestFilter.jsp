@@ -23,7 +23,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <style>
             table, table tr{
-                border: 1px solid;
+                
                 width:99%;
                 margin: auto;
                 margin-top: 5%;
@@ -31,7 +31,7 @@
             }
             table th,td{
                 width: 10%;
-                border: 1px solid;
+               
             }
         </style>
     </head>
@@ -94,7 +94,7 @@
                 </div>
             </form>
 
-            <table>
+                    <table class="table">
                 <tr>
                     <th>STT</th>
                     <th>ID</th>
