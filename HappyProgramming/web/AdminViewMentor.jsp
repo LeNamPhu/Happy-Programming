@@ -42,8 +42,9 @@
         </script>
 
         <style>
+            
             table, table tr{
-                border: 1px solid;
+                
                 width:99%;
                 margin: auto;
                 margin-top: 5%;
@@ -51,7 +52,7 @@
             }
             table th,td{
                 width: 10%;
-                border: 1px solid;
+                
             }
             span.stars, span.stars span {
                 display: block;
@@ -101,7 +102,7 @@
                     </button>
                     <input type="text" name="txtsearch" value="${param.txtsearch}" class="form-control" placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
                 </div>
-                <table>
+                <table class="table">
                     <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>Profession</th><th>Number of accepted request</th><th>Percentage completed</th><th>Rate star</th><th>Status</th></tr>
                             <%for (Mentor mtr : list) {%>
                             <%int totalRequest = RequestDAO.countRequestOfMentor(mtr.getId(), "Accepted") + RequestDAO.countRequestOfMentor(mtr.getId(), "Rejected");%>

@@ -30,7 +30,7 @@
         </script>
         <style>
             table, table tr{
-                border: 1px solid;
+                
                 width:80%;
                 margin: auto;
                 margin-top: 5%;
@@ -38,7 +38,7 @@
             }
             table th,td{
                 width: 15%;
-                border: 1px solid;
+                
             }
         </style>
     </head>
@@ -51,10 +51,10 @@
             <%ArrayList<Skill> list = SkillDAO.getAllSkill();
                 int count = 1;%>
             <%if (list != null && !list.isEmpty()) {%>
-            <table >
+            <table class="table">
                 <tr><th >STT</th>
                     <th>ID</th>
-                    <th></th>
+                    <th>Image</th>
                     <th>Skill name</th>
                     <th>Status</th>
                     <th>Option</th></tr>
