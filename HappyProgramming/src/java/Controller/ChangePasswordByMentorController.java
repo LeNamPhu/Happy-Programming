@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+@WebServlet(name = "ChangePasswordMentorController", urlPatterns = {"/ChangePasswordMentorController"})
 public class ChangePasswordByMentorController extends HttpServlet {
 
     private final String ERROR = "ChangePasswordByMentor.jsp";
@@ -43,27 +43,27 @@ public class ChangePasswordByMentorController extends HttpServlet {
         UserError userError = new UserError();
         try {
             //PrintWriter out = response.getWriter();
-            HttpSession session = request.getSession(true);
             String accountName = request.getParameter("txtuser");
             String password = request.getParameter("txtpass");
             String newPassword = request.getParameter("txtnewpass");
             String confirmPassword = request.getParameter("txtconfirmpass");
             AccountDAO dao = new AccountDAO();
             Account account = dao.checkSignIn(accountName, password);
-            boolean check = dao.checkDuplicate(accountName);
             if (account != null) {
+                boolean check = dao.checkDuplicate(accountName);
                 boolean checkValid = true;
+
                 if (check == false) {
                     checkValid = false;
                     userError.setAccError("Incorrect Account name!");
-                }
-                if (!newPassword.equals(confirmPassword)) {
+                    request.setAttribute("ERROR_MESSAGE", "Incorrect Account name!");
+                } else if (!newPassword.equals(confirmPassword)) {
                     checkValid = false;
                     userError.setPassError("Password is not the same!!");
-                }
-                if (checkValid) {
+                    request.setAttribute("ERROR_MESSAGE", "Password is not the same!!");
+                } else if (checkValid == true) {
                     boolean updatePass = dao.changePassword(newPassword, accountName);
-                    if (updatePass) {
+                    if (updatePass == true) {
                         url = SUCCESS;
                     }
                 }

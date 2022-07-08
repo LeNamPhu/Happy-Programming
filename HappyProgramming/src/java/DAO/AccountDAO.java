@@ -29,7 +29,7 @@ public class AccountDAO {
     private static final String INSERTACCOUNT = "INSERT INTO Account(AccountName,Password,RoleID) VALUES (?,?,?)";
     private static final String INSERTRMENTOR = "INSERT INTO Mentor(ID, Email, FullName, Phone, Address, DateOfBirth, Sex) VALUES (?,?,?,?,?,?,?)";
     private static final String INSERTRMENTEE = "INSERT INTO Mentee(ID, Email, FullName, Phone, Address, DateOfBirth, Sex) VALUES (?,?,?,?,?,?,?)";
-    private static final String UPDATE_PASSWORD = "UPDATE dbo.Account SET password='?' WHERE AccountName='?'";
+    private static final String UPDATE_PASSWORD = "UPDATE Account SET password=? WHERE AccountName=?";
     private static final String CHECK_DUPLICATE = "SELECT AccountName FROM Account WHERE AccountName=?";
     private static final String GET_ACCOUNT_ID = "SELECT ID FROM Account WHERE AccountName=?";
 
@@ -273,7 +273,7 @@ public class AccountDAO {
                 stm = con.prepareStatement(UPDATE_PASSWORD);
                 stm.setString(1, Password);
                 stm.setString(2, AccountName);
-                check = stm.executeUpdate() > 0 ? true : false;
+                check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -31,8 +31,8 @@ public class MainController extends HttpServlet {
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
-    public static final String CHANGE_PASWORD_BY_MENTEE_CONTROLLER = "ChangePasswordByMenteeController";
-    public static final String CHANGE_PASWORD_BY_MENTOR_CONTROLLER = "ChangePasswordByMentorController";
+    public static final String CHANGE_PASWORD_BY_MENTEE_CONTROLLER = "ChangePasswordMenteeController";
+    public static final String CHANGE_PASWORD_BY_MENTOR_CONTROLLER = "ChangePasswordMentorController";
 
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
@@ -69,10 +69,10 @@ public class MainController extends HttpServlet {
                 url = STATISTIC_BY_MENTEE;
             } else if ("LogOut".equals(action)) {
                 url = "LogOutController";
-            } else if ("changeMentorStatus".equals(action)) {
                 url = "changeMentorStatus";
             } else if ("searchMentor".equals(action)) {
                 url = "searchMentor";
+            } else if ("changeMentorStatus".equals(action)) {
             } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
             } else if ("FollowingRequest".equals(action)) {
@@ -91,8 +91,12 @@ public class MainController extends HttpServlet {
                 url = "filterRequest";
             } else if ("Enter".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTEE_CONTROLLER;
-            } else if ("Enter".equals(action)) {
+            } else if (" Enter ".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTOR_CONTROLLER;
+            } else if ("Cancel".equals(action)) {
+                url = "UserHomePage.jsp";
+            } else if (" Cancel ".equals(action)) {
+                url = "MentorHomePage.jsp";
             } else {
 
                 HttpSession session = request.getSession();
