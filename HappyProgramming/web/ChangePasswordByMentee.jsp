@@ -53,6 +53,7 @@
                     <input type="submit" name ="action" value="Enter" class="action"  style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
                     <input type="submit" name ="action" value="Cancel" class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
                 </div>
+                   
             </form>
         </div>
 
