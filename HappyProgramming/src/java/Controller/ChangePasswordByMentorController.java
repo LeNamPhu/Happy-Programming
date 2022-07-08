@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.AccountDAO;
 import DTO.Account;
+import DTO.UserError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,60 +19,62 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ThienNho
+ * @author Admin
  */
-@WebServlet(name = "SignInController", urlPatterns = {"/SignInController"})
-public class SignInController extends HttpServlet {
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+public class ChangePasswordByMentorController extends HttpServlet {
 
-    private final String ERROR = "SignIn.jsp";
-    private final String ADMIN = "AdminHomePage.jsp";
-    private final String MENTER = "MentorHomePage.jsp";
-    private final String MENTEE = "UserHomePage.jsp";
+    private final String ERROR = "ChangePasswordByMentor.jsp";
+    private final String SUCCESS = "MentorHomePage.jsp";
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        UserError userError = new UserError();
         try {
+            //PrintWriter out = response.getWriter();
             HttpSession session = request.getSession(true);
-            String acountName = request.getParameter("txtuser");
+            String accountName = request.getParameter("txtuser");
             String password = request.getParameter("txtpass");
+            String newPassword = request.getParameter("txtnewpass");
+            String confirmPassword = request.getParameter("txtconfirmpass");
             AccountDAO dao = new AccountDAO();
-            Account account = dao.checkSignIn(acountName, password);
+            Account account = dao.checkSignIn(accountName, password);
+            boolean check = dao.checkDuplicate(accountName);
             if (account != null) {
-                switch (account.getRoleId()) {
-                    case 1:
-                        url = MENTEE;
-                        session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("role", "User");
-                        session.setAttribute("signin", "true");
-                        break;
-                    case 2:
-                        url = MENTER;
-                        session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("role", "Mentor");
-                        session.setAttribute("signin", "true");
-                        break;
-                    case 3:
-                        url = ADMIN;
-                        session.setAttribute("SIGNIN_ACCOUNT", account);
-                        session.setAttribute("role", "Admin");
-                        session.setAttribute("signin", "true");
-                        break;
-                    default:
-                        session.setAttribute("ERROR_MESSAGE", "YOUR ROLE IS NOT SUPPORTED!");
-                        break;
+                boolean checkValid = true;
+                if (check == false) {
+                    checkValid = false;
+                    userError.setAccError("Incorrect Account name!");
+                }
+                if (!newPassword.equals(confirmPassword)) {
+                    checkValid = false;
+                    userError.setPassError("Password is not the same!!");
+                }
+                if (checkValid) {
+                    boolean updatePass = dao.changePassword(newPassword, accountName);
+                    if (updatePass) {
+                        url = SUCCESS;
+                    }
                 }
             } else {
-                request.setAttribute("ERROR_MESSAGE", "INCORRECT EMAIL OR PASSWORD");
-
+                request.setAttribute("ERROR_MESSAGE", "INCORRECT NAME OR PASSWORD");
             }
         } catch (Exception e) {
-            log("Error at SignInController: " + e.toString());
+            log("Error at ChangePasswordController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

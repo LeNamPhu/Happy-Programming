@@ -14,8 +14,8 @@
             <%@include file = "UnregisteredHeader.jsp"%>
         </header>           
             <% String placeholder;
-                if (request.getParameter("txtemail")!=null) {
-              placeholder   = request.getParameter("txtemail");
+                if (request.getParameter("txtuser")!=null) {
+              placeholder   = request.getParameter("txtuser");
                 }
                 else{
                     placeholder="";
@@ -40,7 +40,7 @@
                     
                     <%}%>       
                     <tr><td>Account Name</td></tr>
-                    <tr><td><input type="text" name="txtemail" value="<%=placeholder%>"  style="width: 400px"></td></tr>
+                    <tr><td><input type="text" name="txtuser" value="<%=placeholder%>"  style="width: 400px"></td></tr>
                     <tr><td>Password</td></tr>
                     <tr><td><input type="password" name="txtpass"  style="width: 400px"></td></tr>
                     <tr><td style="padding: 10px 0px 10px 200px"><a href="ForgotPassword.jsp" style="" class="link-info">Forgot Password?</a></td></tr>
