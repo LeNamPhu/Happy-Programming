@@ -38,7 +38,7 @@ public class ProfileOfMentorController extends HttpServlet {
         HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
             MentorDAO mentorDao = new MentorDAO();
-            ArrayList<Mentor> list = mentorDao.viewAllMentor();
+            ArrayList<Mentor> list = mentorDao.listMentor();
             session.setAttribute("LIST_OF_MENTOR", list);
             request.getRequestDispatcher("ViewMentor.jsp").forward(request, response);
         }
