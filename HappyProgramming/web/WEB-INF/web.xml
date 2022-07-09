@@ -56,6 +56,10 @@
         <servlet-name>searchRequest</servlet-name>
         <servlet-class>Controller.searchRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileOfMentorController</servlet-name>
+        <servlet-class>Controller.ProfileOfMentorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>searchRequest</servlet-name>
         <url-pattern>/searchRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileOfMentorController</servlet-name>
+        <url-pattern>/ProfileOfMentorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
