@@ -18,57 +18,71 @@
         <header>
             <%@include file = "UserHeader.jsp" %>
         </header>
+        <div class="body">
+            <div style="width: 60%; margin: auto">
         <%
-        ArrayList<String> accName = (ArrayList) session.getAttribute("LIST_ACCOUNTNAME");
-        Map<String, Mentor> mapMentor = (Map) session.getAttribute("Map_Mentor");
-        Map<String, Integer> mapInviteReq = (Map) session.getAttribute("Map_Invite");
-        Map<String, Integer> mapAcceptedReq = (Map) session.getAttribute("Map_Accepted");
-         String reqID = (String) request.getAttribute("REQ_ID");
-        if(accName != null){
-            if(!accName.isEmpty()){
-                %>
-                <table border="1">
-                    <thead>
-                    <tr>                        
-                        <th>Account Name</th>
-                        <th>Full Name</th>
-                        <th>Avatar</th>
-                        <th>Service Description</th>
-                        <th>Invite Request</th>
-                        <th>Accept Request</th>                        
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                        for (String acc : accName) {
-                        %>
-                    <form action="MainController">
-                        <tr>
-                            <th> <%= acc %> </th>
-                            <th> <%= mapMentor.get(acc).getFullname() %> </th>
-                            <th> <%= mapMentor.get(acc).getAvatar() %> </th>
-                            <th> <%= mapMentor.get(acc).getServiceDesc() %> </th>
-                            <th> <%= mapInviteReq.get(acc) %> </th>
-                            <th> <%= mapAcceptedReq.get(acc) %> </th>   
-                            <th>
-                                <input type="submit" name="action" value="Invite"/>
-                                <input type="hidden" name="mentorID" value="<%= mapMentor.get(acc).getId() %>"/>
-                                <input type="hidden" name="reqID" value="<%= reqID %>"/>
-                             </th>
-                        </tr>    
-                        </form>
-                        <%
-                            }
-                        %>                       
-                    </tbody>                    
-                </table>       
-                <%
-            }else{
+            ArrayList<String> accName = (ArrayList) session.getAttribute("LIST_ACCOUNTNAME");
+            Map<String, Mentor> mapMentor = (Map) session.getAttribute("Map_Mentor");
+            Map<String, Integer> mapInviteReq = (Map) session.getAttribute("Map_Invite");
+            Map<String, Integer> mapAcceptedReq = (Map) session.getAttribute("Map_Accepted");
+            String reqID = (String) request.getAttribute("REQ_ID");
+            if (accName != null) {
+                if (!accName.isEmpty()) {
         %>
-        <h3> THERE ARE HAVE NOT SUGGESTION FOR THIS REQUEST</h3>
+        <h1 class="m-4">Mentor Suggestion:</h1>
+        <%
+            for (String acc : accName) {
+        %>
+        
+        <form action="MainController" class="w-100">
+            <div class="w-100 border border-2 border-dark mb-4 p-3">
+            <table  class="w-100  "style="text-align: center; font-size: 20px;">
+
+
+                <tr>
+                    <td style="width: 15%;" class="ratio ratio-1x1"> <a class="border border-dark rounded-circle" href="<%= mapMentor.get(acc).getAvatar()%> "></a></td>
+                    <td  style="width:25%; vertical-align: middle">Inviting Requests: <%=  mapInviteReq.get(acc)%> <br>
+                        Accepted Requests: <%= mapAcceptedReq.get(acc)%></td>
+                    <td rowspan="3" style="border: 1px solid lightgray;text-align: left;vertical-align:top;padding:15px; "> <%= mapMentor.get(acc).getServiceDesc()%></td>
+                    
+                </tr>
+               
+                <tr>
+                    <td> <%= acc%> </td>
+                    <td rowspan="2"  >
+                        
+                        <input class=" btn-lg btn btn-primary w-75" type="submit" name="action" value="Invite"/>
+                        <input type="hidden" name="mentorID" value="<%= mapMentor.get(acc).getId()%>"/>
+                        <input type="hidden" name="reqID" value="<%= reqID%>"/>
+                    </td> 
+                </tr>
+                <tr>
+                    
+                    <td> <%= mapMentor.get(acc).getFullname()%> </td>
+                    
+                    
+                    
+                    
+                    
+                </tr>    
+            </table>    
+            </div>
+        </form>
         <%
             }
-        }
+        %>                       
+
+        <%
+        } else {
         %>
+        <h3> THERE ARE NO MENTOR AVAILABLE FOR THIS REQUEST</h3>
+        <%
+                }
+            }
+        %>
+        </div>
+        <footer>
+            <%@include file = "Footer.jsp" %>
+        </footer>
     </body>
 </html>

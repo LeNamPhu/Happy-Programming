@@ -66,7 +66,7 @@
                             z = skills[2];
                         }
                 %>           
-                <div class=" border border-dark border-2 pe-2 ps-2">
+                <div class=" border border-dark border-2 px-2 mb-3">
                     <table class="w-100 table table-borderless ">
                         <tr>
                             <td></td>
@@ -121,14 +121,15 @@
                             <td class="border border-secondary" style="text-align: center"><%= z%></td>
                         </tr>
 
-                    </table>       
+                    </table>    
+                        </div>
                     <%
                         }
                     %>
 
 
 
-                </div>
+                
                 <div class="m-5 d-flex justify-content-around">
                     <form action="CreateRequest.jsp" >
                         <input class="btn btn-primary btn-lg"  style=" " type="submit" value="CreateRequest"/>                               
