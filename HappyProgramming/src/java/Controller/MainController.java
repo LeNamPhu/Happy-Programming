@@ -85,7 +85,7 @@ public class MainController extends HttpServlet {
             } else if ("FollowingRequest".equals(action)) {
                 url = "FollowingRequestController";
             } else if ("StatisticRequest".equals(action)) {
-                url = "HomePage.jsp";
+                url = STATISTIC_BY_MENTOR;
             } else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
             } else if (ADD.equals(action)) {

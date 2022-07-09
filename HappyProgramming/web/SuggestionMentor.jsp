@@ -15,6 +15,9 @@
         <title>Suggestion Mentor Page</title>
     </head>
     <body>
+        <header>
+            <%@include file = "UserHeader.jsp" %>
+        </header>
         <%
         ArrayList<String> accName = (ArrayList) session.getAttribute("LIST_ACCOUNTNAME");
         Map<String, Mentor> mapMentor = (Map) session.getAttribute("Map_Mentor");
