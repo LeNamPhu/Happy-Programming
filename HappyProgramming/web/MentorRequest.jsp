@@ -52,7 +52,6 @@
             
             <td style="width:25%" class="p-2"> <%= request1.getTitle()%></td>
             <td style="width:45%; border:solid 1px lightgray" class="p-2 " rowspan="2"><%= request1.getContent()%></td>
-            <td style="width:15%; text-align: center;" class="p-2"rowspan="2"span="2">Skill</td>
             <td  style="width:15%; text-align: center;" class="p-2"rowspan="2"span="2"> <%=request1.getStatus()%></td>
                
         </tr>
