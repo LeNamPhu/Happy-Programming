@@ -122,8 +122,14 @@ public class MainController extends HttpServlet {
             
             } else if ("Update".equals(action)) {
                 url = "UpdateProfileController";
-        }
-            else{
+
+
+            }else if ("ProfileOfMentor".equals(action)) {
+                url = "ProfileOfMentorController";
+            }
+            else {
+
+
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
             }        

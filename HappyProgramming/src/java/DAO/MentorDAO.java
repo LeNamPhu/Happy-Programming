@@ -107,7 +107,8 @@ public class MentorDAO {
         return listName;
     }
 
-    public static ArrayList<Mentor> viewAllMentor() {
+    public ArrayList<Mentor> viewAllMentor() {
+
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
 

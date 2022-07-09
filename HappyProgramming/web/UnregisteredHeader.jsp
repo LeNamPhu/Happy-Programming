@@ -23,7 +23,7 @@
 
                     </div>
                     <a class="col-md-1 nav-link" href="HomePage.jsp" >Home</a>
-                    <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                    <a class="col-md-1 nav-link" href="MainController?action=ProfileOfMentor" >Mentor</a>
                     <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                     <a class="col-md-1 nav-link" href="SignIn.jsp" >Sign In</a>
                     <a class="col-md-1 nav-link" href="SignUp.jsp" >Sign Up</a>
