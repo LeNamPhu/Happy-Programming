@@ -65,18 +65,18 @@
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </button>
-                    <input style="width:25%" type="text" name="txtsearch" value="${param.txtsearch}" placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
+                    <input style="width:25%" type="text" name="txtsearch" value="${param.txtsearch}"  placeholder="Search account name" aria-label="Search account name" aria-describedby="basic-addon1">
                     <span style="margin-left: 2%">
                         <select name="status" style="height:40px ">
                             <option selected disabled>Status</option>
-                            <option value="Open" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Open")) {%>selected <%}%>>Open</option>
-                            <option value="Processing" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Processing")) {%>selected <%}%>>Processing</option>
-                            <option value="Canceled" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Canceled")) {%>selected <%}%>>Canceled</option>
-                            <option value="Closed" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Closed")) {%>selected <%}%>>Closed</option>
+                            <option value="Open" >Open</option>
+                            <option value="Processing" >Processing</option>
+                            <option value="Canceled" >Canceled</option>
+                            <option value="Closed" >Closed</option>
                         </select>
                     </span>
                     <span style="margin-left: 2%">
-                        From <input type="date" name="from" value="${param.from}" style="height:40px "> to <input type="date" name="to" value="${param.to}" style="height:40px ">
+                        From <input type="date" name="from" style="height:40px "> to <input type="date" name="to"  style="height:40px ">
                     </span>
                     <button class="btn btn-primary" type="submit" name="action" value="filterRequest" style="margin-left: 2%;width: 10%">Filter</button>
                 </div>
