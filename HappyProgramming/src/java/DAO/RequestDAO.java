@@ -863,12 +863,36 @@ public class RequestDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, requestID);
                 ResultSet rs = pst.executeQuery();
-                if(rs!=null && rs.next())
+                if (rs != null && rs.next()) {
                     date = rs.getDate("CreatedDate");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public static ArrayList<String> getAllSkillsNameByRequestID(int requestID) {
+        Connection cn = null;
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select SkillID,Name, RequestID\n"
+                        + "from RequestSkill join Skill on SkillID = Skill.ID\n"
+                        + "where RequestID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, requestID);
+                ResultSet rs = pst.executeQuery();
+                while (rs != null && rs.next()) {
+                    String name = rs.getString("Name");
+                    list.add(name);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
