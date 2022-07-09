@@ -4,6 +4,7 @@
     Author     : DELL
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Request"%>
 <%@page import="DAO.RequestDAO"%>
 <%@page import="DAO.MenteeDAO"%>
@@ -39,35 +40,51 @@
         </header>
 
         <div class="body">
-            <%  
+            <%
                 int count = 1;
-                Request req = RequestDAO.getARequestDetail(Integer.parseInt(request.getParameter("ID")));
+                int ID = Integer.parseInt(request.getParameter("ID"));
+                Request req = RequestDAO.getARequestDetail(ID);
+                ArrayList<String> list = RequestDAO.getAllSkillsNameByRequestID(ID);
             %>
+<<<<<<< Updated upstream
             
             <table class="table">
+=======
+
+            <table>
+>>>>>>> Stashed changes
                 <tr>
                     <th>STT</th>
                     <th>ID</th>
                     <th>Account name</th>
                     <th>Title</th>
+                    <th>Skill</th>
                     <th>Status</th>
                     <th>Content</th>
                     <th>Deadline Datetime</th>
                     <th>Created Date</th>
                 </tr>
-                
+
                 <tr><td><%=count++%></td>
                     <td><%=req.getId()%></td>
                     <td><%=MenteeDAO.getAccountNameByMenteeID(req.getMenteeID())%></td>
                     <td><%=req.getTitle()%></td>
+                    <td><%for (int i = 0; i < list.size(); i++) {
+                            if (i != list.size() - 1) {%>
+                        <%=list.get(i)%>,
+                        <%} else {%>
+                        <%=list.get(i)%>
+                        <%}
+                            }
+                        %></td>
                     <td><%=req.getStatus()%></td>
                     <td><%=req.getContent()%></td>
                     <td><%=req.getDeadlineHour()%>h <%=req.getDeadlineDate()%></td>
                     <td><%=RequestDAO.getCreatedDateByRequestID(req.getId())%></td>
                 </tr>
-               
+
             </table><br>
-                <a href="AdminViewRequest.jsp?page=1"><button class="btn btn-light btn-outline-dark" style="margin-left: 40%;width: 10%" >Back</button></a>
+            <a href="AdminViewRequest.jsp?page=1"><button class="btn btn-light btn-outline-dark" style="margin-left: 40%;width: 10%" >Back</button></a>
         </div>
 
         <footer>

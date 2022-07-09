@@ -3,6 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
+
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Controller/MainController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DTO/UserError.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Controller/ForgotPasswordController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Utils/DBUtils.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Controller/ChangePasswordController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DTO/Account.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/web/ChangePassword.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/web/ForgotPassword.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DTO/Email.java</file>
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DAO/RateDAO.java</file>
@@ -14,6 +23,9 @@
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DTO/Mentee.java</file>
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/web/ChangePasswordByMentee.jsp</file>
             <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Utils/EmailUtils.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/DAO/SkillDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/src/java/Controller/SignUpController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/Happy-Programming-main/%23%23%23%23_HappyProgramming/Group/Happy-Programming/HappyProgramming/web/SignIn.jsp</file>
         </group>
     </open-files>
 </project-private>
