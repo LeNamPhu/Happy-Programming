@@ -31,7 +31,11 @@ public class MainController extends HttpServlet {
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
-    
+    public static final String CREATE_CV = "CreateCVController";
+    public static final String RATE = "RateController";
+    public static final String SUGGESTION_MENTOR = "SuggestionMentorController";
+    public static final String INVITE = "InviteController";
+    public static final String STATISTIC_BY_MENTOR = "StatisticByMentorController";
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -75,30 +79,32 @@ public class MainController extends HttpServlet {
             }else if ("FollowingRequest".equals(action)) {
                 url = "FollowingRequestController";
             }else if ("StatisticRequest".equals(action)) {
-                url = "HomePage.jsp";
+                url = STATISTIC_BY_MENTOR;
             }else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
-            }
-             else if(ADD.equals(action)){
+            }else if(ADD.equals(action)){
                 url = CREATE_REQUEST;
-            }         
-            else if(SIGN_UP.equals(action)){
+            }else if(SIGN_UP.equals(action)){
                 url = SIGNUP_Controller;
             }else if("searchRequest".equals(action)){
                 url = "searchRequest";
             }else if("filterRequest".equals(action)){
                 url = "filterRequest";
-            }   
+            }else if("CreateCV".equals(action)){
+                url = CREATE_CV;
+            }else if("Rate".equals(action)){
+                url = RATE;
+            }else if("ShowMentorSuggestion".equals(action)){
+                url = SUGGESTION_MENTOR;
+            }else if("Invite".equals(action)){
+                url = INVITE;
+            }      
             
 
             else{
-
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-
             }        
-
-
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         }finally{

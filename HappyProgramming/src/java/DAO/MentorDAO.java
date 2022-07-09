@@ -73,24 +73,23 @@ public class MentorDAO {
         return list;
 
     }
-    
 
-    public ArrayList<String> getListNameMentor(ArrayList<Integer> listMentorID)  throws SQLException{
+    public ArrayList<String> getListNameMentor(ArrayList<Integer> listMentorID) throws SQLException {
         ArrayList<String> listName = new ArrayList<>();
-         Connection conn = null;
+        Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.makeConnection();
             if (conn != null) {
                 for (Integer mentorID : listMentorID) {
-                String sql = "SELECT FullName FROM Mentor WHERE ID=? ";
-                stm = conn.prepareStatement(sql);               
-                stm.setInt(1, mentorID);                                                                                               
-                rs = stm.executeQuery();
-                if(rs.next()){
-                    listName.add(rs.getString("FullName"));
-                }
+                    String sql = "SELECT FullName FROM Mentor WHERE ID=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, mentorID);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        listName.add(rs.getString("FullName"));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -107,6 +106,7 @@ public class MentorDAO {
         }
         return listName;
     }
+
     public static ArrayList<Mentor> viewAllMentor() {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
@@ -155,7 +155,7 @@ public class MentorDAO {
         return list;
 
     }
-    
+
     public static int getMentorRoleID(int mentorID) {
         Connection cn = null;
         int role = 0;
@@ -258,7 +258,7 @@ public class MentorDAO {
         }
         return list;
     }
-    
+
     public static ArrayList<Mentor> searchMentorByAccountNamePagination(String keyword, int start, int total) {
         Connection cn = null;
         ArrayList<Mentor> list = new ArrayList<>();
@@ -302,4 +302,78 @@ public class MentorDAO {
         return list;
 
     }
+
+    public ArrayList<Mentor> getSuggestionMentor(ArrayList<Integer> reqSkill) throws SQLException {
+        ArrayList<Mentor> suggestionMentor = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (Integer skill : reqSkill) {
+                    String sql = "SELECT MentorID FROM MentorSkill WHERE SkillID=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, skill);
+                    rs = stm.executeQuery();
+                    while (rs.next()) {
+                        if (!suggestionMentor.isEmpty()) {
+                            for (Mentor mentor : suggestionMentor) {
+                                if (mentor.getId() != rs.getInt("MentorID")) {
+                                    suggestionMentor.add(getMentorByID(rs.getInt("MentorID")));
+                                }
+                            }
+                        } else {
+                            suggestionMentor.add(getMentorByID(rs.getInt("MentorID")));
+                        }
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return suggestionMentor;
+    }
+
+    public Mentor getMentorByID(int mentorID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Mentor mentor = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "SELECT FullName, ServiceDesc, Avatar FROM Mentor WHERE ID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, mentorID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    mentor = new Mentor(mentorID, rs.getString("FullName"), rs.getString("ServiceDesc"), rs.getString("Avatar"));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return mentor;
+    }
+
 }

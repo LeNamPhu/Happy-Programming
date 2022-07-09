@@ -105,4 +105,99 @@ public class InviteDAO {
         }
         return listMentorID;
     }
+    
+    public int getCountReq(int mentorID, String status) throws SQLException{
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                
+                    String sql = "SELECT * FROM Invite WHERE Status=? and MentorID=?";
+                    stm = conn.prepareStatement(sql);
+                    stm.setString(1, status);
+                    stm.setInt(2, mentorID);
+                    rs = stm.executeQuery();
+                    while (rs.next()) {
+                        count ++;
+                    }
+                
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+    public void insertInvite(int mentorID, int reqID) throws SQLException{
+         Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {                
+                    String sql = "INSERT INTO Invite(ReqID, MentorID, Status) VALUES (?,?,?) ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, reqID);
+                    stm.setInt(2, mentorID);
+                    stm.setString(3,"Pending");
+                    stm.executeUpdate();                                
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+    
+    public boolean checkDupInvite(int mentorID, int reqID) throws SQLException{
+        boolean check = true;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {                
+                    String sql = "SELECT * FROM INVITE WHERE ReqID=? AND MentorID=? AND Status=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, reqID);
+                    stm.setInt(2, mentorID);
+                    stm.setString(3,"Pending");
+                    rs = stm.executeQuery();
+                    if(rs.next()){
+                        check = false;
+                    }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
 }

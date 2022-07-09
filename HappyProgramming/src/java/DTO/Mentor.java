@@ -47,6 +47,20 @@ public class Mentor {
         this.introduction = introduction;
     }
 
+    public Mentor() {
+    }
+
+    public Mentor(int id, String fullname, String serviceDesc, String avatar) {
+        this.id = id;
+        this.fullname = fullname;
+        this.serviceDesc = serviceDesc;
+        this.avatar = avatar;
+    }
+
+    
+    
+    
+
     public int getId() {
         return id;
     }

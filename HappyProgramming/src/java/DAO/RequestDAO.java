@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -870,5 +869,36 @@ public class RequestDAO {
             e.printStackTrace();
         }
         return date;
+    }
+    
+    public ArrayList<Integer> getSkillReq(int reqID) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ArrayList<Integer> reqSkill = new ArrayList<>();
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {              
+                    String sql = "SELECT SkillID FROM RequestSkill WHERE RequestID=?";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, reqID);
+                    rs = stm.executeQuery();
+                    while(rs.next()) {
+                       reqSkill.add(rs.getInt("SkillID"));
+                    }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+    }
+        return reqSkill;
     }
 }

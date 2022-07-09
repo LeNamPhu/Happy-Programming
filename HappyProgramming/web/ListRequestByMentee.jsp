@@ -102,7 +102,7 @@
                                 <div>
                                     <form action="#" class="d-grid">
 
-                                        <input class="btn btn-primary" style="" type="submit" value="ShowMentorSuggestion"/>
+                                        <input class="btn btn-primary" style="" type="submit" name="action" value="ShowMentorSuggestion"/>
                                         <input type="hidden" name="reqID" value="<%= req.getId()%>"/>                                              
 
                                     </form>

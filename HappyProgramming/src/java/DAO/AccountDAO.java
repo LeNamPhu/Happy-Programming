@@ -259,6 +259,37 @@ public class AccountDAO {
         }
         return check;
     }
+    
+    public String getAccountName(int id) throws SQLException{
+        String accountName = "";
+                Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {               
+                    String sql = "SELECT AccountName FROM Account WHERE ID=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, id);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        accountName = rs.getString("AccountName");
+                    }              
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return accountName;
+    }
 
     
 }
