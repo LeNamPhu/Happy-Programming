@@ -6,14 +6,10 @@
 package Controller;
 
 import DAO.InviteDAO;
-import DAO.RequestDAO;
+import DAO.RateDAO;
 import DTO.Account;
-
-import DAO.MentorDAO;
-import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,35 +21,48 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
-public class AcceptRequestController extends HttpServlet {
-
-    private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListInviteController";
-
+@WebServlet(name = "StatisticByMentorController", urlPatterns = {"/StatisticByMentorController"})
+public class StatisticByMentorController extends HttpServlet {
+   private final String ERROR = "Error.jsp";
+    private final String SUCCESS = "StatisticByMentor.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+      String url = ERROR;
         try {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
-            int reqID = Integer.parseInt(request.getParameter("reqID"));
-            String statusReq = (String) request.getParameter("status");
+            int userId = user.getId();
+            InviteDAO dao = new InviteDAO();
+            int accReq = dao.getCountReq(userId, "Accepted");
+            int rejReq = dao.getCountReq(userId, "Rejected");
+            int invReq = dao.getCountReq(userId, "Pending");
+            int sum = accReq + rejReq + invReq;
+            double perAcc = accReq * 100 / sum ;
+            double perRej = rejReq * 100 / sum;
+            RateDAO rateDAO = new RateDAO();
+            double star = rateDAO.getStar(userId);
+            String a = String.valueOf(accReq);
+            String b = String.valueOf(rejReq);
+            String c = String.valueOf(invReq);
+            String d = String.valueOf(perAcc);
+            String e = String.valueOf(perRej);
+            String f = String.valueOf(star);
             
-            RequestDAO dao = new RequestDAO();
-            dao.updateStatusRequest(reqID, statusReq);
-            InviteDAO abc = new InviteDAO();
-            abc.updateStatusInvite(reqID, mentorID, "Accepted" );
-            
+            request.setAttribute("ACCEPTED_REQ", a);
+            request.setAttribute("REJECTED_REQ", b);
+            request.setAttribute("INVITING_REQ", c);
+            request.setAttribute("PERCENT_ACC", d);
+            request.setAttribute("PERCENT_REJ", e);
+            request.setAttribute("STAR", f);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at AcceptRequestController " + e.toString());
-        } finally {
+            log("Error at StatisticByMentorController" + e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
-
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

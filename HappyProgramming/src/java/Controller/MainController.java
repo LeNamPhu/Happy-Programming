@@ -31,9 +31,14 @@ public class MainController extends HttpServlet {
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
+
     public static final String CHANGE_PASWORD_BY_MENTEE_CONTROLLER = "ChangePasswordMenteeController";
     public static final String CHANGE_PASWORD_BY_MENTOR_CONTROLLER = "ChangePasswordMentorController";
-
+    public static final String CREATE_CV = "CreateCVController";
+    public static final String RATE = "RateController";
+    public static final String SUGGESTION_MENTOR = "SuggestionMentorController";
+    public static final String INVITE = "InviteController";
+    public static final String STATISTIC_BY_MENTOR = "StatisticByMentorController";
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
 
@@ -73,6 +78,7 @@ public class MainController extends HttpServlet {
                 url = "changeMentorStatus";
             } else if ("searchMentor".equals(action)) {
                 url = "searchMentor";
+
             
             } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
@@ -98,12 +104,21 @@ public class MainController extends HttpServlet {
                 url = "UserHomePage.jsp";
             } else if (" Cancel ".equals(action)) {
                 url = "MentorHomePage.jsp";
-            } else {
+            }else if("CreateCV".equals(action)){
+                url = CREATE_CV;
+            }else if("Rate".equals(action)){
+                url = RATE;
+            }else if("ShowMentorSuggestion".equals(action)){
+                url = SUGGESTION_MENTOR;
+            }else if("Invite".equals(action)){
+                url = INVITE;
+            }      
+            
 
+            else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
-
-            }
+            }        
 
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

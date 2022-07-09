@@ -5,15 +5,16 @@
  */
 package Controller;
 
+import DAO.AccountDAO;
 import DAO.InviteDAO;
-import DAO.RequestDAO;
-import DTO.Account;
-
 import DAO.MentorDAO;
+import DAO.RequestDAO;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,34 +26,50 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
-public class AcceptRequestController extends HttpServlet {
+@WebServlet(name = "SuggestionMentorController", urlPatterns = {"/SuggestionMentorController"})
+public class SuggestionMentorController extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListInviteController";
-
+    private final String SUCCESS = "SuggestionMentor.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
+            
             int reqID = Integer.parseInt(request.getParameter("reqID"));
-            String statusReq = (String) request.getParameter("status");
+            RequestDAO reqDAO = new RequestDAO();
+            ArrayList<Integer> reqSkill = reqDAO.getSkillReq(reqID);
+            MentorDAO mentorDAO = new MentorDAO();
+            ArrayList<Mentor> suggestionMentor = mentorDAO.getSuggestionMentor(reqSkill);
+            AccountDAO accDAO = new AccountDAO();
+            ArrayList<String> accName = new ArrayList<>();
+            Map<String, Mentor> mapMentor = new HashMap<>();
+            Map<String, Integer> mapInviteReq = new HashMap<>();
+            Map<String, Integer> mapAcceptedReq = new HashMap<>();
+            InviteDAO invDAO = new InviteDAO();
+            for (Mentor mentor : suggestionMentor) {               
+                if(invDAO.checkDupInvite(mentor.getId(), reqID)){
+                String accountName = accDAO.getAccountName(mentor.getId());
+                accName.add(accountName);
+                mapMentor.put(accountName, mentor);
+                mapInviteReq.put(accountName, invDAO.getCountReq(mentor.getId(),"Pending"));
+                mapAcceptedReq.put(accountName, invDAO.getCountReq(mentor.getId(),"Accepted"));
+                }
+            }
+            String a = String.valueOf(reqID);
             
-            RequestDAO dao = new RequestDAO();
-            dao.updateStatusRequest(reqID, statusReq);
-            InviteDAO abc = new InviteDAO();
-            abc.updateStatusInvite(reqID, mentorID, "Accepted" );
-            
+            HttpSession session = request.getSession();
+            request.setAttribute("REQ_ID", a);
+            session.setAttribute("LIST_ACCOUNTNAME", accName);
+            session.setAttribute("Map_Mentor", mapMentor);
+            session.setAttribute("Map_Invite", mapInviteReq);
+            session.setAttribute("Map_Accepted", mapAcceptedReq);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at AcceptRequestController " + e.toString());
-        } finally {
+            log("Error at SuggestionMentorController " + e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
-
         }
     }
 

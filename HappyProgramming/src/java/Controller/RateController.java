@@ -5,15 +5,10 @@
  */
 package Controller;
 
-import DAO.InviteDAO;
-import DAO.RequestDAO;
+import DAO.RateDAO;
 import DTO.Account;
-
-import DAO.MentorDAO;
-import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +20,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author ThienNho
  */
-@WebServlet(name = "AcceptRequestController", urlPatterns = {"/AcceptRequestController"})
-public class AcceptRequestController extends HttpServlet {
+@WebServlet(name = "RateController", urlPatterns = {"/RateController"})
+public class RateController extends HttpServlet {
 
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListInviteController";
-
+    private final String SUCCESS = "UserHomePage.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,21 +32,19 @@ public class AcceptRequestController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
-            int reqID = Integer.parseInt(request.getParameter("reqID"));
-            String statusReq = (String) request.getParameter("status");
-            
-            RequestDAO dao = new RequestDAO();
-            dao.updateStatusRequest(reqID, statusReq);
-            InviteDAO abc = new InviteDAO();
-            abc.updateStatusInvite(reqID, mentorID, "Accepted" );
-            
+            int userId = user.getId();
+            int mentorID = Integer.parseInt(request.getParameter("mentorID"));
+ //           int mentorID = 3;
+   //         int userId = 2;
+            String comment = request.getParameter("comment");
+            int rate = Integer.parseInt(request.getParameter("rate"));
+            RateDAO dao = new RateDAO();
+            dao.insertRate(mentorID, userId, rate, comment);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at AcceptRequestController " + e.toString());
-        } finally {
+            log("Error at DeleteRequestByMenteeController " + e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
-
         }
     }
 

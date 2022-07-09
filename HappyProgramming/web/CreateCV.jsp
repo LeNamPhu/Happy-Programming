@@ -4,6 +4,9 @@
     Author     : admin
 --%>
 
+<%@page import="DTO.Skill"%>
+<%@page import="DAO.SkillDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +25,7 @@
 
         </header>
         <div class="body"style="font-size:  30px;">
-            <form >
+            <form action="MainController">
                 <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
@@ -151,6 +154,7 @@
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Skill</label>
+                                <% ArrayList<Skill> listSkill = SkillDAO.getAllSkill(); %>
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
@@ -158,8 +162,9 @@
                             <script src="SkillDropdownJS.js"></script>
                         </div>
                     </div>
-
+                    <input type="submit" name="action" value="CreateCV"/>
                 </div>
+                
             </form>
         </div>
         <footer>
