@@ -36,7 +36,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">CV</a></li>
-                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="ChangePasswordByMentor.jsp">Change Password</a></li>
                             <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
                         </ul>
                     </div> 

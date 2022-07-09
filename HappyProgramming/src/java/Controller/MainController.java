@@ -31,77 +31,82 @@ public class MainController extends HttpServlet {
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
-    
+    public static final String CHANGE_PASWORD_BY_MENTEE_CONTROLLER = "ChangePasswordMenteeController";
+    public static final String CHANGE_PASWORD_BY_MENTOR_CONTROLLER = "ChangePasswordMentorController";
+
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-             String action = request.getParameter("action");
-             if("ListRequestByMentee".equals(action)){
+            String action = request.getParameter("action");
+            if ("ListRequestByMentee".equals(action)) {
                 url = LIST_REQUEST_BY_MENTEE;
-            }else if("DeleteRequest".equals(action)){
+            } else if ("DeleteRequest".equals(action)) {
                 url = DELETE_REQUEST_BY_MENTEE;
-            }else if("UpdateRequest".equals(action)){
+            } else if ("UpdateRequest".equals(action)) {
                 url = UPDATE_REQUEST_BY_MENTEE;
-            } else if("CreateRequest".equals(action)){
+            } else if ("CreateRequest".equals(action)) {
                 url = CREATE_REQUEST_BY_MENTEE;
             } else if ("Sign in".equals(action)) {
                 url = SIGN_IN;
-            }else if("addSkill".equals(action)){
+            } else if ("addSkill".equals(action)) {
                 url = "addSkill";
-            } else if("changeStatus".equals(action)){
+            } else if ("changeStatus".equals(action)) {
                 url = "changeStatusSkill";
-            }else if("updateSkill".equals(action)){
+            } else if ("updateSkill".equals(action)) {
                 url = "updateSkill";
-            }else if("Reject Request".equals(action)){
+            } else if ("Reject Request".equals(action)) {
                 url = REJECT_REQUEST;
-            }else if("Invite Request".equals(action)){
+            } else if ("Invite Request".equals(action)) {
                 url = LIST_INVITE_REQUEST;
-            }else if("Accept Request".equals(action)){
+            } else if ("Accept Request".equals(action)) {
                 url = ACCEPT_REQUEST;
-            }else if("Statistic by Mentee".equals(action)){
+            } else if ("Statistic by Mentee".equals(action)) {
                 url = STATISTIC_BY_MENTEE;
-            }   else if("LogOut".equals(action)){
+            } else if ("LogOut".equals(action)) {
                 url = "LogOutController";
-            }else if("changeMentorStatus".equals(action)) {
                 url = "changeMentorStatus";
-            }else if("searchMentor".equals(action)) {
+            } else if ("searchMentor".equals(action)) {
                 url = "searchMentor";
-            }else if ("ListRequestByMentor".equals(action)) {
+            } else if ("changeMentorStatus".equals(action)) {
+            } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
-            }else if ("FollowingRequest".equals(action)) {
+            } else if ("FollowingRequest".equals(action)) {
                 url = "FollowingRequestController";
-            }else if ("StatisticRequest".equals(action)) {
+            } else if ("StatisticRequest".equals(action)) {
                 url = "HomePage.jsp";
-            }else if ("InvitingRequest".equals(action)) {
+            } else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
-            }
-             else if(ADD.equals(action)){
+            } else if (ADD.equals(action)) {
                 url = CREATE_REQUEST;
-            }         
-            else if(SIGN_UP.equals(action)){
+            } else if (SIGN_UP.equals(action)) {
                 url = SIGNUP_Controller;
-            }else if("searchRequest".equals(action)){
+            } else if ("searchRequest".equals(action)) {
                 url = "searchRequest";
-            }else if("filterRequest".equals(action)){
+            } else if ("filterRequest".equals(action)) {
                 url = "filterRequest";
-            }   
-            
-
-            else{
+            } else if ("Enter".equals(action)) {
+                url = CHANGE_PASWORD_BY_MENTEE_CONTROLLER;
+            } else if (" Enter ".equals(action)) {
+                url = CHANGE_PASWORD_BY_MENTOR_CONTROLLER;
+            } else if ("Cancel".equals(action)) {
+                url = "UserHomePage.jsp";
+            } else if (" Cancel ".equals(action)) {
+                url = "MentorHomePage.jsp";
+            } else {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
 
-            }        
-
+            }
 
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
