@@ -69,10 +69,11 @@ public class MainController extends HttpServlet {
                 url = STATISTIC_BY_MENTEE;
             } else if ("LogOut".equals(action)) {
                 url = "LogOutController";
+            } else if ("changeMentorStatus".equals(action)) {    
                 url = "changeMentorStatus";
             } else if ("searchMentor".equals(action)) {
                 url = "searchMentor";
-            } else if ("changeMentorStatus".equals(action)) {
+            
             } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
             } else if ("FollowingRequest".equals(action)) {

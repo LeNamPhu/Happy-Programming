@@ -27,7 +27,7 @@
                     <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                     <a class="col-md-1 nav-link" href="SignIn.jsp" >Sign In</a>
                     <a class="col-md-1 nav-link" href="SignUp.jsp" >Sign Up</a>
-                    <a class="col-md-1 nav-link" href="ForgotPassword.jsp" >Forgot Password</a>
+                    
                 </div>
 
 
