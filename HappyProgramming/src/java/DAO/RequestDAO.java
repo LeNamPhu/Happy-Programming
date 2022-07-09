@@ -28,7 +28,7 @@ public class RequestDAO {
     public static final String UPDATE_REQUEST = "UPDATE Request SET Title=?, Content=?, DeadlineDate=?, DeadlineHour=? WHERE ID=?";
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
     public static final String INSERT_REQUEST = "INSERT INTO Request(Title, Status, Content, MenteeID, DeadlineDate, DeadlineHour) VALUES (?,?,?,?,?,?)";
-    public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
+    public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name, Request.Status FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
     public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
 
@@ -89,7 +89,8 @@ public class RequestDAO {
                     String content = rs.getString("Content");
                     Date deadlineDate = rs.getDate("DeadlineDate");
                     int deadlineHour = rs.getInt("DeadlineHour");
-                    list.add(new Request(0, title, "null", content, 0, deadlineDate, deadlineHour));
+                    String status = rs.getString("Status");
+                    list.add(new Request(0, title, status, content, 0, deadlineDate, deadlineHour));
                 }
             }
         } catch (Exception e) {

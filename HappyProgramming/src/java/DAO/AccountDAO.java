@@ -73,6 +73,43 @@ public class AccountDAO {
 
     }
 
+    public Account viewAccount(int accId) throws SQLException {
+        Account account = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "select ID, AccountName,Password,RoleID\n"
+                        + "from Account\n"
+                        + "where ID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, accId);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int ID = rs.getInt("ID");
+                    String AccountName = rs.getString("AccountName");
+                    String Password = rs.getString("Password");
+                    int RoleID = rs.getInt("RoleID");
+                    account = new Account(ID, AccountName, Password, RoleID);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return account;
+    }
+
     public Account checkSignIn(String accountName, String password) throws SQLException {
         Account account = null;
         Connection conn = null;
@@ -199,6 +236,52 @@ public class AccountDAO {
         return accountId;
     }
 
+    public boolean updateAccountName(String Name, int id) {
+        try {
+            Connection cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "update dbo.Account\n"
+                        + "set AccountName = ?\n"
+                        + "where ID = ?";
+                PreparedStatement pst = cn.prepareCall(sql);
+                pst.setString(1, Name);
+                pst.setInt(2, id);
+                pst.executeUpdate();
+                cn.close();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
+    public boolean updateAccountInfo(String Email, String FullName, Date DOB, String Sex, String Address, int id) {
+        try {
+            Connection cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "update dbo.Mentee\n"
+                        + "set Email = ?, FullName = ?, Address = ? , DateOfBirth = ?, Sex = ?\n"
+                        + "where ID = ? ";
+                PreparedStatement pst = cn.prepareCall(sql);
+                pst.setString(1, Email);
+                pst.setString(2, FullName);
+                pst.setString(3, Address);
+                pst.setDate(4, DOB);
+                pst.setString(5, Sex);
+                pst.setInt(6, id);
+                pst.executeUpdate();
+                cn.close();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
     public boolean insertMentee(Mentee mentee) throws SQLException {
         boolean check = false;
         Connection con = null;
@@ -321,5 +404,4 @@ public class AccountDAO {
 
     }
 
-    
 }

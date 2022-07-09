@@ -32,6 +32,7 @@ public class MainController extends HttpServlet {
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
 
+
     public static final String CHANGE_PASWORD_BY_MENTEE_CONTROLLER = "ChangePasswordMenteeController";
     public static final String CHANGE_PASWORD_BY_MENTOR_CONTROLLER = "ChangePasswordMentorController";
     public static final String CREATE_CV = "CreateCVController";
@@ -39,6 +40,7 @@ public class MainController extends HttpServlet {
     public static final String SUGGESTION_MENTOR = "SuggestionMentorController";
     public static final String INVITE = "InviteController";
     public static final String STATISTIC_BY_MENTOR = "StatisticByMentorController";
+
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
 
@@ -74,18 +76,21 @@ public class MainController extends HttpServlet {
                 url = STATISTIC_BY_MENTEE;
             } else if ("LogOut".equals(action)) {
                 url = "LogOutController";
+
             } else if ("changeMentorStatus".equals(action)) {    
                 url = "changeMentorStatus";
             } else if ("searchMentor".equals(action)) {
-                url = "searchMentor";
+                url = "searchMentor";      
 
             
+
             } else if ("ListRequestByMentor".equals(action)) {
                 url = "MentorRequestController";
             } else if ("FollowingRequest".equals(action)) {
                 url = "FollowingRequestController";
             } else if ("StatisticRequest".equals(action)) {
                 url = STATISTIC_BY_MENTOR;
+
             } else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
             } else if (ADD.equals(action)) {
@@ -96,6 +101,7 @@ public class MainController extends HttpServlet {
                 url = "searchRequest";
             } else if ("filterRequest".equals(action)) {
                 url = "filterRequest";
+
             } else if ("Enter".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTEE_CONTROLLER;
             } else if (" Enter ".equals(action)) {
@@ -112,13 +118,16 @@ public class MainController extends HttpServlet {
                 url = SUGGESTION_MENTOR;
             }else if("Invite".equals(action)){
                 url = INVITE;
-            }      
+                 
             
-
+            } else if ("Update".equals(action)) {
+                url = "UpdateProfileController";
+        }
             else{
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
             }        
+
 
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
