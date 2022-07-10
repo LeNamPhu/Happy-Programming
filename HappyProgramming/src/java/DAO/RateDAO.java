@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import DTO.Rating;
 import Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,4 +37,43 @@ public class RateDAO {
         }
         return Rate;
     }
+    public static ArrayList<Rating> listRating(int id) {
+        ArrayList<Rating> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select * from Rating where MentorID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int ID = rs.getInt("ID");
+                        double rate = rs.getDouble("Rate");
+                        String comment = rs.getString("Commnent");
+                        int MenteeID = rs.getInt("MenteeID");
+                        int MentorID = rs.getInt("MentorID");   
+                        Rating rating = new Rating(ID, rate, comment, MenteeID, MentorID);
+                        list.add(rating);
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return list;
+
+    }
+
 }

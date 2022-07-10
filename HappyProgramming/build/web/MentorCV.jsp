@@ -1,9 +1,12 @@
 <%-- 
-    Document   : ViewMentor
-    Created on : Jun 13, 2022, 3:37:26 PM
-    Author     : admin
+    Document   : MentorCV
+    Created on : Jul 10, 2022, 12:31:50 AM
+    Author     : ADMIN
 --%>
 
+
+<%@page import="DTO.Rating"%>
+<%@page import="DAO.MentorDAO"%>
 <%@page import="DTO.Mentor"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.RateDAO"%>
@@ -20,7 +23,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
             var starWidth = 40;
-
+            
             $.fn.stars = function () {
                 return $(this).each(function () {
                     $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * starWidth));
@@ -29,10 +32,10 @@
             $(document).ready(function () {
                 $('span.stars').stars();
             });
-
+            
             $(document).on('click', 'div a', function () {
                 $(this).addClass('active').siblings().removeClass('active')
-
+                
             })
         </script>
 
@@ -42,13 +45,13 @@
 
                 width:99%;
                 margin: auto;
-                margin-top: 5%;
+                margin-right: 100px;  
                 text-align: center;
             }
             table th,td{
                 width: 30%;
                 margin-right: 30px;
-
+                margin-left: 80px;
             }
             span.stars, span.stars span {
                 display: block;
@@ -64,24 +67,20 @@
             }
             .stars{
                 margin-left: 120px;
-                margin-top: -20px;
+                margin-top: 50px;
             }
 
         </style>
         <style>
             .avatarCv{
-                width:200px;
-                height:200px;
+                width:150px;
+                height:auto;
                 border-radius: 50%;
-
+                margin-left: 150px;
+                margin-top: 50px;
             }
-            button {
-                display: inline-block;
-                height: 134px;
-                padding: 0;
-                margin: 0;
-                vertical-align: top;
-                width: 104px;
+            h1{
+                margin-left: 85px;
             }
         </style>
 
@@ -97,18 +96,25 @@
         <header>
             <jsp:include page='${sessionScope.header}' />
         </header>
-        <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
-            for (Mentor mentor : list) {%>
+        <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");%>
         <table>
-            <a  href="MentorCV.jsp"><img style="background-color: white" class="avatarCv" src="<%=mentor.getAvatar()%>"></a>
-            <td><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
-            <td><%= mentor.getIntroduction()%></td>
-        </table>
-        <%}
-        %>
+            <tr><img style="background-color: white" class="avatarCv" src="<%=list.get(0).getAvatar()%>"></tr>
+            <h5>Introduction</h5>
+            <tr><%=list.get(0).getIntroduction()%><tr>
+            <tr><h1><%=list.get(0).getFullname()%></h1></tr>
 
-        <footer>
-            <%@include file = "Footer.jsp" %>
-        </footer>
-    </body>
+    </table> 
+    <h5>Profession</h5><br>
+<tr style="padding-left: 100px;"><%=list.get(0).getProfession()%></tr><br><br>
+<tr style="padding-left: 100px;"><%=list.get(0).getJob()%></tr>
+<h5>Service</h5><br>
+<tr style="padding-left: 100px;"><%=list.get(0).getServiceDesc()%></tr>
+<h5>Achievement</h5><br>
+<tr style="padding-left: 100px;"><%=list.get(0).getAchievementDesc()%></tr>
+<h5>Rating</h5><br>
+<tr style="padding-left: 100px;"><span class="stars"><%=RateDAO.getRateStar(list.get(0).getId())%></span></tr>
+<footer>
+    <%@include file = "Footer.jsp" %>
+</footer>
+</body>
 </html>

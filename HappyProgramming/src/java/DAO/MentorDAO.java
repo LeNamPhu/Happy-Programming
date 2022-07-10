@@ -73,24 +73,23 @@ public class MentorDAO {
         return list;
 
     }
-    
 
-    public ArrayList<String> getListNameMentor(ArrayList<Integer> listMentorID)  throws SQLException{
+    public ArrayList<String> getListNameMentor(ArrayList<Integer> listMentorID) throws SQLException {
         ArrayList<String> listName = new ArrayList<>();
-         Connection conn = null;
+        Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.makeConnection();
             if (conn != null) {
                 for (Integer mentorID : listMentorID) {
-                String sql = "SELECT FullName FROM Mentor WHERE ID=? ";
-                stm = conn.prepareStatement(sql);               
-                stm.setInt(1, mentorID);                                                                                               
-                rs = stm.executeQuery();
-                if(rs.next()){
-                    listName.add(rs.getString("FullName"));
-                }
+                    String sql = "SELECT FullName FROM Mentor WHERE ID=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, mentorID);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        listName.add(rs.getString("FullName"));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -107,7 +106,7 @@ public class MentorDAO {
         }
         return listName;
     }
-    
+
     public static ArrayList<Mentor> viewAllMentor() {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
@@ -156,7 +155,7 @@ public class MentorDAO {
         return list;
 
     }
-    
+
     public ArrayList<Mentor> listMentor() {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
@@ -205,7 +204,7 @@ public class MentorDAO {
         return list;
 
     }
-    
+
     public static int getMentorRoleID(int mentorID) {
         Connection cn = null;
         int role = 0;
@@ -308,7 +307,7 @@ public class MentorDAO {
         }
         return list;
     }
-    
+
     public static ArrayList<Mentor> searchMentorByAccountNamePagination(String keyword, int start, int total) {
         Connection cn = null;
         ArrayList<Mentor> list = new ArrayList<>();
