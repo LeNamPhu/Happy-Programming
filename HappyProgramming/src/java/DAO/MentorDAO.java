@@ -107,7 +107,57 @@ public class MentorDAO {
         return listName;
     }
 
-    public ArrayList<Mentor> viewAllMentor() {
+    
+    public static ArrayList<Mentor> viewAllMentor() {
+        ArrayList<Mentor> list = new ArrayList<>();
+        Connection cn = null;
+
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select * from Mentor";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int ID = rs.getInt("ID");
+                        String Email = rs.getString("Email");
+                        String FullName = rs.getString("FullName");
+                        String Address = rs.getString("Address");
+                        String Phone = rs.getString("Phone");
+                        Date DateOfBirth = rs.getDate("DateOfBirth");
+                        String Sex = rs.getString("Sex");
+                        String Profession = rs.getString("Profession");
+                        String ProfessionIntro = rs.getString("ProfessionIntro");
+                        String ServiceDesc = rs.getString("ServiceDesc");
+                        String AchievementDesc = rs.getString("AchievementDesc");
+                        String Framework = rs.getString("Framework");
+                        String Avatar = rs.getString("Avatar");
+                        String Job = rs.getString("Job");
+                        String Introduction = rs.getString("Introducton");
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                        list.add(mtr);
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return list;
+
+    }
+    
+    public ArrayList<Mentor> listMentor() {
 
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
