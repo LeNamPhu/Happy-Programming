@@ -64,16 +64,24 @@
             }
             .stars{
                 margin-left: 120px;
-                margin-top: 50px;
+                margin-top: -20px;
             }
 
         </style>
         <style>
             .avatarCv{
-                width:150px;
-                height:auto;
+                width:200px;
+                height:200px;
                 border-radius: 50%;
-                margin-left: 150px;
+
+            }
+            button {
+                display: inline-block;
+                height: 134px;
+                padding: 0;
+                margin: 0;
+                vertical-align: top;
+                width: 104px;
             }
         </style>
 
@@ -92,11 +100,10 @@
         <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
             for (Mentor mentor : list) {%>
         <table>
-            <td><img style="background-color: white" class="avatarCv" src="<%=mentor.getAvatar()%>"/></a></td>
+            <a  href="MentorCV.jsp"><img style="background-color: white" class="avatarCv" src="<%=mentor.getAvatar()%>"></a>
             <td><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
             <td><%= mentor.getIntroduction()%></td>
         </table>
-
         <%}
         %>
 
