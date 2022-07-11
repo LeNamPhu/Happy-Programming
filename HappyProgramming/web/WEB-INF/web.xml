@@ -60,6 +60,14 @@
         <servlet-name>ProfileOfMentorController</servlet-name>
         <servlet-class>Controller.ProfileOfMentorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateCVController</servlet-name>
+        <servlet-class>Controller.CreateCVController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCVController</servlet-name>
+        <servlet-class>Controller.UpdateCVController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>ProfileOfMentorController</servlet-name>
         <url-pattern>/ProfileOfMentorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCVController</servlet-name>
+        <url-pattern>/CreateCVController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCVController</servlet-name>
+        <url-pattern>/UpdateCVController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

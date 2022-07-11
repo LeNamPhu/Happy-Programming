@@ -88,31 +88,33 @@
     <body>
 
         <% String signin = (String) session.getAttribute("signin");
-            if (signin == null) {
-                session.setAttribute("header", "UnregisteredHeader.jsp");
+        if (signin==null) {
+                session.setAttribute("role", "Unregistered");
             }
         %>
 
         <header>
-            <jsp:include page='${sessionScope.header}' />
+            <jsp:include page='${sessionScope.role}Header.jsp' />
         </header>
-        <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");%>
+            <% MentorDAO mentordao = new MentorDAO();%>
+
+        <%Mentor list2 = mentordao.getMentorByID(Integer.parseInt(request.getParameter("id")));%>
         <table>
-            <tr><img style="background-color: white" class="avatarCv" src="<%=list.get(0).getAvatar()%>"></tr>
+            <tr><img style="background-color: white" class="avatarCv" src="<%=list2.getAvatar()%>"></tr>
             <h5>Introduction</h5>
-            <tr><%=list.get(0).getIntroduction()%><tr>
-            <tr><h1><%=list.get(0).getFullname()%></h1></tr>
+            <tr><%=list2.getIntroduction()%><tr>
+            <tr><h1><%=list2.getFullname()%></h1></tr>
 
     </table> 
     <h5>Profession</h5><br>
-<tr style="padding-left: 100px;"><%=list.get(0).getProfession()%></tr><br><br>
-<tr style="padding-left: 100px;"><%=list.get(0).getJob()%></tr>
+<tr style="padding-left: 100px;"><%=list2.getProfession()%></tr><br><br>
+<tr style="padding-left: 100px;"><%=list2.getJob()%></tr>
 <h5>Service</h5><br>
-<tr style="padding-left: 100px;"><%=list.get(0).getServiceDesc()%></tr>
+<tr style="padding-left: 100px;"><%=list2.getServiceDesc()%></tr>
 <h5>Achievement</h5><br>
-<tr style="padding-left: 100px;"><%=list.get(0).getAchievementDesc()%></tr>
+<tr style="padding-left: 100px;"><%=list2.getAchievementDesc()%></tr>
 <h5>Rating</h5><br>
-<tr style="padding-left: 100px;"><span class="stars"><%=RateDAO.getRateStar(list.get(0).getId())%></span></tr>
+<tr style="padding-left: 100px;"><span class="stars"><%=RateDAO.getRateStar(list2.getId())%></span></tr>
 <footer>
     <%@include file = "Footer.jsp" %>
 </footer>

@@ -62,7 +62,7 @@
 
             </table>
                 <br>
-                <div style="text-align: center" class="d-grid w-25 m-auto" >
+                <div style="text-align: center" class="d-grid w-25 m-auto mb-4" >
                     <input type="submit" name ="action" value="Create" class="btn btn-lg btn-primary" >
             </div>
         </div>

@@ -19,8 +19,10 @@ import java.util.ArrayList;
  * @author admin
  */
 public class MentorDAO {
-
-    public static ArrayList<Mentor> mentorPagination(int start, int total) {
+private static final String INSERTCV = "UPDATE Mentor SET Job=?,Introducton=?,Profession=?,ProfessionIntro=?,"
+            + "Framework=?,Service=?,ServiceDesc=?,AchievementDesc=?,Avatar=? WHERE ID=?"; // thêm cái này
+    
+public static ArrayList<Mentor> mentorPagination(int start, int total) {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
 
@@ -52,7 +54,8 @@ public class MentorDAO {
                         String Avatar = rs.getString("Avatar");
                         String Job = rs.getString("Job");
                         String Introduction = rs.getString("Introducton");
-                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                        String Service = rs.getString("Service");
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction, Service);
                         list.add(mtr);
                     }
                 }
@@ -135,7 +138,8 @@ public class MentorDAO {
                         String Avatar = rs.getString("Avatar");
                         String Job = rs.getString("Job");
                         String Introduction = rs.getString("Introducton");
-                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                        String Service = rs.getString("Service");
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
                         list.add(mtr);
                     }
                 }
@@ -185,7 +189,9 @@ public class MentorDAO {
                         String Avatar = rs.getString("Avatar");
                         String Job = rs.getString("Job");
                         String Introduction = rs.getString("Introducton");
-                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                         String Service = rs.getString("Service");
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
+                        
                         list.add(mtr);
                     }
                 }
@@ -300,7 +306,8 @@ public class MentorDAO {
                     String Avatar = rs.getString("Avatar");
                     String Job = rs.getString("Job");
                     String Introduction = rs.getString("Introducton");
-                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                     String Service = rs.getString("Service");
+                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
                     list.add(mtr);
                 }
             }
@@ -343,7 +350,8 @@ public class MentorDAO {
                     String Avatar = rs.getString("Avatar");
                     String Job = rs.getString("Job");
                     String Introduction = rs.getString("Introducton");
-                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction);
+                     String Service = rs.getString("Service");
+                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
                     list.add(mtr);
                 }
             }
@@ -425,6 +433,38 @@ public class MentorDAO {
             }
         }
         return mentor;
+    }
+    public boolean insertcv(Mentor mentor) throws SQLException{  // cái này
+        boolean check = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = DBUtils.makeConnection();
+            if(con!=null){
+                stm = con.prepareStatement(INSERTCV);
+                stm.setString(1, mentor.getJob());
+                stm.setString(2, mentor.getIntroduction());
+                stm.setString(3, mentor.getProfession());
+                stm.setString(4, mentor.getProfessionIntro());
+                stm.setString(5, mentor.getFramework());
+                stm.setString(6, mentor.getService());
+                stm.setString(7, mentor.getServiceDesc());
+                stm.setString(8, mentor.getAchievementDesc());
+                stm.setString(9, mentor.getAvatar());
+                stm.setInt(10, mentor.getId());
+
+                check = stm.executeUpdate()>0?true:false;
+            }
+        }
+        catch(Exception e){
+
+        }
+        finally{
+            if(stm!=null) stm.close();
+            if(con!=null) con.close();
+        }
+
+        return check;
     }
 
 }
