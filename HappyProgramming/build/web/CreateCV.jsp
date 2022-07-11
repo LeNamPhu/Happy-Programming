@@ -4,9 +4,6 @@
     Author     : admin
 --%>
 
-<%@page import="DTO.Skill"%>
-<%@page import="DAO.SkillDAO"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,14 +22,14 @@
 
         </header>
         <div class="body"style="font-size:  30px;">
-            <form action="MainController">
+            <form action="MainController" method="POST">
                 <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
                                 <div style="height:162px; width:162px;position:relative;margin:auto">
                                     <img id="avt" class="rounded-circle border"  src="image/avatar.png" style="height:100%;width:100%">
-                                    
+
                                     <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
                                         <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
                                         <input type="file" name="avatar" accept="image/*"
@@ -40,16 +37,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <input style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="Account Name" class="form-control" name="accName"> 
+<!--                            <input style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="Account Name" class="form-control" name="accName"> -->
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input  type="text" placeholder="Full Name" class="form-control m-2 cvform" name="fullName"> 
+<!--                            <input  type="text" placeholder="Full Name" class="form-control m-2 cvform" name="fullName"> -->
+
                             <input  type="text" placeholder="Job" class="form-control m-2 cvform " name="job"> 
-                            <textarea style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="description"></textarea>
+
+                            <textarea style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="introducton"></textarea>
                         </div>
 
                     </div>
-                    <div class="row " style="margin:0!important">
+<!--                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Email </label>
@@ -57,10 +56,9 @@
                         </div>
                         <div class="col-md-8 pt-2">
                             <input style=" " type="text"  class="form-control m-2 cvform" name="email"> 
-
                         </div>
-                    </div>
-                    <div class="row " style="margin:0!important">
+                    </div>-->
+<!--                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Date of Birth </label>
@@ -68,10 +66,9 @@
                         </div>
                         <div class="col-md-8 pt-2">
                             <input style=" " type="text"  class="form-control m-2 cvform" name="dob"> 
-
                         </div>
-                    </div>
-                    <div class="row " style="margin:0!important">
+                    </div>-->
+<!--                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label>Gender </label>
@@ -81,10 +78,9 @@
                             <select class="form-select m-2 cvform" name="gender" style="width:200px;" ><option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option></select>
-
                         </div>
-                    </div>
-                    <div class="row " style="margin:0!important">
+                    </div>-->
+<!--                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Address </label>
@@ -92,9 +88,8 @@
                         </div>
                         <div class="col-md-8 pt-2">
                             <input style=" " type="text"  class="form-control m-2 cvform" name="address"> 
-
                         </div>
-                    </div>
+                    </div>-->
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
@@ -124,18 +119,31 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="framework"> 
+                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="framework"> 
 
                         </div>
                     </div>
+
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
-                                <label> Service Introduction </label>
+                                <label> Service </label>
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceIntro"></textarea>
+                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="service"> 
+
+                        </div>
+                    </div>
+
+                    <div class="row " style="margin:0!important">
+                        <div class="col-md-4 pt-3 ">
+                            <div class="cvlabel p-2">
+                                <label> Service Description </label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pt-2">
+                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceDesc"></textarea>
 
                         </div>
                     </div>
@@ -150,21 +158,19 @@
 
                         </div>
                     </div>
-                    <div class="row " style="margin:0!important">
+<!--                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Skill</label>
-                                <% ArrayList<Skill> listSkill = SkillDAO.getAllSkill(); %>
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
                             <div id="sample-select" class="p-2"></div>
                             <script src="SkillDropdownJS.js"></script>
                         </div>
-                    </div>
-                    <input type="submit" name="action" value="CreateCV"/>
+                    </div>-->
+                        <input type="submit" name="action" value="CreateCV">
                 </div>
-                
             </form>
         </div>
         <footer>

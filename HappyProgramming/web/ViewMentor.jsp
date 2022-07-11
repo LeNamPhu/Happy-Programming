@@ -14,9 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mentor CV</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
             var starWidth = 40;
@@ -40,13 +37,13 @@
 
             table, table tr{
 
-                width:99%;
+                
                 margin: auto;
                 margin-top: 5%;
                 text-align: center;
             }
             table th,td{
-                width: 30%;
+                
                 margin-right: 30px;
 
             }
@@ -63,8 +60,7 @@
                 background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/747/star.svg) ;
             }
             .stars{
-                margin-left: 120px;
-                margin-top: -20px;
+                margin: auto;
             }
 
         </style>
@@ -87,26 +83,44 @@
 
     </head>
     <body>
-
-        <% String signin = (String) session.getAttribute("signin");
-            if (signin == null) {
-                session.setAttribute("header", "UnregisteredHeader.jsp");
+        
+       <% String signin = (String) session.getAttribute("signin");
+        if (signin==null) {
+                session.setAttribute("role", "Unregistered");
             }
         %>
 
         <header>
-            <jsp:include page='${sessionScope.header}' />
+            <jsp:include page='${sessionScope.role}Header.jsp' />
         </header>
+        <div class="body"> 
+            <div class=" mx-auto my-3" style="width:70%;"> 
+                <table class="table w-100 border-secondary" style="vertical-align: middle">
+                
+                    <thead>
+                        <tr>
+                    <th>Avatar</th>
+                    <th>Full Name</th>
+                    <th>Ratings</th>
+                    <th>Introduction</th>
+                        </tr>
+                </thead>
         <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
             for (Mentor mentor : list) {%>
-        <table>
-            <a  href="MentorCV.jsp"><img style="background-color: white" class="avatarCv" src="<%=mentor.getAvatar()%>"></a>
-            <td><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
-            <td><%= mentor.getIntroduction()%></td>
-        </table>
+           
+            <tr>
+                
+                    <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="<%=mentor.getAvatar()%>"></a></td>
+                    <td style="width:20%;"><%=mentor.getFullname()%></td>
+                    <td style="width:20%;"><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
+                    <td style="text-align: left;" class=" m-2"><div style="border: 1px lightgray solid;height:190px; " class=""><%= mentor.getIntroduction()%></div></td>
+            </tr>
+            
         <%}
         %>
-
+        </table>
+            </div>
+        </div>
         <footer>
             <%@include file = "Footer.jsp" %>
         </footer>

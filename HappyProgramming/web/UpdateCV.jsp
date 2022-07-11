@@ -169,7 +169,7 @@
                             <script src="SkillDropdownJS.js"></script>
                         </div>
                     </div>-->
-                        <input type="submit" name="action" value="CreateCV">
+                        <input type="submit" name="action" value="UpdateCV">
                 </div>
             </form>
         </div>
