@@ -98,7 +98,9 @@
                
 
                 <%
-                    }
+                    }else{%>
+                    <h1>you have no inviting request!</h1>
+<%}
                 %>
             </div>
         </div>
