@@ -30,9 +30,12 @@ public class MainController extends HttpServlet {
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
     public static final String SIGNUP_Controller = "SignUpController";
-    
     public static final String ADD = "Add";
     public static final String CREATE_REQUEST = "CreateRequestController";
+    public static final String CREATE_CV = "CreateCV"; // thêm cái này
+    public static final String CREATE_CV_CONTROLLER = "CreateCVController"; // thêm cái này
+    public static final String UPDATE_CV = "UpdateCV"; // thêm cái này
+    public static final String UPDATE_CV_CONTROLLER = "UpdateCVController"; // thêm cái này
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,7 +70,13 @@ public class MainController extends HttpServlet {
             }         
             else if(SIGN_UP.equals(action)){
                 url = SIGNUP_Controller;
-            }         
+            }
+            else if(CREATE_CV.equals(action)){ // thêm cái này
+                url = CREATE_CV_CONTROLLER;
+            }
+            else if(UPDATE_CV.equals(action)){ // thêm cái này
+                url = UPDATE_CV_CONTROLLER;
+            }
             
             else{
                 HttpSession session = request.getSession();
