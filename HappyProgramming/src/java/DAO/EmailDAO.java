@@ -9,7 +9,7 @@ import Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.persistence.EntityManager;
+// import javax.persistence.EntityManager;
 
 /**
  *

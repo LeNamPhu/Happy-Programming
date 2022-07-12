@@ -10,9 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Change Mentor Password</title>
-<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>-->
+        <!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link href="Stylesheet.css" rel="stylesheet" type="text/css">
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>-->
     </head>
     <body>
         <header>
@@ -49,10 +49,17 @@
                     <tr><td id="resetpass">Confirm Password</td><td><input type ="password" id="resetform" name="txtconfirmpass"></td></tr>
                 </table>
 
-                <div >
-                    <input type="submit" name ="action" value=" Enter " class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
-                    <input type="submit" name ="action" value=" Cancel " class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
-                </div>
+                <!--                <div>
+                                    <input type="submit" name ="action" value=" Enter " class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >
+                                    <input type="submit" name ="action" value=" Cancel " class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
+                                </div>-->
+
+                <div class="m-5 d-flex justify-content-around">
+                    <input class="btn btn-primary btn-lg" type="submit" name="action" value=" Enter " style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" />   
+                    <form action="MentorHomePage.jsp">
+                        <input class="btn btn-primary btn-lg" type="submit"value="Cancel" style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" />
+                    </form>
+                </div>   
             </form>
         </div>
 
