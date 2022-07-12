@@ -25,7 +25,7 @@
                     <a class="logo "href="MentorHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>
                 <a class="col-md-1 nav-link" href="MentorHomePage.jsp" >Home</a>
-                <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                <a class="col-md-1 nav-link" href="MainController?action=ProfileOfMentor" >Mentor</a>
                 <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                 <a class="col-md-1 nav-link" href="MainController?action=ListRequestByMentor" >Request</a>
                 <div class="col-md-1 d-flex">
@@ -35,7 +35,7 @@
                             
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">CV</a></li>
+                            <li><a class="dropdown-item" href="CreateCV.jsp">CV</a></li>
                             <li><a class="dropdown-item" href="ChangePasswordByMentor.jsp">Change Password</a></li>
                             <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
                         </ul>

@@ -36,7 +36,7 @@ public class StatisticByMenteeController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int menteeID = 2;
+            int menteeID = user.getId();
             RequestDAO reqDAO = new RequestDAO();
             ArrayList<Request> listReq = reqDAO.getListClosedReq(menteeID);
             ArrayList<Integer> listReqID = new ArrayList<>();

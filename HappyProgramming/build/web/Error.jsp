@@ -4,6 +4,7 @@
     Author     : ThienNho
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
         <%
         String abc = (String) request.getAttribute("ERROR_MESSAGE");
         %>
-        <%=abc%>
+        <%=abc%>      
+        
     </body>
 </html>

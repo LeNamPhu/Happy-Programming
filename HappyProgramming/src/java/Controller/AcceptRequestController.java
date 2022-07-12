@@ -46,6 +46,7 @@ public class AcceptRequestController extends HttpServlet {
             dao.updateStatusRequest(reqID, statusReq);
             InviteDAO abc = new InviteDAO();
             abc.updateStatusInvite(reqID, mentorID, "Accepted" );
+            
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at AcceptRequestController " + e.toString());

@@ -23,7 +23,7 @@
                     <a class="logo "href="UserHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>                
                 <a class="col-md-1 nav-link" href="UserHomePage.jsp" >Home</a>
-                <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                <a class="col-md-1 nav-link" href="MainController?action=ProfileOfMentor" >Mentor</a>
                 <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                 <a class="col-md-1 nav-link" href="MainController?action=ListRequestByMentee" >Request</a>
                 <div class="col-md-1 d-flex">
@@ -33,8 +33,10 @@
 
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+
+                            <li><a class="dropdown-item" href="MenteeProfile.jsp">Profile</a></li>
                             <li><a class="dropdown-item" href="ChangePasswordByMentee.jsp">Change Password</a></li>
+
                             <li><a class="dropdown-item" href="MainController?action=LogOut">Log out</a></li>
                         </ul>
                     </div> 

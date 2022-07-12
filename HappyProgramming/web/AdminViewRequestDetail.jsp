@@ -46,13 +46,10 @@
                 Request req = RequestDAO.getARequestDetail(ID);
                 ArrayList<String> list = RequestDAO.getAllSkillsNameByRequestID(ID);
             %>
-<<<<<<< Updated upstream
+
             
             <table class="table">
-=======
 
-            <table>
->>>>>>> Stashed changes
                 <tr>
                     <th>STT</th>
                     <th>ID</th>

@@ -22,7 +22,7 @@
         
         </header>
         <section>
-            <div class="">
+            <div style="">
                 <!-- Carousel -->
                 <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
 

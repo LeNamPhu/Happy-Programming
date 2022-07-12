@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,7 +28,8 @@ public class RequestDAO {
     public static final String UPDATE_REQUEST = "UPDATE Request SET Title=?, Content=?, DeadlineDate=?, DeadlineHour=? WHERE ID=?";
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
     public static final String INSERT_REQUEST = "INSERT INTO Request(Title, Status, Content, MenteeID, DeadlineDate, DeadlineHour) VALUES (?,?,?,?,?,?)";
-    public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID=?";
+    public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Request.Status FROM ((Request join Invite on Request.ID = Invite.ReqID)) WHERE MentorID=? ";
+
     public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
 
@@ -90,7 +90,8 @@ public class RequestDAO {
                     String content = rs.getString("Content");
                     Date deadlineDate = rs.getDate("DeadlineDate");
                     int deadlineHour = rs.getInt("DeadlineHour");
-                    list.add(new Request(0, title, "null", content, 0, deadlineDate, deadlineHour));
+                    String status = rs.getString("Status");
+                    list.add(new Request(0, title, status, content, 0, deadlineDate, deadlineHour));
                 }
             }
         } catch (Exception e) {
@@ -369,6 +370,36 @@ public class RequestDAO {
         }
 
         return listSkillID;
+    }
+
+    public int getMaxReqID() throws SQLException{
+        int reqID = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                    String sql = "SELECT MAX(ID) AS ID FROM Request";
+                    stm = conn.prepareStatement(sql);
+                    rs = stm.executeQuery();
+                    if(rs.next()){
+                        reqID = rs.getInt("ID");
+                    }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return reqID;
     }
 
     public void insertSkillIDToRequestSkill(int reqID, ArrayList<Integer> listSkillID) throws SQLException {
@@ -894,5 +925,38 @@ public class RequestDAO {
             e.printStackTrace();
         }
         return list;
+
+    }
+
+    public ArrayList<Integer> getSkillReq(int reqID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ArrayList<Integer> reqSkill = new ArrayList<>();
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "SELECT SkillID FROM RequestSkill WHERE RequestID=?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, reqID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    reqSkill.add(rs.getInt("SkillID"));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return reqSkill;
+
     }
 }

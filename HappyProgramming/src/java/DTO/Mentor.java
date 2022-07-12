@@ -27,9 +27,10 @@ public class Mentor {
     private String framework;
     private String avatar;
     private String job;
-    private String introduction;
+    private String introduction;       
+    private String service; // cái này thêm
 
-    public Mentor(int id, String email, String fullname, String address, String phone, Date dob, String sex, String profession, String professionIntro, String serviceDesc, String achievementDesc, String framework, String avatar, String job, String introduction) {
+    public Mentor(int id, String email, String fullname, String address, String phone, Date dob, String sex, String profession, String professionIntro, String serviceDesc, String achievementDesc, String framework, String avatar, String job, String introduction, String service) {
         this.id = id;
         this.email = email;
         this.fullname = fullname;
@@ -45,7 +46,32 @@ public class Mentor {
         this.avatar = avatar;
         this.job = job;
         this.introduction = introduction;
+        this.service = service;
     }
+    
+
+    
+    public Mentor() {
+    }
+
+    public Mentor(int id, String fullname, String serviceDesc, String avatar) {
+        this.id = id;
+        this.fullname = fullname;
+        this.serviceDesc = serviceDesc;
+        this.avatar = avatar;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    
+    
+    
 
     public int getId() {
         return id;

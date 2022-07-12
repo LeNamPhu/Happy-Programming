@@ -10,17 +10,16 @@
 <%@page import="DAO.SkillDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
- <%if (session.getAttribute("role")!="User") {%>
-             <%@include file = "Unauthorised.jsp" %>
-            <% }else
-                {%>
+<%if (session.getAttribute("role") != "User") {%>
+<%@include file = "Unauthorised.jsp" %>
+<% } else {%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Request</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="Stylesheet.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>-->
     </head>
     <body>
         <header>
@@ -40,32 +39,59 @@
                     <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td></tr>
                     <tr><td id="createrequestpass">Content</td><td><input type="text" name="content" style="width: 400px; height: 150px" id="createrequestform"/></td></tr>
                     <tr>
-                        <td id="createrequestpass">Skill</td>
-                        <td>
-                            <%--
-                                // String id = request.getParameter("id");
-                                ArrayList<Skill> list = SkillDAO.getAllSkill();
-                                int count = 1;
-                                if (list != null && !list.isEmpty()) {
-                                    for (Skill sk : list) {
-                                        if (sk.getStatus().equals("active")) {
-                            %>   
-                            <div>
-                                <input type="checkbox" id="<%=sk.getId()%>" name="skillCheckBox<%=count++%>" value=" <%=sk.getName()%>">
-                                <label for="<%=sk.getId()%>"> <%=sk.getName()%></label><br>
-                            </div>
-                            <%}
+                        <td id="first">Skill</td><td id="input">
+                            <%
+                                ArrayList<Skill> listSkill = SkillDAO.getAllSkill();
+                                
+                            %>
+                            <select name="skill1">
+                                <option value="<%= 0%>"><%= ""%></option>
+                                <%
+                                    for (Skill skill : listSkill) {
+                                        if (!"inactive".equals(skill.getStatus())) {
+                                %>
+                                <option value="<%= skill.getId()%>"><%= skill.getName()%></option>
+                                <%
+                                        }
                                     }
-                                }
-                            --%>
-                        </td></tr>
+                                %>
+                            </select>
+
+                            <select name="skill2">
+                                <option value="<%= 0%>"><%= ""%></option>
+                                <%
+                                    for (Skill skill : listSkill) {
+                                        if (!"inactive".equals(skill.getStatus())) {
+                                %>
+                                <option value="<%= skill.getId()%>"><%= skill.getName()%></option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+
+                            <select name="skill3">
+                                <option value="<%= 0%>"><%=""%></option>
+                                <%
+                                    for (Skill skill : listSkill) {
+                                        if (!"inactive".equals(skill.getStatus())) {
+                                %>
+                                <option value="<%= skill.getId()%>"><%= skill.getName()%></option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td> 
+                    </tr>
 
                 </table>
 
                 <div>
-<!--                    <input type="submit" class="createrequest" value="Enter" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >-->
-                    <input type="submit" class="createrequest" value="Cancel" style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
-                    <input type="submit" name="action" value="Add"/>
+                    <!--                    <input type="submit" class="createrequest" value="Enter" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >-->
+                    <input type="submit" name="action" value="Add" class="btn btn-primary btn-lg createrequest"style="font-size: 25px;width:400px;height: 60px;" />
+
+                    <input type="submit" name="action" class="createrequest btn btn-light btn-outline-dark" value="Cancel" style="font-size: 25px;width:400px;height: 60px;" >
                 </div>
             </form>
         </div>
@@ -76,4 +102,4 @@
         </footer>
     </body>
 </html> 
-<% } %>
+<% }%>

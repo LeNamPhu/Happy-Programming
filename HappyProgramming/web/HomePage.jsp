@@ -28,7 +28,7 @@
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
         <section>
- <div class="">
+            <div class="" style="">
             <!-- Carousel -->
             <div id="demo" class="carousel slide" data-bs-ride="carousel" >
 

@@ -16,18 +16,18 @@
     </head>
     <body>
         
-            <nav class="container-fluid header ">
+            <nav class="container-fluid header fixed-top ">
                 <div class="row">
                     <div class="col-md-7">
                     <a class=" logo" href="HomePage.jsp"><img   src="image/cafe2.png" /></a>
 
                     </div>
                     <a class="col-md-1 nav-link" href="HomePage.jsp" >Home</a>
-                    <a class="col-md-1 nav-link" href="ViewMentor.jsp" >Mentor</a>
+                    <a class="col-md-1 nav-link" href="MainController?action=ProfileOfMentor" >Mentor</a>
                     <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                     <a class="col-md-1 nav-link" href="SignIn.jsp" >Sign In</a>
                     <a class="col-md-1 nav-link" href="SignUp.jsp" >Sign Up</a>
-                    <a class="col-md-1 nav-link" href="ForgotPassword.jsp" >Forgot Password</a>
+                    
                 </div>
 
 
