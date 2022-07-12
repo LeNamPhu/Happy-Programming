@@ -4,6 +4,8 @@
     Author     : admin
 --%>
 
+<%@page import="DTO.Account"%>
+<%@page import="DAO.MentorDAO"%>
 <%@page import="DTO.Skill"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.SkillDAO"%>
@@ -25,6 +27,12 @@
 
         </header>
         <div class="body"style="font-size:  30px;">
+            <% MentorDAO mentordao = new MentorDAO();
+                Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int mentorID = user.getId();
+                if(mentordao.getMentorProfession(mentorID)){
+                    response.sendRedirect("UpdateCV.jsp");
+                }%>
             <form action="MainController" method="POST">
                 <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="row " style="margin:0!important">
@@ -187,7 +195,7 @@
             </div>
                             </form>
         </div>
-    </div>
+    
         <footer>
 
             <%@include file = "Footer.jsp" %>

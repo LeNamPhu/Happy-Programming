@@ -10,6 +10,7 @@ import DTO.Account;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CreateCVController", urlPatterns = {"/CreateCVController"})
 public class CreateCVController extends HttpServlet {
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "CreateCV.jsp";
+    private final String SUCCESS = "MainController?action=ListRequestByMentee";
 
 
     /**
@@ -61,7 +62,7 @@ public class CreateCVController extends HttpServlet {
             if(checkinsert){
                 boolean insertcv = mentordao.insertcv(mentor);
                 url = SUCCESS;
-            }
+        }
         }
         catch(Exception e){
             e.printStackTrace();

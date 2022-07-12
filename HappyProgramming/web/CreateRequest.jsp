@@ -89,8 +89,9 @@
 
                 <div>
                     <!--                    <input type="submit" class="createrequest" value="Enter" style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" >-->
-                    <input type="submit" class="createrequest" value="Cancel" style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
-                    <input type="submit" name="action" value="Add"/>
+                    <input type="submit" name="action" value="Add" class="btn btn-primary btn-lg createrequest"style="font-size: 25px;width:400px;height: 60px;" />
+
+                    <input type="submit" name="action" class="createrequest btn btn-light btn-outline-dark" value="Cancel" style="font-size: 25px;width:400px;height: 60px;" >
                 </div>
             </form>
         </div>

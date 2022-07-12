@@ -19,10 +19,13 @@ import java.util.ArrayList;
  * @author admin
  */
 public class MentorDAO {
-private static final String INSERTCV = "UPDATE Mentor SET Job=?,Introducton=?,Profession=?,ProfessionIntro=?,"
+
+    private static final String INSERTCV = "UPDATE Mentor SET Job=?,Introducton=?,Profession=?,ProfessionIntro=?,"
             + "Framework=?,Service=?,ServiceDesc=?,AchievementDesc=?,Avatar=? WHERE ID=?"; // thêm cái này
-    
-public static ArrayList<Mentor> mentorPagination(int start, int total) {
+    private static final String INSERTCV2 = "UPDATE Mentor SET Email =?, FullName=?, Address=?,DateofBirth=?, Sex=?, Job=?,Introducton=?,Profession=?,ProfessionIntro=?,"
+            + "Framework=?,Service=?,ServiceDesc=?,AchievementDesc=?,Avatar=? WHERE ID=?"; // thêm cái này
+
+    public static ArrayList<Mentor> mentorPagination(int start, int total) {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
 
@@ -110,7 +113,6 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
         return listName;
     }
 
-
     public static ArrayList<Mentor> viewAllMentor() {
         ArrayList<Mentor> list = new ArrayList<>();
         Connection cn = null;
@@ -139,7 +141,7 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
                         String Job = rs.getString("Job");
                         String Introduction = rs.getString("Introducton");
                         String Service = rs.getString("Service");
-                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction, Service);
                         list.add(mtr);
                     }
                 }
@@ -189,9 +191,9 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
                         String Avatar = rs.getString("Avatar");
                         String Job = rs.getString("Job");
                         String Introduction = rs.getString("Introducton");
-                         String Service = rs.getString("Service");
-                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
-                        
+                        String Service = rs.getString("Service");
+                        Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction, Service);
+
                         list.add(mtr);
                     }
                 }
@@ -306,8 +308,8 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
                     String Avatar = rs.getString("Avatar");
                     String Job = rs.getString("Job");
                     String Introduction = rs.getString("Introducton");
-                     String Service = rs.getString("Service");
-                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
+                    String Service = rs.getString("Service");
+                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction, Service);
                     list.add(mtr);
                 }
             }
@@ -350,8 +352,8 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
                     String Avatar = rs.getString("Avatar");
                     String Job = rs.getString("Job");
                     String Introduction = rs.getString("Introducton");
-                     String Service = rs.getString("Service");
-                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction,Service);
+                    String Service = rs.getString("Service");
+                    Mentor mtr = new Mentor(ID, Email, FullName, Address, Phone, DateOfBirth, Sex, Profession, ProfessionIntro, ServiceDesc, AchievementDesc, Framework, Avatar, Job, Introduction, Service);
                     list.add(mtr);
                 }
             }
@@ -434,13 +436,14 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
         }
         return mentor;
     }
-    public boolean insertcv(Mentor mentor) throws SQLException{  // cái này
+
+    public boolean insertcv(Mentor mentor) throws SQLException {  // cái này
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
-        try{
+        try {
             con = DBUtils.makeConnection();
-            if(con!=null){
+            if (con != null) {
                 stm = con.prepareStatement(INSERTCV);
                 stm.setString(1, mentor.getJob());
                 stm.setString(2, mentor.getIntroduction());
@@ -453,18 +456,114 @@ public static ArrayList<Mentor> mentorPagination(int start, int total) {
                 stm.setString(9, mentor.getAvatar());
                 stm.setInt(10, mentor.getId());
 
-                check = stm.executeUpdate()>0?true:false;
+                check = stm.executeUpdate() > 0 ? true : false;
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
 
-        }
-        finally{
-            if(stm!=null) stm.close();
-            if(con!=null) con.close();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
 
         return check;
     }
 
+    public boolean insertcv2(Mentor mentor) throws SQLException {  // cái này
+        boolean check = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.makeConnection();
+            if (con != null) {
+                stm = con.prepareStatement(INSERTCV2);
+                stm.setString(1, mentor.getEmail());
+                stm.setString(2, mentor.getFullname());
+                stm.setString(3, mentor.getAddress());
+                stm.setDate(4, mentor.getDob());
+                stm.setString(5, mentor.getSex());
+                stm.setString(6, mentor.getJob());
+                stm.setString(7, mentor.getIntroduction());
+                stm.setString(8, mentor.getProfession());
+                stm.setString(9, mentor.getProfessionIntro());
+                stm.setString(10, mentor.getFramework());
+                stm.setString(11, mentor.getService());
+                stm.setString(12, mentor.getServiceDesc());
+                stm.setString(13, mentor.getAchievementDesc());
+                stm.setString(14, mentor.getAvatar());
+                stm.setInt(15, mentor.getId());
+
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return check;
+    }
+    public boolean getMentorProfession(int mentorID) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        String profession = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtils.makeConnection();
+            if (con != null) {
+                stm = con.prepareStatement("select Profession from Mentor where ID = ?");
+                stm.setInt(1, mentorID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    profession = rs.getString("Profession");
+                }
+                if (profession != null) {
+                    check = true;
+                }
+
+            }
+        } catch (Exception e) {
+        }
+        return check;
+    }
+
+    public Mentor getMentorInfoByID(int mentorID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Mentor mentor = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql = "SELECT * FROM Mentor WHERE ID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, mentorID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    mentor = new Mentor(mentorID, rs.getString("Email"), rs.getString("FullName"), rs.getString("Address"), rs.getString("Phone"), rs.getDate("DateOfBirth"), rs.getString("Sex"), rs.getString("Profession"), rs.getString("ProfessionIntro"), rs.getString("ServiceDesc"), rs.getString("AchievementDesc"), rs.getString("Framework"), rs.getString("Avatar"), rs.getString("Job"), rs.getString("Introducton"), rs.getString("Service"));
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return mentor;
+    }
 }
