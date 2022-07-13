@@ -20,6 +20,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link href="Stylesheet.css" rel="stylesheet" type="text/css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script>
+            var myModal = document.getElementById('exampleModal')
+            var myInput = document.getElementById('myInput')
+
+            myModal.addEventListener('shown.bs.modal', function () {
+                myInput.focus()
+            })
+</script>
         <style>
             table, table tr{
                 
@@ -30,7 +38,7 @@
             }
             table th,td{
                 width: 10%;
-                
+
             }
         </style>
     </head>
@@ -69,10 +77,10 @@
                     <span style="margin-left: 2%">
                         <select name="status" style="height:40px ">
                             <option selected disabled>Status</option>
-                            <option value="Open" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Open")) {%>selected <%}%>>Open</option>
-                            <option value="Processing" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Processing")) {%>selected <%}%>>Processing</option>
-                            <option value="Canceled" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Canceled")) {%>selected <%}%>>Canceled</option>
-                            <option value="Closed" <%if(request.getParameter("status")!=null && request.getParameter("status").equals("Closed")) {%>selected <%}%>>Closed</option>
+                            <option value="Open" <%if (request.getParameter("status") != null && request.getParameter("status").equals("Open")) {%>selected <%}%>>Open</option>
+                            <option value="Processing" <%if (request.getParameter("status") != null && request.getParameter("status").equals("Processing")) {%>selected <%}%>>Processing</option>
+                            <option value="Canceled" <%if (request.getParameter("status") != null && request.getParameter("status").equals("Canceled")) {%>selected <%}%>>Canceled</option>
+                            <option value="Closed" <%if (request.getParameter("status") != null && request.getParameter("status").equals("Closed")) {%>selected <%}%>>Closed</option>
                         </select>
                     </span>
                     <span style="margin-left: 2%">
@@ -82,7 +90,7 @@
                 </div>
             </form>
 
-                    <table class="table">
+            <table class="table">
                 <tr>
                     <th>STT</th>
                     <th>ID</th>
@@ -91,15 +99,35 @@
                     <th>Status</th>
                 </tr>
                 <%for (Request req : list) {%>
-                <tr><td><%=count++%></td>
-                    <td><a href="AdminViewRequestDetail.jsp?ID=<%=req.getId()%>"><%=req.getId()%></a></td>
+                <tr><td><%=pageid + count++%></td>
+                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<%=req.getId()%>"><%=req.getId()%></a>
+                    <div class="modal fade" id="exampleModal<%=req.getId()%>" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" id="loadModalBody">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 22px;">Request Statistic</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <jsp:include page="AdminViewRequestDetail.jsp">
+                                    <jsp:param name="ID" value="<%=req.getId()%>"/>
+                                </jsp:include>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Close</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div></td>
                     <td><%=MenteeDAO.getAccountNameByMenteeID(req.getMenteeID())%></td>
                     <td><%=req.getTitle()%></td>
                     <td><%=req.getStatus()%></td>
                 </tr>
-
+                
                 <%  }
                 %>
+                
             </table>
 
             <nav aria-label="Page navigation example" style="margin-top:100px;margin-left: 450px ">
@@ -127,7 +155,7 @@
             </nav>
 
         </div>
-
+        
         <footer>
             <%@include file="Footer.jsp" %>
         </footer>
