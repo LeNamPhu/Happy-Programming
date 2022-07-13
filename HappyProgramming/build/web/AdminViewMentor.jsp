@@ -106,7 +106,7 @@
                     <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>Profession</th><th>Number of accepted request</th><th>Percentage completed</th><th>Rate star</th><th>Status</th></tr>
                             <%for (Mentor mtr : list) {%>
                             <%int totalRequest = RequestDAO.countRequestOfMentor(mtr.getId(), "Accepted") + RequestDAO.countRequestOfMentor(mtr.getId(), "Rejected");%>
-                    <tr><td><%=count++%></td>
+                    <tr><td><%=pageid+count++%></td>
                         <td><%=mtr.getId()%></td>
                         <td><%=mtr.getFullname()%></td>
                         <td><%=MentorDAO.getMentorAccountNameById(mtr.getId())%></td>
