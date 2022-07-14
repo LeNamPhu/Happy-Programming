@@ -107,10 +107,6 @@ public class MainController extends HttpServlet {
                 url = CHANGE_PASWORD_BY_MENTEE_CONTROLLER;
             } else if (" Enter ".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTOR_CONTROLLER;
-            } else if ("Cancel".equals(action)) {
-                url = "UserHomePage.jsp";
-            } else if (" Cancel ".equals(action)) {
-                url = "MentorHomePage.jsp";
             } else if (CREATE_CV.equals(action)) { // thêm cái này
                 url = CREATE_CV_CONTROLLER;
             } else if (UPDATE_CV.equals(action)) { // thêm cái này

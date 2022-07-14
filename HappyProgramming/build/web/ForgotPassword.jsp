@@ -32,7 +32,7 @@
                 <tr><td><input type="text" name="txtemail" style="width: 550px"></td></tr>
                 
                 <tr><td>Account Name</td></tr>
-                <tr><td><input type="password" name="txtpass" style="width: 550px"></td></tr>
+                <tr><td><input type="text" name="txtname" style="width: 550px"></td></tr>
 
                
                 <tr><td> <div class="d-grid"><input class="btn btn-primary btn-lg mt-4 " type="submit" value="Send Reset Link" style="font-size: 25px;" >  </div></td></tr>
