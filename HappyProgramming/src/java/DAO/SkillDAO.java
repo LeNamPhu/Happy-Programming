@@ -175,12 +175,68 @@ public class SkillDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, menteeID);
                 ResultSet rs = pst.executeQuery();
-                if(rs!=null && rs.next())
+                if (rs != null && rs.next()) {
                     result = rs.getInt("TotalSkillOfRequest");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void insertSkill(int mentorID, ArrayList<Integer> listId) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                for (Integer integer : listId) {
+                    String sql = "INSERT INTO MentorSkill(SkillID, MentorID) VALUES(?,?)";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, integer);
+                    stm.setInt(2, mentorID);
+                    stm.executeUpdate();
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+    
+    public void deleteSkill(int mentorID) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                    String sql = "DELETE MentorSkill WHERE MentorID=?";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, mentorID);
+                    stm.executeUpdate();
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 }

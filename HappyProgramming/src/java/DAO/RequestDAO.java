@@ -442,7 +442,7 @@ public class RequestDAO {
                 String sql = "SELECT ReqID FROM Invite WHERE MentorID =? and Status =?";
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, id);
-                stm.setString(2, "Processing");
+                stm.setString(2, "Pending");
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int reqID = rs.getInt("ReqID");

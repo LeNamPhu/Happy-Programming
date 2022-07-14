@@ -30,8 +30,7 @@ public class MainController extends HttpServlet {
     public static final String SIGN_IN = "SignInController";
     public static final String STATISTIC_BY_MENTEE = "StatisticByMenteeController";
     public static final String SIGN_UP = "Create";
-    public static final String SIGNUP_Controller = "SignUpController";
-    public static final String CREATE_CV = "CreateCV"; // thêm cái này
+    public static final String SIGNUP_Controller = "SignUpController"; // thêm cái này
     public static final String CREATE_CV_CONTROLLER = "CreateCVController"; // thêm cái này
     public static final String UPDATE_CV = "UpdateCV"; // thêm cái này
     public static final String UPDATE_CV_CONTROLLER = "UpdateCVController"; // thêm cái này
@@ -111,7 +110,7 @@ public class MainController extends HttpServlet {
                 url = "UserHomePage.jsp";
             } else if (" Cancel ".equals(action)) {
                 url = "MentorHomePage.jsp";
-            } else if (CREATE_CV.equals(action)) { // thêm cái này
+            } else if ("CreateCV".equals(action)) { // thêm cái này
                 url = CREATE_CV_CONTROLLER;
             } else if (UPDATE_CV.equals(action)) { // thêm cái này
                 url = UPDATE_CV_CONTROLLER;

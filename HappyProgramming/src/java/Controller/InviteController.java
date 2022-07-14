@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.InviteDAO;
+import DAO.RequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,6 +33,8 @@ public class InviteController extends HttpServlet {
             int reqID = Integer.parseInt(request.getParameter("reqID"));
             InviteDAO dao = new InviteDAO();
             dao.insertInvite(mentorID, reqID);
+            RequestDAO req = new RequestDAO();
+            req.updateStatusRequest(reqID, "Processing");
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at InviteController " + e.toString());

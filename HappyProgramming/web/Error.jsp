@@ -4,19 +4,21 @@
     Author     : ThienNho
 --%>
 
+<%@page import="DTO.Skill"%>
+<%@page import="DAO.SkillDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        
+        <title>ERROR PAGE</title>
     </head>
     <body>
-        <%
-        String abc = (String) request.getAttribute("ERROR_MESSAGE");
-        %>
-        <%=abc%>      
-        
+<%
+String error =(String) session.getAttribute("MESSAGE_ERROR");
+%>
+<%= error %>
+       
     </body>
 </html>

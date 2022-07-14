@@ -6,10 +6,12 @@
 package Controller;
 
 import DAO.MentorDAO;
+import DAO.SkillDAO;
 import DTO.Account;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,10 +56,18 @@ public class UpdateCVController extends HttpServlet {
 
             Mentor mentor = new Mentor(mentorID, null, null, null, null, null, null, profession, professionIntro, serviceDesc, achievement, framework, avatar, job, service, introducton);
             MentorDAO mentordao = new MentorDAO();
-            boolean checkinsert = true;
-
+            boolean checkinsert = mentordao.insertcv(mentor);
             if(checkinsert){
-                boolean insertcv = mentordao.insertcv(mentor);
+                String a = request.getParameter("skill");
+                String[] skill = a.split(", ");
+                ArrayList<Integer> IDSkill = new ArrayList<>();
+                for (String string : skill) {
+                    int id = Integer.parseInt(string);
+                    IDSkill.add(id);
+                }
+                SkillDAO skillDao = new SkillDAO();
+                skillDao.deleteSkill(mentorID);
+                skillDao.insertSkill(mentorID, IDSkill);
                 url = SUCCESS;
             }
         }
