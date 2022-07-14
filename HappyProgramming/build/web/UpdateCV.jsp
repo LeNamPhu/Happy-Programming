@@ -188,20 +188,20 @@
 
                                 <div>
                                 <input type="checkbox" class="form-check-input " value="<%=skill.getId()%>">
-                                <label class="form-check-label"><%=skill.getName()%></label
+                                <label class="form-check-label"><%=skill.getName()%></label>
                                 </div> 
                                 <%}%>
                             </div>
                         </div>
                     </div>
-                        
+                        <div class="mt-3 " style="text-align: center">
+            <input type="submit" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
+                    </div>
                 </div>
                     
                 
        
-                            <div class="mt-3" style="text-align: center"></div>
-            <input type="submit" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
-                    </div>
+                            
                             </div>
             </form>
         </div>

@@ -4,6 +4,9 @@
     Author     : admin
 --%>
 
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.stream.*"%>
 <%@page import="DAO.SkillDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Skill"%>
@@ -44,6 +47,14 @@
 
         <div class="body">
             <%ArrayList<Skill> list = SkillDAO.getAllSkill();
+            
+Collections.sort(list, new Comparator<Skill>(){
+
+  public int compare(Skill o1, Skill o2)
+  {
+     return o1.getName().compareTo(o2.getName());
+  }
+});  
                 int count = 1;%>
             <%if (list != null && !list.isEmpty()) {
             %>
@@ -55,7 +66,7 @@
                         <div >
                             <table class="border border-secondary border-3 " >
                         <tr><td style="width:200px;"><%=count++%></td>
-                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%;" class="border border-secondary m-2"></td>
+                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%; object-fit: scale-down" class="border border-secondary m-2"></td>
                     <td style="width:300px;"><%=sk.getName()%></td></tr>
                         </table>   
             </div>

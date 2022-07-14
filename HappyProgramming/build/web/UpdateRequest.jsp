@@ -45,9 +45,9 @@
             for (Request req : list) {
                 if (reqID == req.getId()) {
                     String a = (String) skillReq.get(req);
-                    String x = "X";
-                    String y = "X";
-                    String z = "X";
+                    String x = " ";
+                    String y = " ";
+                    String z = " ";
                     String[] skills = a.split(" ");
                     if (skills.length == 1) {
                         x = skills[0];
@@ -86,7 +86,7 @@
                     <%
                         }
                     %>
-                    <option value="X">X</option>
+                    <option value="X"> </option>
                 </select>
             
                 <select name="skill2">
@@ -98,7 +98,7 @@
                     <%
                         }
                     %>
-                    <option value="X">X</option>
+                    <option value="X"> </option>
                 </select>
             
                 <select name="skill3">
@@ -110,7 +110,7 @@
                     <%
                         }
                     %>
-                    <option value="X">X</option>
+                    <option value="X"> </option>
                 </select>
             </td> 
             </tr>

@@ -36,7 +36,7 @@
                 <tr><td id="signupname">Email</td><td><input type ="text", id="signupform", name="email">
 <!--                    <a href = "mailto: abc@example.com"></a> --></td></tr>
                 <tr><td id="signupname">Password</td><td><input type ="password", id="signupform", name="password"></td></tr>
-                <tr><td id="signupname">Confirm Password</td><td><input type ="text", id="signupform", name="confirm">
+                <tr><td id="signupname">Confirm Password</td><td><input type ="password", id="signupform", name="confirm">
                     <%=userError.getPassError()%></td></tr>
                 <tr><td id="signupname">Full Name</td><td><input type ="text", id="signupform", name="fullName"></td></tr>            
                 <tr><td id="signupname">Phone Number</td><td><input type ="", id="signupform", name="phone"></td></tr>            

@@ -11,6 +11,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.RateDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -96,18 +97,22 @@
         <header>
             <jsp:include page='${sessionScope.role}Header.jsp' />
         </header>
+        
             <% MentorDAO mentordao = new MentorDAO();%>
 
-        <%Mentor list2 = mentordao.getMentorByID(Integer.parseInt(request.getParameter("id")));%>
-        <table>
+            <%Mentor list2 = mentordao.getMentorInfoByID(Integer.parseInt(request.getParameter("id")));%>
+            <div class="body d-flex flex-column align-items-center" style="text-align: center;width:70% " >
+            <table>
+            <tr><h1><%=list2.getFullname()%></h1></tr>
             <tr><img style="background-color: white" class="avatarCv" src="<%=list2.getAvatar()%>"></tr>
             <h5>Introduction</h5>
             <tr><%=list2.getIntroduction()%><tr>
-            <tr><h1><%=list2.getFullname()%></h1></tr>
+            
 
     </table> 
-    <h5>Profession</h5><br>
+    <h5>Profession</h5>
 <tr style="padding-left: 100px;"><%=list2.getProfession()%></tr><br><br>
+ <h5>Job</h5>
 <tr style="padding-left: 100px;"><%=list2.getJob()%></tr>
 <h5>Service</h5><br>
 <tr style="padding-left: 100px;"><%=list2.getServiceDesc()%></tr>
@@ -115,7 +120,8 @@
 <tr style="padding-left: 100px;"><%=list2.getAchievementDesc()%></tr>
 <h5>Rating</h5><br>
 <tr style="padding-left: 100px;"><span class="stars"><%=RateDAO.getRateStar(list2.getId())%></span></tr>
-<footer>
+            </div>
+            <footer>
     <%@include file = "Footer.jsp" %>
 </footer>
 </body>

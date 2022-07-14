@@ -6,6 +6,10 @@
 
 <%@page import="DTO.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%if (session.getAttribute("role")!="User") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <!DOCTYPE html>
 <html>
     <style>
@@ -30,13 +34,13 @@
     </head>
 
     <header>
-        <jsp:include page='${sessionScope.role}Header.jsp' />
+        <jsp:include page='UserHeader.jsp' />
     </header>
     <form action="MainController" method="POST">
         <div class="body">
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Update Profile</h1>
             <table style=";font-size: 25px" class="d-flex justify-content-center" id="updateform">
-                <tr><td id="updatename">Account Name</td><td><input type ="text", id="updateform", name="accountname", size="30"></td></tr>
+                <tr><td id="updatename">Account Name</td><td><input readonly="" type ="text", id="updateform", name="accountname", size="30"></td></tr>
                 <tr><td id="updatename">Email</td><td><input type ="text", id="updateform", name="email", size="30"></td></tr>
                 <tr><td id="updatename">Full Name</td><td><input type ="text", id="updateform", name="fullName", size="30"></td></tr>                 
                 <tr><td id="updatename">Date of Birth</td><td><input type ="date", id="updateform", name="dob", size="30"></td></tr>
@@ -61,3 +65,4 @@
     </footer>
 
 </html>
+<%}%>

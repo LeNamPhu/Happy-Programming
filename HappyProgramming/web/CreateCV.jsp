@@ -10,6 +10,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAO.SkillDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%if (session.getAttribute("role")!="Mentor") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -182,24 +186,27 @@
 
                                 <div>
                                 <input type="checkbox" class="form-check-input " value="<%=skill.getId()%>">
-                                <label class="form-check-label"><%=skill.getName()%></label
+                                <label class="form-check-label"><%=skill.getName()%></label>
                                 </div> 
                                 <%}%>
                             </div>
                         </div>
                     </div>
-                        
+                            <div style="text-align: center;">
+                                                    <input type="submit" class="btn btn-primary btn-lg mt-3"name="action" value="CreateCV">
+                            </div>
                 </div>
-                            <input type="submit" class="btn btn-primary btn-lg m-3"name="action" value="CreateCV">
             
             </div>
                             </form>
         </div>
     
-        <footer>
+       
+     <footer>
 
             <%@include file = "Footer.jsp" %>
 
         </footer>
-    </body>
+        </body>
 </html>
+<%}%>

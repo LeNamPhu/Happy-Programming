@@ -40,7 +40,7 @@ public class changeMentorStatus extends HttpServlet {
             int roleID = Integer.parseInt(request.getParameter("roleID"));
             int mentorID = Integer.parseInt(request.getParameter("id"));
             if(MentorDAO.changeMentorStatus(roleID, mentorID)) {
-                response.sendRedirect("AdminViewMentor.jsp");
+                response.sendRedirect("AdminViewMentor.jsp?page=1");
             }
         }
     }

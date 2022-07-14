@@ -16,7 +16,7 @@
     </head>
     <body>
         
-            <nav class="container-fluid header fixed-top ">
+            <nav class="container-fluid header ">
                 <div class="row">
                     <div class="col-md-7">
                     <a class=" logo" href="HomePage.jsp"><img   src="image/cafe2.png" /></a>
