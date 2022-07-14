@@ -68,9 +68,8 @@
         
     <form action="MainController">
         <div class="w-75 d-flex align-content-center justify-content-around m-auto">
-            <tr><td><button class="btn btn-primary btn-lg" type="submit" name="action" value="FollowingRequest" >Following Request</button></td>
-                <td><button class="btn btn-primary btn-lg" type="submit" name="action" value="StatisticRequest">Statistic Request</button></td>
-                <td><button class="btn btn-primary btn-lg"type="submit" name="action" value="Invite Request">Inviting Request</button></td>
+            <tr><td><button class="btn btn-primary btn-lg" type="submit" name="action" value="ListRequestByMentor" >Back</button></td>
+                
             </tr>
         </div>
     </form>

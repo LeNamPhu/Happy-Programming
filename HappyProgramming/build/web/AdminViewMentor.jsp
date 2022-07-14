@@ -25,7 +25,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
             var starWidth = 40;
-
             $.fn.stars = function () {
                 return $(this).each(function () {
                     $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * starWidth));
@@ -34,10 +33,8 @@
             $(document).ready(function () {
                 $('span.stars').stars();
             });
-
             $(document).on('click', 'div a', function () {
                 $(this).addClass('active').siblings().removeClass('active')
-
             })
         </script>
 
@@ -61,7 +58,6 @@
                 height: 40px; /* the height of the star */
                 background-size: 40px 40px;
             }
-
             span.stars span {
                 background-position: 0 0;
                 background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/747/star.svg) ;
@@ -106,7 +102,7 @@
                     <tr><th>STT</th><th>ID</th><th>Fullname</th><th>Account name</th><th>Image</th><th>Profession</th><th>Number of accepted request</th><th>Percentage completed</th><th>Rate star</th><th>Status</th></tr>
                             <%for (Mentor mtr : list) {%>
                             <%int totalRequest = RequestDAO.countRequestOfMentor(mtr.getId(), "Accepted") + RequestDAO.countRequestOfMentor(mtr.getId(), "Rejected");%>
-                    <tr><td><%=count++%></td>
+                    <tr><td><%=pageid+count++%></td>
                         <td><%=mtr.getId()%></td>
                         <td><%=mtr.getFullname()%></td>
                         <td><%=MentorDAO.getMentorAccountNameById(mtr.getId())%></td>
@@ -126,7 +122,6 @@
 
                             <% } else {%>
                             <script>
-
                                 $('a.btn.<%=mtr.getId()%>.inact').addClass('active');
                             </script>
                             <% }%></td></tr>

@@ -106,8 +106,9 @@
                         </tr>
                 </thead>
         <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
-            for (Mentor mentor : list) {%>
-           
+            for (Mentor mentor : list) {
+System.out.println(mentor.getAvatar());%>
+            
             <tr>
                 
                     <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="<%=mentor.getAvatar()%>"></a></td>

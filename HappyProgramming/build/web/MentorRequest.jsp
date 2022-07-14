@@ -10,6 +10,7 @@
 <%@page import="DTO.Request"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <%if (session.getAttribute("role") != "Mentor") {%>
 <%@include file = "Unauthorised.jsp" %>
@@ -107,9 +108,10 @@
                         </div>
                     </div>
                 </div>
-               
+                  <%}%>
 
-                <%}%>
+
+                
 
             </div>
         </div>

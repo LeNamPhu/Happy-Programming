@@ -442,7 +442,7 @@ public class RequestDAO {
                 String sql = "SELECT ReqID FROM Invite WHERE MentorID =? and Status =?";
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, id);
-                stm.setString(2, "Processing");
+                stm.setString(2, "Pending");
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int reqID = rs.getInt("ReqID");
@@ -475,10 +475,10 @@ public class RequestDAO {
             conn = DBUtils.makeConnection();
             if (conn != null) {
                 for (Integer reqID : listInviteRequestID) {
-                    String sql = "SELECT Title, Content, MenteeID, DeadlineDate, DeadlineHour FROM Request WHERE ID=? and Status=?";
+                    String sql = "SELECT Title, Content, MenteeID, DeadlineDate, DeadlineHour FROM Request WHERE  Status=?";
                     stm = conn.prepareStatement(sql);
-                    stm.setInt(1, reqID);
-                    stm.setString(2, "Processing");
+//                    stm.setInt(1, reqID);
+                    stm.setString(1, "Processing");
                     rs = stm.executeQuery();
                     if (rs.next()) {
                         listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processing", rs.getString("Content"), rs.getInt("MenteeID"), rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));
@@ -542,7 +542,7 @@ public class RequestDAO {
                 stm.setInt(1, menteeID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    if ("Closed".equals(rs.getString("Status"))) {
+                    if (!"".equals(rs.getString("Status"))) {
                         int ID = rs.getInt("ID");
                         String title = rs.getString("Title");
                         String status = rs.getString("Status");

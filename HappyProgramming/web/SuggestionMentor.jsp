@@ -8,6 +8,10 @@
 <%@page import="java.util.Map"%>
 <%@page import="DTO.Mentor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%if (session.getAttribute("role")!="User") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,7 +44,7 @@
 
 
                 <tr>
-                    <td style="width: 15%;" class="ratio ratio-1x1"> <a class="border border-dark rounded-circle" href="<%= mapMentor.get(acc).getAvatar()%> "></a></td>
+                    <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="<%= mapMentor.get(acc).getAvatar()%> "></td>
                     <td  style="width:25%; vertical-align: middle">Inviting Requests: <%=  mapInviteReq.get(acc)%> <br>
                         Accepted Requests: <%= mapAcceptedReq.get(acc)%></td>
                     <td rowspan="3" style="border: 1px solid lightgray;text-align: left;vertical-align:top;padding:15px; "> <%= mapMentor.get(acc).getServiceDesc()%></td>
@@ -86,3 +90,4 @@
         </footer>
     </body>
 </html>
+<%}%>

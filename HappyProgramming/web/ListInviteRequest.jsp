@@ -32,7 +32,9 @@
                 <%
                     ArrayList<Request> listInviteRequest = (ArrayList) session.getAttribute("LIST_INVITE");
                     Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_INVITE_REQUEST");
-                    if (listInviteRequest != null) {
+                    System.out.println(listInviteRequest);
+                    if (listInviteRequest != null)
+                    {
                 %>
                 
 

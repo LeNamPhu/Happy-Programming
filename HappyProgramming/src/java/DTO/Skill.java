@@ -2,7 +2,7 @@
 package DTO;
 
 
-public class Skill {
+public class Skill implements Comparable<Skill> {
 
     private String id;
     private String name;
@@ -47,6 +47,11 @@ public class Skill {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public int compareTo(Skill o) {
+       return getName().compareTo(o.getName());
     }
 
   

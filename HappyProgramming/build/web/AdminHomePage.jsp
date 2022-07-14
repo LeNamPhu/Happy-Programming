@@ -5,7 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%if (session.getAttribute("role")!="Admin") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -58,3 +63,4 @@
         </section> 
     </body>
 </html>
+<%}%>

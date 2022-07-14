@@ -51,9 +51,9 @@
                 <%
                     for (Request req : list) {
                         String a = (String) skillReq.get(req);
-                        String x = "X";
-                        String y = "X";
-                        String z = "X";
+                        String x = "";
+                        String y = "";
+                        String z = "";
                         String[] skills = a.split(" ");
                         if (skills.length == 1) {
                             x = skills[0];
@@ -67,7 +67,7 @@
                         }
                 %>           
                 <div class=" border border-dark border-2 px-2 mb-3">
-                    <table class="w-100 table table-borderless ">
+                    <table class="w-100 table table-borderless">
                         <tr>
                             <td></td>
                             <td></td>
@@ -77,10 +77,10 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="2" class=""style="width:35%" ><%= req.getTitle()%></td>                   
+                            <td colspan="2" class=""style="width:45%;" ><%= req.getTitle()%></td>                   
 
-                            <td colspan="2" class="" style="text-align: center ; width: 30%"> <%=req.getDeadlineHour()%>h <%= req.getDeadlineDate()%></td>
-                            <td class="w-15 border border-secondary" style="width:10%; text-align: center;"><%= x%></td>
+                            <td colspan="2" class="" style="text-align: center ; width: 20%"> <%=req.getDeadlineHour()%>h <%= req.getDeadlineDate()%></td>
+                            <td class=" border border-secondary" style="width:10%;height:60px; text-align: center;"><%= x%></td>
                             <td rowspan="3" class="" style="width:25%;vertical-align: middle"> 
                                 <div class="d-flex mb-2 justify-content-between " style="">
 
@@ -115,10 +115,10 @@
                             <td colspan="3" rowspan="2"  class=" "style="width:65%;height:auto;border: 1px lightgray solid"><%= req.getContent()%></td>
 
                             <td  colspan="1" rowspan="2" class=""style="width:10%;height:auto;vertical-align: middle; text-align: center;"><%= req.getStatus()%></td>
-                            <td class="border border-secondary" style="text-align: center"><%= y%></td>
+                            <td class="border border-secondary" style="text-align: center;height: 60px;"><%= y%></td>
                         </tr>
                         <tr>
-                            <td class="border border-secondary" style="text-align: center"><%= z%></td>
+                            <td class="border border-secondary" style="text-align: center; height:60px;"><%= z%></td>
                         </tr>
 
                     </table>    

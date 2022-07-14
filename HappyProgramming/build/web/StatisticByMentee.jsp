@@ -6,6 +6,10 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <%if (session.getAttribute("role")!="User") {%>
+             <%@include file = "Unauthorised.jsp" %>
+            <% }else
+                {%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,6 +53,7 @@
                 <tr>
                     <th><%= count++%></th>
                     <th><%= title%></th>
+                    <th></th>
 
                 </tr>                   
                 <%
@@ -72,3 +77,4 @@
         </footer>
     </body>
 </html>
+<%}%>
