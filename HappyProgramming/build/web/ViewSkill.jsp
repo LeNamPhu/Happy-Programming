@@ -46,6 +46,7 @@
         </header>
 
         <div class="body">
+            <div class="row m-auto" style="width:65%">
             <%ArrayList<Skill> list = SkillDAO.getAllSkill();
             
 Collections.sort(list, new Comparator<Skill>(){
@@ -63,17 +64,20 @@ Collections.sort(list, new Comparator<Skill>(){
                         <%    for (Skill sk : list) {
                                 if (sk.getStatus().equals("active")) {
                         %>   
-                        <div >
-                            <table class="border border-secondary border-3 " >
-                        <tr><td style="width:200px;"><%=count++%></td>
-                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%; object-fit: scale-down" class="border border-secondary m-2"></td>
-                    <td style="width:300px;"><%=sk.getName()%></td></tr>
+                        
+                            <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;width:25.5%;" class="m-5 row p-3">
+                            <table class=" " >
+                                <tr><%--<td style=""><%=count++%></td>--%>
+                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%; object-fit: scale-down" class="border border-secondary m-2"></td></tr>
+                        <tr> <td style="text-align: center; width:100%;"><%=sk.getName()%></td></tr>
                         </table>   
-            </div>
+                        </div>
+                        
                     <% }
                         }%>
             
             <%    }%>
+        </div>
         </div>
         <footer>
             <%@include file = "Footer.jsp" %>

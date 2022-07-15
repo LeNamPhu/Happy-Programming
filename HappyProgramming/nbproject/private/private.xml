@@ -17,11 +17,13 @@
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/ForgotPassword.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/UpdateCV.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/AdminViewRequestDetail.jsp</file>
+            <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/UpdateRequest.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/AdminViewRequestSearch.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/Controller/MainController.java</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/SuggestionMentor.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/Error.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/SendOTP.jsp</file>
+            <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/Controller/ForgotPasswordController.java</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/CreateCV.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/UpdateSkill.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/StatisticByMentor.jsp</file>
@@ -37,6 +39,7 @@
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/image/dropdown.jpg</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/image/avatar_male.png</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/Controller/InviteController.java</file>
+            <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/Utils/DBUtils.java</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/ViewSkill.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/image/dropdown2.png</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/AdminViewMentee.jsp</file>
@@ -70,6 +73,7 @@
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/MentorHeader.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/Controller/changeMentorStatus.java</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/SkillDropdownJS.js</file>
+            <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/src/java/DTO/Skill.java</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/UserHomePage.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/Unauthorised.jsp</file>
             <file>file:/E:/SWP/HappyProgramming/Happy-Programming/HappyProgramming/web/HomePage.jsp</file>
