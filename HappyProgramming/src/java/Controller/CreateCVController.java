@@ -6,11 +6,13 @@
 package Controller;
 
 import DAO.MentorDAO;
+import DAO.SkillDAO;
 import DTO.Account;
 import DTO.Mentor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,24 +26,17 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CreateCVController", urlPatterns = {"/CreateCVController"})
 public class CreateCVController extends HttpServlet {
+
     private final String ERROR = "Error.jsp";
+
     private final String SUCCESS = "MainController?action=ListRequestByMentor";
 
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try{
+        try {
             HttpSession session = request.getSession(true);
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
             int mentorID = user.getId();
@@ -57,17 +52,23 @@ public class CreateCVController extends HttpServlet {
 
             Mentor mentor = new Mentor(mentorID, null, null, null, null, null, null, profession, professionIntro, serviceDesc, achievement, framework, avatar, job, service, introducton);
             MentorDAO mentordao = new MentorDAO();
-            boolean checkinsert = true;
+            boolean checkinsert = mentordao.insertcv(mentor);
 
-            if(checkinsert){
-                boolean insertcv = mentordao.insertcv(mentor);
+            if (checkinsert) {
+                String a = request.getParameter("skill");
+                String[] skill = a.split(", ");
+                ArrayList<Integer> IDSkill = new ArrayList<>();
+                for (String string : skill) {
+                    int id = Integer.parseInt(string);
+                    IDSkill.add(id);
+                }
+                SkillDAO skillDao = new SkillDAO();
+                skillDao.insertSkill(mentorID, IDSkill);
                 url = SUCCESS;
-        }
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

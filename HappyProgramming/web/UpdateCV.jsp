@@ -39,7 +39,7 @@
         %>
         <div class="body"style="font-size:  30px;">
             <form action="MainController" method="POST">
-                                <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
 
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
@@ -175,7 +175,7 @@
 
                         </div>
                     </div>
-                       <div class="row " style="margin:0!important">
+                    <div class="row " style="margin:0!important">
                         <div class="col-md-4 pt-3 ">
                             <div class="cvlabel p-2">
                                 <label> Skill</label>
@@ -183,34 +183,45 @@
                         </div>
                         <div class="col-md-8 pt-2">
                             <div class="overflow-auto form-control m-2 cvform " style="height:150px;">
-                                <%ArrayList<Skill> skilllist = SkillDAO.getAllSkill();
-                                for (Skill skill : skilllist) {%>
-
-                                <div>
-                                <input type="checkbox" class="form-check-input " value="<%=skill.getId()%>">
-                                <label class="form-check-label"><%=skill.getName()%></label>
-                                </div> 
-                                <%}%>
+                                <%
+                                   ArrayList<Skill> skilllist = SkillDAO.getAllSkill();
+                                   for (Skill skill : skilllist) {
+                                       if ("active".equals(skill.getStatus())) {%>
+                                <input type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
+                                <%}
+                                    }%>
+                                <br/> <br/>  
                             </div>
-                        </div>
+                        </div>        
                     </div>
-                        <div class="mt-3 " style="text-align: center">
-            <input type="submit" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
-                    </div>
+
+                    <div class="mt-3" style="text-align: center"></div>
+                    <input type="submit" id="btn" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
+                    <input type="hidden" id="abc" name="skill">
+                    <script language="javascript">
+                        document.getElementById('btn').onclick = function ()
+                        {
+                            // Khai báo tham số
+                            var checkbox = document.getElementsByName('hobby');
+                            var result = "";
+
+                            // Lặp qua từng checkbox để lấy giá trị
+                            for (var i = 0; i < checkbox.length; i++) {
+                                if (checkbox[i].checked === true) {
+                                    result += checkbox[i].value + ', ';
+                                }
+                            }
+
+                            document.getElementById('abc').value = result;
+                        };
+                    </script>
                 </div>
-                    
-                
-       
-                            
-                            </div>
-            </form>
-        </div>
-        
-       
-        <footer>
+    </form>
+</div>
+<footer>
 
-            <%@include file = "Footer.jsp" %>
+    <%@include file = "Footer.jsp" %>
 
-        </footer>
-    </body>
+</footer>
+</body>
 </html>
