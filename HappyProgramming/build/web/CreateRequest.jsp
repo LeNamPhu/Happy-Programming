@@ -37,7 +37,7 @@
                     <tr><td id="createrequestpass">Title</td><td><input type="text" name="title" style="width: 400px"></td></tr>
                     <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" style="width: 400px" id="createrequestform"/></td></tr>
                     <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td></tr>
-                    <tr><td id="createrequestpass">Content</td><td><input type="text" name="content" style="width: 400px; height: 150px" id="createrequestform"/></td></tr>
+                    <tr><td id="createrequestpass">Content</td><td><textarea type="" name="content" style="width: 400px; height: 150px" id="createrequestform"> </textarea></td></tr>
                     <tr>
                         <td id="first">Skill</td><td id="input">
                             <%

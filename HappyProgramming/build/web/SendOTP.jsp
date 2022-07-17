@@ -26,9 +26,9 @@
                     <p style="text-align: center;font-size: 35px; color: green"class="text-align-center">You account has been successfully created!</p>
                     <p style="text-align: center;font-size: 35px; color: black"class="text-align-center">Please check your email to confirm the information of your account.</p>
                     <br>
-                    <div  style="text-align: center"><button style="height: 60px;
-                                 width: 200px;
-                                 font-size: 27px;"type="button" class="btn btn-primary">OK</button></div>
+                    <div  style="text-align: center"><a style="height: 60px;
+                                 
+                                 font-size: 27px;"type="button" class="btn btn-primary" href="HomePage.jsp" >Back to Home Page</a></div>
                 </div>
             </div>
         </div>

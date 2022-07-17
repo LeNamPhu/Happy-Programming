@@ -32,7 +32,7 @@ public class RejectRequestController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = 3;
+            int mentorID = user.getId();
             int reqID = Integer.parseInt(request.getParameter("reqID"));           
             InviteDAO dao = new DAO.InviteDAO();
             dao.updateStatusInvite(reqID, mentorID, "Rejected");

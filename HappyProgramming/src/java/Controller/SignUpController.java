@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SignUpController", urlPatterns = {"/SignUpController"})
 public class SignUpController extends HttpServlet {
     private final String ERROR = "SignUp.jsp";
-    private final String SUCCESS = "HomePage.jsp";
+    private final String SUCCESS = "SendOTP.jsp";
     
     private static final Logger LOGGER = Logger.getLogger( SignUpController.class.getName() );
     

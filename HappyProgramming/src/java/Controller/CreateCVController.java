@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CreateCVController", urlPatterns = {"/CreateCVController"})
 public class CreateCVController extends HttpServlet {
     private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "MainController?action=ListRequestByMentee";
+    private final String SUCCESS = "MainController?action=ListRequestByMentor";
 
 
     /**

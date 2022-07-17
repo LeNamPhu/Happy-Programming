@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.RequestDAO;
+import DTO.Account;
 import DTO.Request;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +40,8 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            int id = 3;
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int id = user.getId();
             RequestDAO dao = new RequestDAO();
             ArrayList<Request> list = dao.listRequestByMentor(id);
             session.setAttribute("LIST_REQUEST_BY_MENTOR", list);

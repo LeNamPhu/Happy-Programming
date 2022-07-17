@@ -67,10 +67,10 @@
             </tr>
             
             <tr>
-            <td  id="first">Deadline Date</td><td id="second"><input id="input" type="text" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td>
+            <td  id="first">Deadline Date</td><td id="second"><input id="input" type="date" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td>
             </tr>
             <tr>
-            <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
+                <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
             </tr>
             <tr>
                 <td id="first">Content</td><td id="second"><textarea id="input" type="textarea" name="content" style="height:100px;"><%= req.getContent()%></textarea> </td>                                                                                            

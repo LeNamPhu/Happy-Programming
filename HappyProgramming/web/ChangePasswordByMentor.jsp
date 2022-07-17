@@ -60,7 +60,7 @@
                                     <input type="submit" name ="action" value=" Cancel " class="reset"  style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" >
                                 </div>-->
 
-                <div class="m-5 d-flex justify-content-around">
+                <div class=" d-flex justify-content-around w-50 mx-auto my-5">
                     <input class="btn btn-primary btn-lg" type="submit" name="action" value=" Enter " style="font-size: 25px;width:400px;height: 60px;background-color: #0076ff ;color: white; border:none" />   
                     <form action="MentorHomePage.jsp">
                         <input class="btn btn-primary btn-lg" type="submit"value="Cancel" style="font-size: 25px;width:400px;height: 60px;background-color: #ffffff ;color: black; border:1px solid rgba(80,80,80,0.8)" />
