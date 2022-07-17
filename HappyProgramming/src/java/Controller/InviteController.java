@@ -35,8 +35,7 @@ public class InviteController extends HttpServlet {
             RequestDAO req = new RequestDAO();
             req.updateStatusRequest(reqID, "Processing");
             dao.insertInvite(mentorID, reqID);
-            RequestDAO req = new RequestDAO();
-            req.updateStatusRequest(reqID, "Processing");
+            
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at InviteController " + e.toString());
