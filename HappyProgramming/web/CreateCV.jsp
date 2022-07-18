@@ -55,7 +55,7 @@
 
                             <input  type="text" placeholder="Job" class="form-control m-2 cvform " name="job"> 
 
-                            <textarea style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="introducton"></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="introducton"></textarea>
                         </div>
 
                     </div>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style=" " type="text"  class="form-control m-2 cvform" name="profession"> 
+                            <input required style=" " type="text"  class="form-control m-2 cvform" name="profession"> 
 
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="professionIntro"></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="professionIntro"></textarea>
 
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="framework"> 
+                            <input required style="height:auto" type="text"  class="form-control m-2 cvform" name="framework"> 
 
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="service"> 
+                            <input required style="height:auto" type="text"  class="form-control m-2 cvform" name="service"> 
 
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceDesc"></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceDesc"></textarea>
 
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="achievement"></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="achievement"></textarea>
 
                         </div>
                     </div>
@@ -184,11 +184,13 @@
                                 <input type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
                                 <%}
                                     }%>
-                                <br/> <br/>                              
+                                                             
                             </div>
                         </div>
                     </div>
-                    <input type="submit" id="btn" class="btn btn-primary btn-lg m-3"name="action" value="CreateCV">
+                                    <div class="mt-3" style="text-align: center">
+                    <input type="submit" id="btn" class="btn btn-primary btn-lg my-3 mx-auto"name="action" value="CreateCV">
+                                    </div>
                     <input type="hidden" id="abc" name="skill">
                     <script language="javascript">
                         document.getElementById('btn').onclick = function ()

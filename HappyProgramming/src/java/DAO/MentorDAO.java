@@ -566,4 +566,47 @@ public class MentorDAO {
         }
         return mentor;
     }
+    public ArrayList<String> getmentorSKill(int mentorID) throws SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+       
+        ArrayList<String> skill = new ArrayList<>();
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                String sql ="select * \n" +
+                            "from MentorSKill m join Skill k on m.SkillID=k.ID\n" +
+                            "where mentorID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, mentorID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                   String skillName = rs.getString("Name");
+                   skill.add(skillName);
+                    
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return skill;
+    }
+    public static boolean compareSKill(String skill, String mentorSkill){
+        
+            return skill.equals(mentorSkill);
+        
+           
+            
+        
+    }
 }

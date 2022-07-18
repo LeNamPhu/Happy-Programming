@@ -49,7 +49,7 @@
 
                                     <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
                                         <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
-                                        <input type="file" name="avatar" accept="image/*"
+                                        <input  type="file" name="avatar" accept="image/*"
                                                onchange="document.getElementById('avt').src = window.URL.createObjectURL(this.files[0])" style="width: 100%; height:100%; opacity: 0;">
                                     </div>
                                 </div>
@@ -57,11 +57,11 @@
                             <input  readonly style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="" class="form-control" name="accName" value="<%=user.getAccountName()%>"> 
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input  type="text" placeholder="Full Name" class="form-control m-2 cvform" name="fullName" value="<%=mentor.getFullname()%>"> 
+                            <input required  type="text" placeholder="Full Name" class="form-control m-2 cvform" name="fullName" value="<%=mentor.getFullname()%>"> 
 
-                            <input  type="text" placeholder="Job" class="form-control m-2 cvform " name="job" value="<%=mentor.getJob()%>"> 
+                            <input  required type="text" placeholder="Job" class="form-control m-2 cvform " name="job" value="<%=mentor.getJob()%>"> 
 
-                            <textarea style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="introducton" ><%=mentor.getIntroduction()%></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="Introduction" rows="5" class="form-control m-2 cvform" name="introducton" ><%=mentor.getIntroduction()%></textarea>
                         </div>
 
                     </div>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input  value="<%=mentor.getEmail()%>"style=" " type="text"  class="form-control m-2 cvform" name="email"> 
+                            <input required  value="<%=mentor.getEmail()%>"style=" " type="text"  class="form-control m-2 cvform" name="email"> 
                         </div>
                     </div>
                     <div class="row " style="margin:0!important">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input  value="<%=mentor.getDob()%>"style=" " type="date"  class="form-control m-2 cvform" name="dob"> 
+                            <input required  value="<%=mentor.getDob()%>"style=" " type="date"  class="form-control m-2 cvform" name="dob"> 
                         </div>
                     </div>
                     <div class="row " style="margin:0!important">
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2" >
-                            <select class="form-select m-2 cvform" name="gender" style="width:200px;" ><option>Male</option>
+                            <select required class="form-select m-2 cvform" name="gender" style="width:200px;" ><option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option></select>
                         </div>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input value="<%=mentor.getAddress()%> " type="text"  class="form-control m-2 cvform" name="address"> 
+                            <input required value="<%=mentor.getAddress()%> " type="text"  class="form-control m-2 cvform" name="address"> 
                         </div>
                     </div>
                     <div class="row " style="margin:0!important">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input value="<%=mentor.getProfession()%>" type="text"  class="form-control m-2 cvform" name="profession"> 
+                            <input required value="<%=mentor.getProfession()%>" type="text"  class="form-control m-2 cvform" name="profession"> 
 
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea  style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="professionIntro"><%=mentor.getProfessionIntro()%></textarea>
+                            <textarea  required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="professionIntro"><%=mentor.getProfessionIntro()%></textarea>
 
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="framework" value="<%=mentor.getFramework()%>"> 
+                            <input  required style="height:auto" type="text"  class="form-control m-2 cvform" name="framework" value="<%=mentor.getFramework()%>"> 
 
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <input style="height:auto" type="text"  class="form-control m-2 cvform" name="service" value="<%=mentor.getService()%>"> 
+                            <input required style="height:auto" type="text"  class="form-control m-2 cvform" name="service" value="<%=mentor.getService()%>"> 
 
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceDesc"><%=mentor.getServiceDesc()%></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="serviceDesc"><%=mentor.getServiceDesc()%></textarea>
 
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 pt-2">
-                            <textarea style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="achievement"><%=mentor.getAchievementDesc()%></textarea>
+                            <textarea required style=" height:auto " type="text" placeholder="" rows="5" class="form-control m-2 cvform" name="achievement"><%=mentor.getAchievementDesc()%></textarea>
 
                         </div>
                     </div>
@@ -184,19 +184,41 @@
                         <div class="col-md-8 pt-2">
                             <div class="overflow-auto form-control m-2 cvform " style="height:150px;">
                                 <%
-                                   ArrayList<Skill> skilllist = SkillDAO.getAllSkill();
-                                   for (Skill skill : skilllist) {
-                                       if ("active".equals(skill.getStatus())) {%>
-                                <input type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
-                                <%}
+                                    boolean check =false;
+                                    ArrayList<Skill> skilllist= SkillDAO.getAllSkill();
+                                    ArrayList<String> skillListMentor = mentordao.getmentorSKill(mentorID);
+                                    
+                                            
+                                    for (Skill skill : skilllist) {
+                                        check=false;
+                                       if ("active".equals(skill.getStatus())) {
+                                    for (String s : skillListMentor) {
+                                        
+                                        if (s.equals(skill.getName())) {
+                                              check = true;  
+                                            }
+      
+                                    
+                                                  
+                                    }
+                                       
+                                if(check){%>
+                                <input  checked type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
+                                <%}else{%>
+                                <input  type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
+ 
+                                        <%}%>
+                                <%  
+                                    }
                                     }%>
-                                <br/> <br/>  
+                                
                             </div>
                         </div>        
                     </div>
-
-                    <div class="mt-3" style="text-align: center"></div>
-                    <input type="submit" id="btn" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
+<div class="mt-3" style="text-align: center">
+                                    <input type="submit" id="btn" name="action" value="UpdateCV" class="btn btn-primary btn-lg " style="text-align: center">
+                                </div>
+                    
                     <input type="hidden" id="abc" name="skill">
                     <script language="javascript">
                         document.getElementById('btn').onclick = function ()
@@ -215,6 +237,8 @@
                             document.getElementById('abc').value = result;
                         };
                     </script>
+                    
+                                
                 </div>
     </form>
 </div>
