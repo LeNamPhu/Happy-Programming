@@ -4,6 +4,9 @@
     Author     : admin
 --%>
 
+<%@page import="java.nio.file.Files"%>
+<%@page import="java.io.File"%>
+<%@page import="javax.swing.JFileChooser"%>
 <%@page import="DTO.Skill"%>
 <%@page import="DAO.SkillDAO"%>
 <%@page import="DAO.SkillDAO"%>
@@ -40,7 +43,6 @@
         <div class="body"style="font-size:  30px;">
             <form action="MainController" method="POST">
                 <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-
                     <div class="row " style="margin:0!important">
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
@@ -49,7 +51,7 @@
 
                                     <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
                                         <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
-                                        <input type="file" name="avatar" accept="image/*"
+                                        <input type="file" name="avatar" accept="image/*" 
                                                onchange="document.getElementById('avt').src = window.URL.createObjectURL(this.files[0])" style="width: 100%; height:100%; opacity: 0;">
                                     </div>
                                 </div>
@@ -184,9 +186,9 @@
                         <div class="col-md-8 pt-2">
                             <div class="overflow-auto form-control m-2 cvform " style="height:150px;">
                                 <%
-                                   ArrayList<Skill> skilllist = SkillDAO.getAllSkill();
-                                   for (Skill skill : skilllist) {
-                                       if ("active".equals(skill.getStatus())) {%>
+                                    ArrayList<Skill> skilllist = SkillDAO.getAllSkill();
+                                    for (Skill skill : skilllist) {
+                                        if ("active".equals(skill.getStatus())) {%>
                                 <input type="checkbox" class="form-check-input " name="hobby" value="<%=skill.getId()%>"><label class="form-check-label"><%=skill.getName()%></label></br>
                                 <%}
                                     }%>
@@ -216,12 +218,12 @@
                         };
                     </script>
                 </div>
-    </form>
-</div>
-<footer>
+            </form>
+        </div>
+        <footer>
 
-    <%@include file = "Footer.jsp" %>
+            <%@include file = "Footer.jsp" %>
 
-</footer>
-</body>
+        </footer>
+    </body>
 </html>

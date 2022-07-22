@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@page import="DAO.MentorDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,20 +17,21 @@
 
     </head>
     <body>
-      
+        <%int ID = Integer.parseInt(session.getAttribute("ID").toString());%>
 <nav class="container-fluid header ">
             <div class="row">
                 
                 <div class="col-md-7">
                     
-                    <a class="logo "href="MentorHomePage.jsp"><img    src="image/cafe2.png" /></a>
+                    <a class="logo" href="MentorHomePage.jsp"><img    src="image/cafe2.png" /></a>
                 </div>
                 <a class="col-md-1 nav-link" href="MentorHomePage.jsp" >Home</a>
                 <a class="col-md-1 nav-link" href="MainController?action=ProfileOfMentor" >Mentor</a>
                 <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                 <a class="col-md-1 nav-link" href="MainController?action=ListRequestByMentor" >Request</a>
                 <div class="col-md-1 d-flex">
-                    <a  href=""><img style="background-color: white" class="avatar" src="image/avatar_male.png" /></a>
+                    <img id="img" style="background-color: white" class="avatar" src="image/<%=MentorDAO.getAMentorAvatar(ID)%>" />
+                    <script src="imgError.js"></script>
                     <div class="dropdown">
                         <button type="button" class="btn  dropdownbutton" data-bs-toggle="dropdown">
                             

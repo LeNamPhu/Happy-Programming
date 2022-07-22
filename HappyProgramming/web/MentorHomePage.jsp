@@ -23,9 +23,10 @@
     </head>
     <body>
         <header>
-          
-            <%@include file = "MentorHeader.jsp" %>
-        
+            <%int ID = Integer.parseInt(session.getAttribute("ID").toString());%>
+            <jsp:include page="MentorHeader.jsp">
+                <jsp:param name="ID" value="<%=ID%>"/>
+            </jsp:include>
         </header>
         <section>
             <div class="">
