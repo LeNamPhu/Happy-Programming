@@ -4,6 +4,8 @@
     Author     : ThienNho
 --%>
 
+<%@page import="DTO.Request"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <%if (session.getAttribute("role")!="User") {%>
@@ -24,13 +26,62 @@
             <div class="body"> 
                 <div style="width: 70%" class="m-auto ">
         <%
-            ArrayList<String> listMentor = (ArrayList) request.getAttribute("LIST_MENTOR");
-            ArrayList<String> listTitle = (ArrayList) request.getAttribute("LIST_TITLE");
-            String totalHour = (String) request.getAttribute("TOTAL_HOUR");
-            String totalRequest = (String) request.getAttribute("TOTAL_REQUEST");
-            if (listTitle != null) {
+            String totalMentor = (String) request.getAttribute("TOTAL_MENTOR");
+            Map map = (Map) request.getAttribute("MAP");
+            ArrayList<Request> listRequest = (ArrayList) request.getAttribute("LIST_REQUEST");
+            if (listRequest != null) {
+                int totalRequest = 0;
+                int totalHour = 0;
+                for (Request elem : listRequest) {
+                        totalRequest++;
+                        totalHour += elem.getDeadlineHour();
+                    }
         %>
-        <div class=" w-75 m-auto mt-5 p-4" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <p>   Total of requests: <%= totalRequest %>     Total of hours: <%= totalHour %>       Total of Mentors: <%= totalMentor %></p>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Mentor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int count = 0;
+                    for (Request elem : listRequest) {
+                            count++;
+                            String mentor = "";
+                            if(map.get(elem) != null){                          
+                                mentor = (String) map.get(elem);
+                            }
+                            %>
+                            <tr>
+            <td><%= count %></td>
+            <td><%= elem.getTitle() %></td>
+            <td><%= elem.getStatus() %></td>
+            <td><%= mentor %></td>
+                <%
+                        }
+                %>
+                            </tr>
+            </tbody>
+            
+        </table>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<%--        <div class=" w-75 m-auto mt-5 p-4" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
         <div class="d-flex justify-content-between m-3" style="font-size: 30px; vertical-align: middle">
            
             <div><span>Total Request</span> <%=totalRequest%></div>
@@ -61,7 +112,7 @@
                 %>
             </tbody>
         </table>
-
+--%>
         <%
             }
         %>

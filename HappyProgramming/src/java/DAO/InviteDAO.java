@@ -73,23 +73,22 @@ public class InviteDAO {
         }
     }
 
-    public ArrayList<Integer> getListMentorIDByReqID(ArrayList<Integer> listReq) throws SQLException {
-        ArrayList<Integer> listMentorID = new ArrayList<>();
+    public Integer getMentorIDByReqID(int reqID) throws SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
+        int mentorID = 0;
         try {
             conn = DBUtils.makeConnection();
             if (conn != null) {
-                for (Integer reqID : listReq) {
                     String sql = "SELECT MentorID FROM Invite WHERE ReqID=? ";
                     stm = conn.prepareStatement(sql);
                     stm.setInt(1, reqID);
                     rs = stm.executeQuery();
                     if (rs.next()) {
-                        listMentorID.add(rs.getInt("MentorID"));
+                        mentorID = rs.getInt("MentorID");
                     }
-                }
+                
             }
         } catch (Exception e) {
         } finally {
@@ -103,7 +102,7 @@ public class InviteDAO {
                 conn.close();
             }
         }
-        return listMentorID;
+        return mentorID;
     }
     
     public int getCountReq(int mentorID, String status) throws SQLException{

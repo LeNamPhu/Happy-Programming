@@ -11,8 +11,9 @@ import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,30 +39,25 @@ public class StatisticByMenteeController extends HttpServlet {
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
             int menteeID = user.getId();
             RequestDAO reqDAO = new RequestDAO();
-            ArrayList<Request> listReq = reqDAO.getListClosedReq(menteeID);
-            ArrayList<Integer> listReqID = new ArrayList<>();
-            int totalHour = 0;
-            int totalRequest = 0;
-            ArrayList<String> listTitle = new ArrayList<>();
-            for (Request req : listReq) {
-                totalRequest = totalRequest + 1;
-                totalHour = totalHour + req.getDeadlineHour();
-                listTitle.add(req.getTitle());
-                listReqID.add(req.getId());
-            }
-            InviteDAO inviteDAO = new InviteDAO();
-            ArrayList<Integer> listMentorID = inviteDAO.getListMentorIDByReqID(listReqID);
+            ArrayList<Request> listReq = reqDAO.getListAllReq(menteeID);
             MentorDAO mentorDAO = new MentorDAO();
-            ArrayList<String> listMentor = mentorDAO.getListNameMentor(listMentorID);  
-            String abc = String.valueOf(totalHour);
-            String xyz = String.valueOf(totalRequest);
-            request.setAttribute("TOTAL_REQUEST", xyz);
-            request.setAttribute("TOTAL_HOUR", abc);
-            request.setAttribute("LIST_TITLE", listTitle);
-            request.setAttribute("LIST_MENTOR", listMentor);
+            InviteDAO inviteDAO = new InviteDAO();
+            Map<Request, String> map = new HashMap<>();
+            int totalMentor = 0;
+            for (Request req : listReq) {
+                int mentorID = inviteDAO.getMentorIDByReqID(req.getId());
+                if(mentorID != 0){
+                    String mentorName = mentorDAO.getMentorByID(mentorID).getFullname();
+                    map.put(req, mentorName);
+                    totalMentor++;
+                }
+            }
+            request.setAttribute("TOTAL_MENTOR", String.valueOf(totalMentor));
+            request.setAttribute("LIST_REQUEST", listReq);
+            request.setAttribute("MAP", map);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at DeleteRequestByMenteeController " + e.toString());
+            log("Error at StatisticByMenteeController " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

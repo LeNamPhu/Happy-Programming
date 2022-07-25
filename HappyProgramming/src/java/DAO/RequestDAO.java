@@ -529,7 +529,7 @@ public class RequestDAO {
         }
     }
 
-    public ArrayList<Request> getListClosedReq(int menteeID) throws SQLException {
+    public ArrayList<Request> getListAllReq(int menteeID) throws SQLException {
         ArrayList<Request> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
