@@ -5,15 +5,8 @@
  */
 package Utils;
 
-import DTO.Email;
-import java.util.Properties;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import com.sendgrid.*;
+import java.io.IOException;
 
 /**
  *
@@ -21,62 +14,26 @@ import javax.mail.internet.MimeMessage;
  */
 public class EmailUtils {
 
-    public static void sendMentee(Email email) throws Exception {
-        Properties prop = new Properties();
+    public static void sendMail(String mailto, String otp) throws Exception {
+        Email from = new Email("lenamphu12345@gmail.com");
+        String subject = "OTP confirmation for Happy Programming";
+        Email to = new Email(mailto);
+        Content content = new Content("text/plain", "Greetings,\n Please use the authentiation code to finish your registration onto Happy Programming\n"+otp+"\nIf you did not request this, please ignore this email\nThanks!\n Happy Programming Team");
+        Mail mail = new Mail(from, subject, to, content);
 
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(prop, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email.getFrom(), email.getFromPassword());
-            }
-        });
-        
+        SendGrid sg = new SendGrid("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");
+        Request request = new Request();
         try {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(email.getFrom()));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
-            msg.setSubject(email.getSubject());
-            msg.setContent(email.getContent(), "text/html; charset=utf-8");
-            
-            Transport.send(msg);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getBody());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            throw ex;
         }
-    }
-    
-    public static void sendMentor(Email email) throws Exception {
-        Properties prop = new Properties();
 
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(prop, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email.getFrom(), email.getFromPassword());
-            }
-        });
-        
-        try {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(email.getFrom()));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getTo()));
-            msg.setSubject(email.getSubject());
-            msg.setContent(email.getContent(), "text/html; charset=utf-8");
-            
-            Transport.send(msg);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
     }
-    
 }

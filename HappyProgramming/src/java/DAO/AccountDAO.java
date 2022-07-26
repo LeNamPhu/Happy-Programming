@@ -403,5 +403,26 @@ public class AccountDAO {
         return accountName;
 
     }
+    
+    public static void changeStatus(int roleID, String accountName) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "update Account\n"
+                        + "set RoleID = ?\n"
+                        + "where AccountName = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, roleID);
+                pst.setString(2, accountName);
+                pst.executeUpdate();
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        
+    }
 
 }

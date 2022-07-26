@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SignUpController", urlPatterns = {"/SignUpController"})
 public class SignUpController extends HttpServlet {
-    private final String ERROR = "SignUp.jsp";
+    private final String ERROR = "HomePage.jsp";
     private final String SUCCESS = "SendOTP.jsp";
     
     private static final Logger LOGGER = Logger.getLogger( SignUpController.class.getName() );
@@ -59,7 +59,9 @@ public class SignUpController extends HttpServlet {
         UserError userError = new UserError();
         try {
             String accountName = request.getParameter("accountName");
+            request.setAttribute("accountName", accountName);
             String email = request.getParameter("email");
+            request.setAttribute("email", email);
             String password = request.getParameter("password");
             String confirm = request.getParameter("confirm");
             String fullName = request.getParameter("fullName");
@@ -70,6 +72,7 @@ public class SignUpController extends HttpServlet {
 //            LOGGER.log(Level.INFO, "Current Sex is {0}", sex);
             
             int roleID = Integer.parseInt(request.getParameter("roleId"));
+            request.setAttribute("roleId", roleID);
             String address = request.getParameter("address");
            
             boolean checkValid = true;
@@ -92,7 +95,7 @@ public class SignUpController extends HttpServlet {
             }
             
             if(checkValid){
-                Account acc = new Account(0,accountName, password, roleID);
+                Account acc = new Account(0,accountName, password, 4);
                 boolean checkinsert = dao.insertAcc(acc);
                 int accountid = dao.getAccountId(acc.getAccountName());
                 if(checkinsert){

@@ -4,6 +4,9 @@
     Author     : admin
 --%>
 
+<%@page import="DAO.AccountDAO"%>
+<%@page import="Utils.RandomNumberUtil"%>
+<%@page import="Utils.EmailUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,20 +22,57 @@
         <header>
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
-
+        <p><%=request.getAttribute("accountName")%></p>
+        <%  String accountName = request.getAttribute("accountName").toString();
+            int roleId = Integer.parseInt(request.getAttribute("roleId").toString());
+            String email = request.getAttribute("email").toString();
+            String otp = RandomNumberUtil.RandomNumber();
+            EmailUtils.sendMail(email, otp);
+        %>
         <div class="body d-flex justify-content-center align-content-center flex-column" style=" height:86.69vh;" >
             <div style="vertical-align: middle;height: 500px; width:850px ; margin:auto;" class="d-flex justify-content-center text-align-center flex-column border border-secondary">
                 <div style="padding:20px;">           
-                    <p style="text-align: center;font-size: 35px; color: green"class="text-align-center">You account has been successfully created!</p>
-                    <p style="text-align: center;font-size: 35px; color: black"class="text-align-center">Please check your email to confirm the information of your account.</p>
+                    <p id="green"style="text-align: center;font-size: 38px; color: green"class="text-align-center">You account has been successfully created!</p>
+                    <p style="text-align: center;font-size: 35px; color: black"class="text-align-center">Please type the OTP code sent to your email in order to activate your account.</p>
+                    <input id="otp" type="text" style="width:250px; font-size: 35px;display: flex;margin:auto;text-align: center">
                     <br>
-                    <div  style="text-align: center"><a style="height: 60px;
-                                 
-                                 font-size: 27px;"type="button" class="btn btn-primary" href="HomePage.jsp" >Back to Home Page</a></div>
+                    <div  style="text-align: center">
+                        <button id="submit" style="height: 60px;width:250px!important;font-size: 27px;"type="button" class="btn btn-primary btn-lg m-2" >Submit</button>
+                        
+                       <!-- <button id="resend" style="height: 60px;width:250px!important;font-size: 27px;"type="button" class="btn btn-outline-dark btn-light btn-lg m-2">Resend OTP </button>-->
+                        
+                    </div>
+
                 </div>
             </div>
         </div>
+                        <script>
+                            document.getElementById("submit").addEventListener("click", check1);
+                            document.getElementById("resend").addEventListener("click", resend);
+                            function check1() {
+                                alert("help");
+                                document.getElementById("green").innerHTML = "aaaa;";
+                                var otp = document.getElementById("otp").value;
+                                if (otp == <%=otp%>) {
+                            <%AccountDAO.changeStatus(roleId, accountName);
+                            %>
+                                    window.location.replace("http://localhost:8080/HappyProgramming/SignIn.jsp");
+                                }
+                            
+                            else{
+                                alert("OTP is incorrect");
+                            }
+                            }
+                            
+                            function resend() {
+                                <%   
+            
+             otp = RandomNumberUtil.RandomNumber();
+            EmailUtils.sendMail(email, otp);
+                    %>
+                            }
 
+                        </script>
         <footer>
             <%@include file = "Footer.jsp" %>
         </footer>

@@ -125,6 +125,7 @@ public class MainController extends HttpServlet {
 
             } else if ("ProfileOfMentor".equals(action)) {
                 url = "ProfileOfMentorController";
+                
             } else {
 
                 HttpSession session = request.getSession();
