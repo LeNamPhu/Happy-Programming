@@ -4,6 +4,7 @@
     Author     : trida
 --%>
 
+<%@page import="DTO.RequestError"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Skill"%>
 <%@page import="DAO.SkillDAO"%>
@@ -32,11 +33,15 @@
         <div class="body">
 
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Create Request</h1>
+            <%RequestError reqError = (RequestError) request.getAttribute("REQUEST_ERROR");
+                    if (reqError == null) {      
+                        reqError = new RequestError();
+                    }%>
             <form action="MainController" method="post">
                 <table style=";font-size: 25px" class="d-flex justify-content-center" id="createrequesttable">
                     <tr><td id="createrequestpass">Title</td><td><input type="text" name="title" style="width: 400px"></td></tr>
-                    <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" style="width: 400px" id="createrequestform"/></td></tr>
-                    <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td></tr>
+                    <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" style="width: 400px" id="createrequestform"/></td><td> <%= reqError.getDateError()%> </td></tr>
+                    <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td><td><%= reqError.getHourError()%></td></tr>
                     <tr><td id="createrequestpass">Content</td><td><textarea type="" name="content" style="width: 400px; height: 150px" id="createrequestform"> </textarea></td></tr>
                     <tr>
                         <td id="first">Skill</td><td id="input">
@@ -83,6 +88,7 @@
                                 %>
                             </select>
                         </td> 
+                        <td><%= reqError.getSkillError()%></td>
                     </tr>
 
                 </table>
