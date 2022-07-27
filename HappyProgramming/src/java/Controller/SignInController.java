@@ -25,7 +25,7 @@ public class SignInController extends HttpServlet {
 
     private final String ERROR = "SignIn.jsp";
     private final String ADMIN = "AdminHomePage.jsp";
-    private final String MENTER = "MentorHomePage.jsp";
+    private final String MENTOR = "MentorHomePage.jsp";
     private final String MENTEE = "UserHomePage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -47,10 +47,11 @@ public class SignInController extends HttpServlet {
                         session.setAttribute("signin", "true");
                         break;
                     case 2:
-                        url = MENTER;
+                        url = MENTOR;
                         session.setAttribute("SIGNIN_ACCOUNT", account);
                         session.setAttribute("role", "Mentor");
                         session.setAttribute("signin", "true");
+                        session.setAttribute("ID", account.getId());
                         break;
                     case 3:
                         url = ADMIN;
