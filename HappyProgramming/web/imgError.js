@@ -6,7 +6,7 @@ const img = document.getElementById('img');
 
 img.addEventListener('error', function handleError() {
   console.log(img.src);
-  img.src="image/user ava.jpg";
+  img.src="image/avatar.png";
 });
 
 
