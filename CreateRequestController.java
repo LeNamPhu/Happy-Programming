@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
+import DTO.RequestError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -24,8 +20,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CreateRequestController", urlPatterns = {"/CreateRequestController"})
 public class CreateRequestController extends HttpServlet {
-    private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "CreateRequest.jsp";
+    private final String ERROR = "CreateRequest.jsp";
+    private final String SUCCESS = "ListRequestByMentee.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,25 +35,44 @@ public class CreateRequestController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        RequestError requestError = new RequestError();
         try {
             HttpSession session = request.getSession(true);
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
              String title = request.getParameter("title");
              String status = "Open";
              String content = request.getParameter("content");
              int menteeID = user.getId();
              Date deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
              int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
-            
+
              boolean valid = true;
              Request req = new Request(0, title, status, content, menteeID, deadlineDate, deadlineHour);
              RequestDAO reqdao = new RequestDAO();
-             boolean checkinsert = reqdao.insertREQ(req);
-             if(checkinsert){
+             int min = 1;
+             int max = 24;
+             
+             if(content.length()>250){
+                 valid = false;
+                 requestError.setContentError("Do not exceed over 250 characters");
+             }
+             
+             if(deadlineHour < min || deadlineHour > max){
+                valid = false;
+                requestError.setHourError("Invalid");
+            }
+                 
+             
+             if(valid){
+                 boolean checkinsert = reqdao.insertREQ(req);
                  url = SUCCESS;
              }
              
-             
+             else{
+                request.setAttribute("REQUEST_ERROR", requestError);
+            }
+
+
         }
         catch(Exception e){
             e.printStackTrace();
