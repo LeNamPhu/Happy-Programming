@@ -73,8 +73,8 @@ public class SignUpController extends HttpServlet {
             String address = request.getParameter("address");
            
             boolean checkValid = true;
-            String regexPhone = "^0\\d{9}$";
-            String regexEmail = "^[a-zA-Z][a-zA-Z0-9\\-_]{5,29}+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$";
+            String regexPhone = "^0\\d{9}$";    //cai nay
+            String regexEmail = "^[a-zA-Z][a-zA-Z0-9\\-_]{5,29}+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$"; //cai nay
             AccountDAO dao = new AccountDAO();
             boolean check = dao.checkDuplicate(accountName);
             boolean checkEmail = dao.checkEmail(email);  //cai nay
