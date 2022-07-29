@@ -52,23 +52,23 @@ public class CreateRequestController extends HttpServlet {
              int min = 1;
              int max = 24;
              
-             if(content.length()>250){
+             if(content.length()>250){      //cai nay
                  valid = false;
                  requestError.setContentError("Do not exceed over 250 characters");
              }
              
-             if(deadlineHour < min || deadlineHour > max){
+             if(deadlineHour < 1 || deadlineHour > 24){     //cai nay
                 valid = false;
                 requestError.setHourError("Invalid");
             }
                  
              
-             if(valid){
+             if(valid){         //cai nay
                  boolean checkinsert = reqdao.insertREQ(req);
                  url = SUCCESS;
              }
              
-             else{
+             else{              //cai nay
                 request.setAttribute("REQUEST_ERROR", requestError);
             }
 
