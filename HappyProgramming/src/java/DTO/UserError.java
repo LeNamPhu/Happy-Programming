@@ -13,20 +13,17 @@ public class UserError {
     String AccError;
     String EmailError;
     String PassError;
-    String PhoneError;
 
     public UserError() {
         this.AccError ="";
         this.EmailError="";
         this.PassError="";
-        this.PhoneError="";
     }
     
     public UserError(String AccError, String EmailError) {
         this.AccError = AccError;
         this.EmailError = EmailError;
         this.PassError = PassError;
-        this.PhoneError = PhoneError;
     }
 
     public String getAccError() {
@@ -51,14 +48,6 @@ public class UserError {
 
     public void setPassError(String PassError) {
         this.PassError = PassError;
-    }
-
-    public String getPhoneError() {
-        return PhoneError;
-    }
-
-    public void setPhoneError(String PhoneError) {
-        this.PhoneError = PhoneError;
     }
     
     

@@ -40,9 +40,7 @@ public class RateController extends HttpServlet {
  //           int mentorID = 3;
    //         int userId = 2;
             String comment = request.getParameter("comment");
-            int rate = Integer.parseInt(request.getParameter("radio"));
-            
-  
+            int rate = Integer.parseInt(request.getParameter("rate"));
             RateDAO dao = new RateDAO();
             dao.insertRate(mentorID, userId, rate, comment);
             url = SUCCESS;
