@@ -39,20 +39,28 @@
             <div style="width: 75%;font-size: 30px;" class="mx-auto my-5">
                 <%
                     RequestError reqError = (RequestError) request.getAttribute("REQUEST_ERROR");
-                    if (reqError == null) {      
+                    if (reqError == null) {
                         reqError = new RequestError();
                     }
                     ArrayList<String> listSkill = (ArrayList) session.getAttribute("LIST_SKILL");
                     Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_REQUEST");
                     ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_REQUEST_BY_MENTEE");
-                    int reqID = Integer.parseInt((String) request.getParameter("reqID"));
+                    String requestID = (String) request.getParameter("reqID");
+                    int reqID = 0;
+                    if(requestID == null){
+                        String a = (String) request.getAttribute("REQ_ID");
+                        reqID = Integer.parseInt(a);
+                    }else{
+                        reqID = Integer.parseInt(requestID);
+                    }
+                    
 
                     for (Request req : list) {
                         if (reqID == req.getId()) {
                             String a = (String) skillReq.get(req);
-                            String x = " ";
-                            String y = " ";
-                            String z = " ";
+                            String x = "";
+                            String y = "";
+                            String z = "";
                             String[] skills = a.split(" ");
                             if (skills.length == 1) {
                                 x = skills[0];
@@ -69,6 +77,7 @@
                     <table style="" class="m-auto w-75">
                         <tr>
                             <td id="first">Title</td><td id="second"><input id="input" type="text" name="title" value="<%= req.getTitle()%>"> </td>
+                            <td><%= reqError.getTitleError()%></td>
                         </tr>
                         <tr>
                             <td  id="first">Deadline Date</td><td id="second"><input id="input" type="date" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td> 
@@ -82,7 +91,8 @@
 
 
                         <tr>
-                            <td id="first">Content</td><td id="second"><textarea id="input" type="textarea" name="content" style="height:100px;"><%= req.getContent()%></textarea> </td>                                                                                            
+                            <td id="first">Content</td><td id="second"><textarea id="input" type="textarea" name="content" style="height:100px;"><%= req.getContent()%></textarea> </td>
+                            <td><%= reqError.getContentError()%></td>
                         </tr>
                         <tr>
                             <td id="first">Skill</td><td id="input">
@@ -128,6 +138,7 @@
                             <td colspan="2" style="text-align: center; height:150px;">
                                 <input class="btn btn-primary btn-lg"type="submit" name="action" value="UpdateRequest"/>
                                 <input type="hidden" name="reqIDForUpdate" value="<%= req.getId()%>"/>                      
+                                <input type="hidden" name="status" value="<%= req.getStatus() %>"/>                      
                             </td>
                         </tr>
                     </table>

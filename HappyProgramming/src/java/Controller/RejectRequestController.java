@@ -35,8 +35,12 @@ public class RejectRequestController extends HttpServlet {
             int mentorID = user.getId();
             int reqID = Integer.parseInt(request.getParameter("reqID"));           
             InviteDAO dao = new DAO.InviteDAO();
-            dao.updateStatusInvite(reqID, mentorID, "Rejected");
-            url = SUCCESS;
+            dao.updateStatusInvite(reqID, mentorID, "Rejected");         
+            if(dao.checkInvite(reqID)){
+                RequestDAO reqDAO = new RequestDAO();
+                reqDAO.updateStatusRequest(reqID, "Cancel");
+            }
+             url = SUCCESS;
         } catch (Exception e) {
             log("Error at RejectRequestController " + e.toString());
         }finally{

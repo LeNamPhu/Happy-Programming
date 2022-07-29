@@ -8,15 +8,15 @@ package Controller;
 import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
+import DTO.RequestError;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UpdateRequestByMenteeController", urlPatterns = {"/UpdateRequestByMenteeController"})
 public class UpdateRequestByMenteeController extends HttpServlet {
 
-    private final String ERROR = "Error.jsp";
+    private final String ERROR = "UpdateRequest.jsp";
     private final String SUCCESS = "ListRequestByMenteeController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -33,24 +33,56 @@ public class UpdateRequestByMenteeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            Account user = (Account) request.getAttribute("LOGIN_USER");
-            int menteeID = 1;
+            HttpSession session = request.getSession(true);
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int menteeID = user.getId();
+            boolean checkError = true;
+            RequestError reqE = new RequestError();
             int reqID = Integer.parseInt(request.getParameter("reqIDForUpdate"));
+            String a = String.valueOf(reqID);
+            request.setAttribute("REQ_ID", a);
             String title = request.getParameter("title");
-            String status = request.getParameter("status");        
-            
-            java.sql.Date deadlineDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("deadlineDate")).getTime());
-                    
-            int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
-            String content = request.getParameter("content");           
-            Request req = new Request(reqID, title, status, content, menteeID, deadlineDate, deadlineHour);            
+            if (title.isEmpty()) {
+                reqE.setTitleError("Please input the title!!");
+                checkError = false;
+            }
+            String status = request.getParameter("status");
+            Date deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
+            if (deadlineDate.before(new java.util.Date())) {
+                reqE.setDateError("Please choose deadline date after today!!");
+                checkError = false;
+            }
+            int deadlineHour = 0;
+            try {
+                deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
+                if (deadlineHour <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                checkError = false;
+                reqE.setHourError("Please input a positive integer!!");
+            }
+            String content = request.getParameter("content");
+            if (content.isEmpty()) {
+                reqE.setContentError("Please input the content!!");
+                checkError = false;
+            }
+            Request req = new Request(reqID, title, status, content, menteeID, deadlineDate, deadlineHour);
             String skill1 = request.getParameter("skill1");
             String skill2 = request.getParameter("skill2");
-            String skill3 = request.getParameter("skill3");           
-            RequestDAO dao = new RequestDAO();
-            dao.updateReq(req);
-            dao.updateSkillReq(reqID, skill1, skill2, skill3);          
-            url = SUCCESS;
+            String skill3 = request.getParameter("skill3");
+            if (skill1.isEmpty() && skill2.isEmpty() && skill3.isEmpty()) {
+                checkError = false;
+                reqE.setSkillError("Please choose at least one skill!!");
+            }
+            request.setAttribute("REQUEST_ERROR", reqE);
+            if (checkError) {
+                RequestDAO dao = new RequestDAO();
+                dao.updateReq(req);
+                dao.updateSkillReq(reqID, skill1, skill2, skill3);
+                url = SUCCESS;
+            }
+
         } catch (Exception e) {
             log("Error at UpdateRequestByMenteeController:" + e.toString());
         } finally {

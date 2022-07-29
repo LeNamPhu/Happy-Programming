@@ -4,11 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/web/UpdateRequest.jsp</file>
-            <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/web/SignUp.jsp</file>
-            <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/src/java/DTO/RequestError.java</file>
-            <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/web/CreateRequest.jsp</file>
+            <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/src/java/Controller/CreateRequestController.java</file>
             <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/src/java/Controller/UpdateRequestByMenteeController.java</file>
-            <file>file:/D:/SWP/Happy-Programming/HappyProgramming/HappyProgramming/src/java/Controller/SignUpController.java</file>
         </group>
     </open-files>
 </project-private>
