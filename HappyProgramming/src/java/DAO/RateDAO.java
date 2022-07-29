@@ -57,7 +57,7 @@ public class RateDAO {
                 stm.setString(2, comment);
                 stm.setInt(3, menteeID);
                 stm.setInt(4, mentorID);
-                int a = stm.executeUpdate();
+                stm.executeUpdate();
             }
         } catch (Exception e) {
         } finally {

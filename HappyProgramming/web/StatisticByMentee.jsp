@@ -36,9 +36,18 @@
                             totalHour += elem.getDeadlineHour();
                         }
                 %>
-                <p>   Total of requests: <%= totalRequest%>     Total of hours: <%= totalHour%>       Total of Mentors: <%= totalMentor%></p>
-
-                <table border="1">
+                <div class="d-flex justify-content-around my-3 p-2 border-dark border-2 border" style="font-size: 26px;">
+                    <span>   
+                        Total of requests: <%= totalRequest%>        
+                    </span>
+                    <span>
+                        Total of hours: <%= totalHour%> 
+                    </span>
+                    <span> 
+                        Total of Mentors: <%= totalMentor%>
+                    </span>
+                </div>
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -63,17 +72,20 @@
                             <td><%= elem.getTitle()%></td>
                             <td><%= elem.getStatus()%></td>
                             <td><%= mentor%></td>
-                            <%
-                                if (!mentor.isEmpty()) {
-                            %>
                             <td>
+                                <%
+                                    if (!mentor.isEmpty()) {
+                                %>
+
                                 <form action="Rate.jsp">
-                                    <input type="submit" value="Rate Mentor">
-                                    <input type="hidden" name="mentorName" value="<%= mentor%>">
+                                    <input class="btn-primary btn" type="submit" value="Rate Mentor">
+                                    <input type="hidden" name="mentorName" value="<%=mentor%>">
                                 </form>
+
+                                <%
+                                }%>
                             </td>
                             <%
-                                    }
                                 }
                             %>
                         </tr>

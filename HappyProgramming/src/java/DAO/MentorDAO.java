@@ -608,4 +608,25 @@ public class MentorDAO {
         return mentorID;
 
     }
+    
+    public static String getAMentorAvatar(int id) {
+        Connection cn = null;
+        String result = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "select Avatar\n"
+                        + "from Mentor\n"
+                        + "where ID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                ResultSet rs = pst.executeQuery();
+                if(rs!=null && rs.next())
+                    result = rs.getString("Avatar");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
