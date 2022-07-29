@@ -7,41 +7,41 @@
 <%@page import="DAO.MenteeDAO"%>
 <%@page import="DTO.Mentee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
- <style>
-            table, table tr{
-                
-                width:99%;
-                margin: auto;
-                margin-top: 5%;
-                text-align: center;
-            }
-            table th,td{
-                width: 10%;
-            }
-        </style>     
-        
-        <%
-                int ID = Integer.parseInt(request.getParameter("ID"));
-                Mentee mt = MenteeDAO.getAccountByMenteeID(ID);
-            %>
-        
-        <table class="table">
+    
+
+<%
+    int ID = Integer.parseInt(request.getParameter("ID"));
+    Mentee mt = MenteeDAO.getAccountByMenteeID(ID);
+%>
+
+<table class="table table-borderless">
     <tr>
         <th>ID</th>
-        <th>Email</th>
-        <th>Full name</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Date of birth</th>
-        <th>Sex</th>
+        <td><%=mt.getId()%></td>
     </tr>
     <tr>
-        <td><%=mt.getId()%></td>
+        <th>Email</th>
         <td><%=mt.getEmail()%></td>
-        <td><%=mt.getFullname()%></td>
+    </tr>
+    <tr>
+        <th>Full name</th>
+         <td><%=mt.getFullname()%></td>
+    </tr>
+    <tr>
+        <th>Address</th>
         <td><%=mt.getAddress()%></td>
+    </tr>
+    <tr>
+        <th>Phone</th>
         <td><%=mt.getPhone()%></td>
+    </tr>
+    <tr>
+        <th>Date of birth</th>
         <td><%=mt.getDob()%></td>
+    </tr>
+    <tr>
+        <th>Sex</th>
         <td><%=mt.getSex()%></td>
     </tr>
+
 </table>

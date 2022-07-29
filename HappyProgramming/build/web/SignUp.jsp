@@ -32,14 +32,17 @@
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Sign up</h1>
             <table style=";font-size: 25px" class="d-flex justify-content-center" id="signuptable">
                 <tr><td id="signupname">Account Name</td><td><input type ="text", id="signupform", name="accountName">
-                    <%=userError.getAccError()%></td></tr>
+                     <p style="color : red; font-size:20px"><%=userError.getAccError()%></p></td></tr>
                 <tr><td id="signupname">Email</td><td><input type ="text", id="signupform", name="email">
-<!--                    <a href = "mailto: abc@example.com"></a> --></td></tr>
-                <tr><td id="signupname">Password</td><td><input type ="password", id="signupform", name="password"></td></tr>
+ <p style="color : red; font-size:20px"><%=userError.getEmailError()%></p>
+                        <!--                    <a href = "mailto: abc@example.com"></a> --></td></tr>
+                <tr><td id="signupname">Password</td><td><input type ="password", id="signupform", name="password"><p></p></td></tr>
                 <tr><td id="signupname">Confirm Password</td><td><input type ="password", id="signupform", name="confirm">
-                    <%=userError.getPassError()%></td></tr>
-                <tr><td id="signupname">Full Name</td><td><input type ="text", id="signupform", name="fullName"></td></tr>            
-                <tr><td id="signupname">Phone Number</td><td><input type ="", id="signupform", name="phone"></td></tr>            
+                     <p style="color : red; font-size:20px"><%=userError.getPassError()%></p></td></tr>
+                <tr><td id="signupname">Full Name</td><td><input type ="text", id="signupform", name="fullName"><p></p></td></tr>            
+                <tr><td id="signupname">Phone Number</td><td><input type ="", id="signupform", name="phone">
+                    <p style="color : red; font-size:20px"><%=userError.getPhoneError()%></p></td></tr>            
+                
                 <tr><td id="signupname">Date of Birth</td><td><input type ="date", id="signupform", name="dob"></td></tr>
                  <tr><td id="signupname">Sex</td><td>
                          <select name="sex">

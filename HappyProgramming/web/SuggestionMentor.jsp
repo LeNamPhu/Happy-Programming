@@ -44,7 +44,7 @@
 
 
                 <tr>
-                    <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="<%= mapMentor.get(acc).getAvatar()%> "></td>
+                    <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="image/<%= mapMentor.get(acc).getAvatar()%> "></td>
                     <td  style="width:25%; vertical-align: middle">Inviting Requests: <%=  mapInviteReq.get(acc)%> <br>
                         Accepted Requests: <%= mapAcceptedReq.get(acc)%></td>
                     <td rowspan="3" style="border: 1px solid lightgray;text-align: left;vertical-align:top;padding:15px; "> <%= mapMentor.get(acc).getServiceDesc()%></td>
@@ -75,7 +75,9 @@
         <%
             }
         %>                       
-
+        <div class="btn btn-lg btn-primary d-flex w-25 justify-content-center m-auto">
+            <a style="color:white" href="MainController?action=ListRequestByMentee"> Return</a>
+        </div>
         <%
         } else {
         %>

@@ -5,6 +5,9 @@
  */
 package Controller;
 
+import DAO.AccountDAO;
+import Utils.EmailUtils;
+import Utils.RandomNumberUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,11 +32,25 @@ public class ForgotPasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    String ERROR = "ForgotPassword.jsp?fail=true;";
+    String SUCCESS = "SignIn.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            //PrintWriter out = response.getWriter();
+            String url = ERROR;
+            String email = request.getParameter("txtemail");
+            String name = request.getParameter("txtname");
+            if (AccountDAO.CheckForgot(name, email)) {
+                String random = RandomNumberUtil.RandomNumber();
+                EmailUtils.sendPassEmail(email,random );
+                AccountDAO accDAO = new AccountDAO();
+                accDAO.changePassword(random, name);
+                url=SUCCESS;
+                
+            }
+            
+            request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception e) {
         }
     }

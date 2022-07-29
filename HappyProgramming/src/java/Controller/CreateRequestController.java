@@ -3,10 +3,10 @@ package Controller;
 import DAO.RequestDAO;
 import DTO.Account;
 import DTO.Request;
+import DTO.RequestError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,49 +20,61 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CreateRequestController", urlPatterns = {"/CreateRequestController"})
 public class CreateRequestController extends HttpServlet {
-
-    private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListRequestByMenteeController";
-
+    private final String ERROR = "CreateRequest.jsp";
+    private final String SUCCESS = "ListRequestByMentee.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        RequestError requestError = new RequestError();
         try {
             HttpSession session = request.getSession(true);
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            String title = request.getParameter("title");
-            String status = "Open";
-            String content = request.getParameter("content");
-            int menteeID = user.getId();
-            Date deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
-            int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
-            Request req = new Request(0, title, status, content, menteeID, deadlineDate, deadlineHour);
-            RequestDAO reqdao = new RequestDAO();
-            boolean checkinsert = reqdao.insertREQ(req);
-            session.setAttribute("ERROR_MESSAGE", "djkasb");
-            ArrayList<Integer> listSkillID = new ArrayList<>();
-            int skill1 = Integer.parseInt(request.getParameter("skill1"));
-            if(skill1 != 0){
-                listSkillID.add(skill1);
+             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+             String title = request.getParameter("title");
+             String status = "Open";
+             String content = request.getParameter("content");
+             int menteeID = user.getId();
+             Date deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
+             int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
+
+             boolean valid = true;
+             Request req = new Request(0, title, status, content, menteeID, deadlineDate, deadlineHour);
+             RequestDAO reqdao = new RequestDAO();
+             int min = 1;
+             int max = 24;
+             
+             
+             
+             if(deadlineHour < 1 || deadlineHour > 24){     //cai nay
+                valid = false;
+                requestError.setHourError("Invalid");
             }
-            int skill2 = Integer.parseInt(request.getParameter("skill2"));
-            if(skill2 != 0){
-                listSkillID.add(skill2);
-            }
-            int skill3 = Integer.parseInt(request.getParameter("skill3"));
-            if(skill3 != 0){
-                listSkillID.add(skill3);
-            }
-            int getReqID = reqdao.getMaxReqID();
-            reqdao.insertSkillIDToRequestSkill(getReqID, listSkillID);
-            if (checkinsert) {
-                url = SUCCESS;
+                 
+             
+             if(valid){         //cai nay
+                 boolean checkinsert = reqdao.insertREQ(req);
+                 url = SUCCESS;
+             }
+             
+             else{              //cai nay
+                request.setAttribute("REQUEST_ERROR", requestError);
             }
 
-        } catch (Exception e) {
-            log("Error at CreateRequestController: " + e.toString());
-        } finally {
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

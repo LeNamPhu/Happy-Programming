@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SignUpController", urlPatterns = {"/SignUpController"})
 public class SignUpController extends HttpServlet {
-    private final String ERROR = "HomePage.jsp";
+    private final String ERROR = "SignUp.jsp";
     private final String SUCCESS = "SendOTP.jsp";
     
     private static final Logger LOGGER = Logger.getLogger( SignUpController.class.getName() );
@@ -74,28 +74,55 @@ public class SignUpController extends HttpServlet {
             int roleID = Integer.parseInt(request.getParameter("roleId"));
             request.setAttribute("roleId", roleID);
             String address = request.getParameter("address");
-           
+           String regexPhone = "^0\\d{9}$";    //cai nay
+            String regexEmail = "^[a-zA-Z][a-zA-Z0-9\\-_]{5,29}+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$"; //cai nay
             boolean checkValid = true;
             AccountDAO dao = new AccountDAO();
             boolean check = dao.checkDuplicate(accountName);
+            boolean checkEmail = dao.checkEmail(email);  //cai nay
+            boolean checkEmail1 = dao.checkEmail1(email); //cai nay
             if(check){
                 checkValid = false;
-                userError.setAccError("Duplicate AccountName!!");
+                userError.setAccError("Account already exist!!");
             }
             
-            if(accountName.length()<6 || accountName.length()>20){
+            
+            if(checkEmail){             //cai nay
                 checkValid = false;
-                userError.setAccError("User ID must be in [6,20]");
+                userError.setEmailError("Email have existed");
+            }
+            
+            if(checkEmail1){            //cai nay
+                checkValid = false;
+                userError.setEmailError("Email have existed");
+            }
+
+            
+            if(accountName.length()<6 || accountName.length()>20){  //cai nay
+                checkValid = false;
+                userError.setAccError("Use 6 or more characters");
+            }
+
+           
+            if(!email.matches(regexEmail)){         //cai nay
+                checkValid = false;
+                userError.setEmailError("First character is [a-z] && use the special character [-,\\]");
+            }
+
+            
+            if(!phone.matches(regexPhone)){         //cai nay
+                checkValid = false;
+                userError.setPhoneError("Only use number && First number is 0");
             }
             
             
             if(!password.equals(confirm)){
                 checkValid = false;
-                userError.setPassError("Confirm is not same!!");
+                userError.setPassError("Confirm password is not same!!");
             }
             
             if(checkValid){
-                Account acc = new Account(0,accountName, password, 4);
+                Account acc = new Account(0,accountName, password, roleID);
                 boolean checkinsert = dao.insertAcc(acc);
                 int accountid = dao.getAccountId(acc.getAccountName());
                 if(checkinsert){
@@ -107,7 +134,7 @@ public class SignUpController extends HttpServlet {
                         }
                     }
                     else if(roleID == 2){
-                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,"image/avatar.png",null,null,null);
+                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,null,null,null,null);
                         boolean insertMentor = dao.insertMentor(tor);
                         if(insertMentor){
                             url = SUCCESS;

@@ -53,27 +53,27 @@
         
         <%for (Request request1 : list) {%>
         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<%=request1.getMenteeID()%>">
-        <div class="border border-dark border-2 p-2 w-75 ms-auto me-auto mt-4 mb-4"> 
-        <table class=" w-100  "> 
+        <div class="border border-dark border-2 p-2 w-75 mx-auto mt-4 mb-4"> 
+            <table class=" w-100  " style="margin-top:0; color: black;"> 
             <tr style="height: 40px " >
             
-            <td style="width:25%" class="p-2"> <%= request1.getTitle()%></td>
-            <td style="width:45%; border:solid 1px lightgray" class="p-2 " rowspan="2"><%= request1.getContent()%></td>
+            <td style="width:25%; text-align: left;" class="p-2"> <%= request1.getTitle()%></td>
+            <td style="width:45%;text-align: left; border:solid 1px lightgray" class="p-2 " rowspan="2"><%= request1.getContent()%></td>
             <td  style="width:15%; text-align: center;" class="p-2"rowspan="2"span="2"> Closed</td>
                
         </tr>
         <tr style="height: 60px">
             
-            <td  style="width:20%"  class="p-2"><%= request1.getDeadlineHour()%>:00 
+            <td  style="width:20%;text-align: left;"  class="p-2"><%= request1.getDeadlineHour()%>:00 
             <%= request1.getDeadlineDate()%></td>
         </tr>
         </table>
         </div></a>
         <div class="modal  fade" id="exampleModal<%=request1.getMenteeID()%>" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-dialog modal-dialog-centered ">
                         <div class="modal-content" id="loadModalBody">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 22px;">Request's mentee information</h5>
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 22px;"> Mentee's information</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

@@ -23,11 +23,18 @@
 
 
         <div class="body">
-            <div style="height: 700px; width:850px ; margin:auto; margin-top:50px;" class="d-flex justfy-content-center text-align-center flex-column border border-secondary mb-5">
+            <div style=" width:850px ; margin:auto; margin-top:50px;" class="d-flex justfy-content-center text-align-center flex-column border border-secondary mb-5">
                 <div style="padding:20px;">
                 <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Forgot Password</h1>
                 <p style="text-align: center;font-size: 35px"class="text-aign-center">No Problem! Enter your email and account name below and we will send you an email with instruction to reset your password</p>
+               <form action="MainController">
                 <table style=";font-size:30px" class="d-flex justify-content-center">
+                    <% if (request.getParameter("fail")!=null){
+                         
+                     
+                    %>
+                    <td style="color:red;font-size:23px;">Incorrect info, Please try again</td>
+                    <%}%>
                 <tr><td>Email</td></tr>
                 <tr><td><input type="text" name="txtemail" style="width: 550px"></td></tr>
                 
@@ -35,10 +42,11 @@
                 <tr><td><input type="text" name="txtname" style="width: 550px"></td></tr>
 
                
-                <tr><td> <div class="d-grid"><input class="btn btn-primary btn-lg mt-4 " type="submit" value="Send Reset Link" style="font-size: 25px;" >  </div></td></tr>
+                <tr><td> <div class="d-grid"><input class="btn btn-primary btn-lg mt-4 " type="submit" value="Send Reset Link" name="action"style="font-size: 25px;" >  </div></td></tr>
                
                 <tr><td><div class="d-grid"><a class="btn btn-light btn-lg mt-4" style="font-size: 25px;" href="SignIn.jsp">Back to Login</a></div><td><tr>
             </table>
+                </form>
                 </div>
             </div>
             </div>

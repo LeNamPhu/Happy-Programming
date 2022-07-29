@@ -119,7 +119,8 @@ public class MainController extends HttpServlet {
                 url = "UpdateProfileController";
             } else if ("ProfileOfMentor".equals(action)) {
                 url = "ProfileOfMentorController";
-                
+            } else if ("Send Reset Link".equals(action)) {
+                url = "ForgotPasswordController";
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");

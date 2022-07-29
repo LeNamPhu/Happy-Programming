@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +34,9 @@ public class UpdateRequestByMenteeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            Account user = (Account) request.getAttribute("LOGIN_USER");
-            int menteeID = 1;
+            HttpSession session = request.getSession(true);
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int menteeID = user.getId();
             int reqID = Integer.parseInt(request.getParameter("reqIDForUpdate"));
             String title = request.getParameter("title");
             String status = request.getParameter("status");        
