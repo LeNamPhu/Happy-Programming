@@ -18,7 +18,7 @@
                 {%>
                 
                 
-            <%RequestError requestError = (RequestError) request.getAttribute("REQUEST_ERROR");
+            <%RequestError requestError = (RequestError) request.getAttribute("REQUEST_ERROR");  //cai nay
             if(requestError == null){
                 requestError = new RequestError();
             }%>       
@@ -48,9 +48,9 @@
                         </td></tr>
                     <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" min="<%=LocalDate.now().plusDays(1)%>" max="<%=LocalDate.now().plusDays(14)%>" style="width: 400px" id="createrequestform"/></td></tr>
                     <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/>
-                        <p style="color : red; font-size:20px"><%=requestError.getHourError()%></p></td></tr>
+                        <p style="color : red; font-size:20px"><%=requestError.getHourError()%></p></td></tr> //cai nay
                     <tr><td id="createrequestpass">Content</td><td><input type="text" name="content" style="width: 400px; height: 150px" id="createrequestform"/>
-                        <p style="color : red; font-size:20px"><%=requestError.getContentError()%></p></td></tr>
+                        <p style="color : red; font-size:20px"><%=requestError.getContentError()%></p></td></tr>  //cai nay
                     <tr>
                         <td id="createrequestpass">Skill</td>
                         <td>
