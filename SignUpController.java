@@ -77,34 +77,34 @@ public class SignUpController extends HttpServlet {
             String regexEmail = "^[a-zA-Z][a-zA-Z0-9\\-_]{5,29}+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$";
             AccountDAO dao = new AccountDAO();
             boolean check = dao.checkDuplicate(accountName);
-            boolean checkEmail = dao.checkEmail(email);
-            boolean checkEmail1 = dao.checkEmail1(email);
+            boolean checkEmail = dao.checkEmail(email);  //cai nay
+            boolean checkEmail1 = dao.checkEmail1(email); //cai nay
             
             if(check){
                 checkValid = false;
                 userError.setAccError("Account already exists");
             }
             
-            if(checkEmail){
+            if(checkEmail){             //cai nay
                 checkValid = false;
                 userError.setEmailError("Email have existed");
             }
-            if(checkEmail1){
+            if(checkEmail1){            //cai nay
                 checkValid = false;
                 userError.setEmailError("Email have existed");
             }
             
-            if(accountName.length()<6 || accountName.length()>20){
+            if(accountName.length()<6 || accountName.length()>20){  //cai nay
                 checkValid = false;
                 userError.setAccError("Use 6 or more characters");
             }
             
-            if(!email.matches(regexEmail)){
+            if(!email.matches(regexEmail)){         //cai nay
                 checkValid = false;
                 userError.setEmailError("First character is [a-z] && use the special character [-,\\]");
             }
             
-            if(!phone.matches(regexPhone)){
+            if(!phone.matches(regexPhone)){         //cai nay
                 checkValid = false;
                 userError.setPhoneError("Only use number && First number is 0");
             }
