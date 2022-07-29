@@ -31,8 +31,8 @@ public class AccountDAO {
     private static final String INSERTRMENTEE = "INSERT INTO Mentee(ID, Email, FullName, Phone, Address, DateOfBirth, Sex) VALUES (?,?,?,?,?,?,?)";
     private static final String UPDATE_PASSWORD = "UPDATE Account SET password=? WHERE AccountName=?";
     private static final String CHECK_DUPLICATE = "SELECT AccountName FROM Account WHERE AccountName=?";
-    private static final String CHECK_DUPLICATE_EMAIL = "SELECT Email FROM Mentee WHERE Email=?";
-    private static final String CHECK_DUPLICATE_EMAIL1 = "SELECT Email FROM Mentor WHERE Email=?";
+    private static final String CHECK_DUPLICATE_EMAIL = "SELECT Email FROM Mentee WHERE Email=?";  //cai nay
+    private static final String CHECK_DUPLICATE_EMAIL1 = "SELECT Email FROM Mentor WHERE Email=?"; //cai nay
     private static final String GET_ACCOUNT_ID = "SELECT ID FROM Account WHERE AccountName=?";
 
     public ArrayList<Account> viewAllAccount() {
@@ -405,7 +405,7 @@ public class AccountDAO {
         return accountName;
 
     }
-    public boolean checkEmail(String Email) throws SQLException {
+    public boolean checkEmail(String Email) throws SQLException {  //cai nay
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -435,7 +435,7 @@ public class AccountDAO {
         }
         return check;
     }
-    public boolean checkEmail1(String Email) throws SQLException {
+    public boolean checkEmail1(String Email) throws SQLException {   //cai nay
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
@@ -443,7 +443,7 @@ public class AccountDAO {
         try {
             con = DBUtils.makeConnection();
             if (con != null) {
-                stm = con.prepareStatement(CHECK_DUPLICATE_EMAIL);
+                stm = con.prepareStatement(CHECK_DUPLICATE_EMAIL1);
                 stm.setString(1, Email);
                 rs = stm.executeQuery();
                 if (rs.next()) {
