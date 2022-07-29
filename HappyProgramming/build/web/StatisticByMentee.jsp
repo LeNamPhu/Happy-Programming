@@ -4,6 +4,8 @@
     Author     : ThienNho
 --%>
 
+<%@page import="DTO.Account"%>
+<%@page import="DAO.RequestDAO"%>
 <%@page import="DTO.Request"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,15 +27,16 @@
         <div class="body"> 
             <div style="width: 70%" class="m-auto ">
                 <%
+                    Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+                    int menteeID = user.getId();
                     String totalMentor = (String) request.getAttribute("TOTAL_MENTOR");
                     Map map = (Map) request.getAttribute("MAP");
                     ArrayList<Request> listRequest = (ArrayList) request.getAttribute("LIST_REQUEST");
                     if (listRequest != null) {
                         int totalRequest = 0;
-                        int totalHour = 0;
+                        int totalHour = RequestDAO.getHoursOfRequestByMenteeID(menteeID);
                         for (Request elem : listRequest) {
                             totalRequest++;
-                            totalHour += elem.getDeadlineHour();
                         }
                 %>
                 <div class="d-flex justify-content-around my-3 p-2 border-dark border-2 border" style="font-size: 26px;">
