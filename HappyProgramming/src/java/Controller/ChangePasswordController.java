@@ -5,46 +5,45 @@
  */
 package Controller;
 
-import DAO.InviteDAO;
-import DAO.RequestDAO;
-import DTO.Account;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ThienNho
+ * @author Admin
  */
-@WebServlet(name = "RejectRequestController", urlPatterns = {"/RejectRequestController"})
-public class RejectRequestController extends HttpServlet {
-
-    private final String ERROR = "Error.jsp";
-    private final String SUCCESS = "ListInviteController";   
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+public class ChangePasswordController extends HttpServlet {
+private final String ERROR = "Error.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String url = ERROR;
         response.setContentType("text/html;charset=UTF-8");
-         String url = ERROR;
-        try {
-            HttpSession session = request.getSession();
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int mentorID = user.getId();
-            int reqID = Integer.parseInt(request.getParameter("reqID"));           
-            InviteDAO dao = new DAO.InviteDAO();
-            dao.updateStatusInvite(reqID, mentorID, "Rejected");         
-            if(dao.checkInvite(reqID)){
-                RequestDAO reqDAO = new RequestDAO();
-                reqDAO.updateStatusRequest(reqID, "Cancel");
-            }
-             url = SUCCESS;
-        } catch (Exception e) {
-            log("Error at RejectRequestController " + e.toString());
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ChangePasswordController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

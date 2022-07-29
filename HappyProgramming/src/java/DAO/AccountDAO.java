@@ -32,9 +32,7 @@ public class AccountDAO {
     private static final String UPDATE_PASSWORD = "UPDATE Account SET password=? WHERE AccountName=?";
     private static final String CHECK_DUPLICATE = "SELECT AccountName FROM Account WHERE AccountName=?";
     private static final String GET_ACCOUNT_ID = "SELECT ID FROM Account WHERE AccountName=?";
-    private static final String CHECK_DUPLICATE_EMAIL = "SELECT Email FROM Mentee WHERE Email=?";  //cai nay
-    private static final String CHECK_DUPLICATE_EMAIL1 = "SELECT Email FROM Mentor WHERE Email=?"; //cai nay
-    
+
     public ArrayList<Account> viewAllAccount() {
         ArrayList<Account> list = new ArrayList<>();
         Connection cn = null;
@@ -405,119 +403,5 @@ public class AccountDAO {
         return accountName;
 
     }
-    
-    public static void changeStatus(int roleID, String accountName) {
-        Connection cn = null;
-        try {
-            cn = DBUtils.makeConnection();
-            if (cn != null) {
-                String sql = "update Account\n"
-                        + "set RoleID = ?\n"
-                        + "where AccountName = ?";
-                PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1, roleID);
-                pst.setString(2, accountName);
-                pst.executeUpdate();
-                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        }
-        
-    }
-    public static boolean CheckForgot(String accountName, String email) throws SQLException{
-         boolean check = false;
-        Connection con = null;
-        PreparedStatement stm = null;
-        try {
-            con = DBUtils.makeConnection();
-            if (con != null) {
-                stm = con.prepareStatement("select AccountName, Email from Account a join Mentor m on a.ID = m.ID where AccountName = ? and Email=?\n" +
-                                           "union\n" +
-                                           "select AccountName, Email from Account a join Mentee m on a.ID = m.ID where AccountName = ? and Email=?");
-                stm.setString(1,accountName );
-                stm.setString(2,email );
-                stm.setString(3,accountName );
-                stm.setString(4,email );
-                
-                ResultSet rs = stm.executeQuery();
-                if (rs.next()){
-                    check = true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        
-         }
-        return check;
-    }
-    
-    public boolean checkEmail(String Email) throws SQLException {  //cai nay
-        boolean check = false;
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
-            con = DBUtils.makeConnection();
-            if (con != null) {
-                stm = con.prepareStatement(CHECK_DUPLICATE_EMAIL);
-                stm.setString(1, Email);
-                rs = stm.executeQuery();
-                if (rs.next()) {
-                    check = true;
-                }
-            }
-        } catch (Exception e) {
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return check;
-    }
-   
-    public boolean checkEmail1(String Email) throws SQLException {   //cai nay
-        boolean check = false;
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
-            con = DBUtils.makeConnection();
-            if (con != null) {
-                stm = con.prepareStatement(CHECK_DUPLICATE_EMAIL);
-                stm = con.prepareStatement(CHECK_DUPLICATE_EMAIL1);
-                stm.setString(1, Email);
-                rs = stm.executeQuery();
-                if (rs.next()) {
-                    check = true;
-                }
-            }
-        } catch (Exception e) {
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return check;
-    }
+
 }

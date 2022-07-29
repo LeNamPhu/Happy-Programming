@@ -59,9 +59,7 @@ public class SignUpController extends HttpServlet {
         UserError userError = new UserError();
         try {
             String accountName = request.getParameter("accountName");
-            request.setAttribute("accountName", accountName);
             String email = request.getParameter("email");
-            request.setAttribute("email", email);
             String password = request.getParameter("password");
             String confirm = request.getParameter("confirm");
             String fullName = request.getParameter("fullName");
@@ -72,53 +70,25 @@ public class SignUpController extends HttpServlet {
 //            LOGGER.log(Level.INFO, "Current Sex is {0}", sex);
             
             int roleID = Integer.parseInt(request.getParameter("roleId"));
-            request.setAttribute("roleId", roleID);
             String address = request.getParameter("address");
-           String regexPhone = "^0\\d{9}$";    //cai nay
-            String regexEmail = "^[a-zA-Z][a-zA-Z0-9\\-_]{5,29}+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$"; //cai nay
+           
             boolean checkValid = true;
             AccountDAO dao = new AccountDAO();
             boolean check = dao.checkDuplicate(accountName);
-            boolean checkEmail = dao.checkEmail(email);  //cai nay
-            boolean checkEmail1 = dao.checkEmail1(email); //cai nay
             if(check){
                 checkValid = false;
-                userError.setAccError("Account already exist!!");
+                userError.setAccError("Duplicate AccountName!!");
             }
             
-            
-            if(checkEmail){             //cai nay
+            if(accountName.length()<6 || accountName.length()>20){
                 checkValid = false;
-                userError.setEmailError("Email have existed");
-            }
-            
-            if(checkEmail1){            //cai nay
-                checkValid = false;
-                userError.setEmailError("Email have existed");
-            }
-
-            
-            if(accountName.length()<6 || accountName.length()>20){  //cai nay
-                checkValid = false;
-                userError.setAccError("Use 6 or more characters");
-            }
-
-           
-            if(!email.matches(regexEmail)){         //cai nay
-                checkValid = false;
-                userError.setEmailError("First character is [a-z] && use the special character [-,\\]");
-            }
-
-            
-            if(!phone.matches(regexPhone)){         //cai nay
-                checkValid = false;
-                userError.setPhoneError("Only use number && First number is 0");
+                userError.setAccError("User ID must be in [6,20]");
             }
             
             
             if(!password.equals(confirm)){
                 checkValid = false;
-                userError.setPassError("Confirm password is not same!!");
+                userError.setPassError("Confirm is not same!!");
             }
             
             if(checkValid){
