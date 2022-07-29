@@ -27,7 +27,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mentor Request</title>
-    
+        <script>
+            var myModal = document.getElementById('exampleModal')
+            var myInput = document.getElementById('myInput')
+            myModal.addEventListener('shown.bs.modal', function () {
+                myInput.focus()
+            })
+</script>
 </head>
 <body>
     <header>
@@ -46,6 +52,7 @@
    
         
         <%for (Request request1 : list) {%>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<%=request1.getMenteeID()%>">
         <div class="border border-dark border-2 p-2 w-75 ms-auto me-auto mt-4 mb-4"> 
         <table class=" w-100  "> 
             <tr style="height: 40px " >
@@ -61,7 +68,26 @@
             <%= request1.getDeadlineDate()%></td>
         </tr>
         </table>
-        </div>
+        </div></a>
+        <div class="modal  fade" id="exampleModal<%=request1.getMenteeID()%>" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content" id="loadModalBody">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-size: 22px;">Request's mentee information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <jsp:include page="MentorViewAMentee.jsp">
+                                    <jsp:param name="ID" value="<%=request1.getMenteeID()%>"/>
+                                </jsp:include>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Close</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
          <%i++;%>
 
         <%}%>
