@@ -85,7 +85,6 @@ public class MainController extends HttpServlet {
                 url = "FollowingRequestController";
             } else if ("StatisticRequest".equals(action)) {
                 url = STATISTIC_BY_MENTOR;
-
             } else if ("InvitingRequest".equals(action)) {
                 url = "InvitingRequestController";
             } else if (ADD.equals(action)) {
@@ -96,12 +95,10 @@ public class MainController extends HttpServlet {
                 url = "searchRequest";
             } else if ("filterRequest".equals(action)) {
                 url = "filterRequest";
-
             } else if ("Enter".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTEE_CONTROLLER;
             } else if (" Enter ".equals(action)) {
                 url = CHANGE_PASWORD_BY_MENTOR_CONTROLLER;
-
             } else if ("Cancel".equals(action)) {
                 url = "UserHomePage.jsp";
             } else if (" Cancel ".equals(action)) {
@@ -110,7 +107,6 @@ public class MainController extends HttpServlet {
                 url = CREATE_CV_CONTROLLER;
             } else if (UPDATE_CV.equals(action)) { // thêm cái này
                 url = UPDATE_CV_CONTROLLER;
-
             } else if ("Rate".equals(action)) {
                 url = RATE;
             } else if ("ShowMentorSuggestion".equals(action)) {
@@ -119,15 +115,12 @@ public class MainController extends HttpServlet {
                 url = INVITE;
             } else if ("Cancel".equals(action)) {
                 url = "ListRequestByMenteeController";
-
             } else if ("Update".equals(action)) {
                 url = "UpdateProfileController";
-
             } else if ("ProfileOfMentor".equals(action)) {
                 url = "ProfileOfMentorController";
                 
             } else {
-
                 HttpSession session = request.getSession();
                 session.setAttribute("ERROR_MESSAGE", "Funtion is not available!!!");
             }

@@ -12,11 +12,12 @@
         <title>Rate & Comment Page</title>
     </head>
     <body>
-        <% String mentorID =  request.getParameter("mentorID"); %>
+        <% String mentorName =  request.getParameter("mentorName"); %>
+
         <form action="MainController">
         Rate    <input type="text" name="rate"/></br>
         Comment    <input type="text" name="comment"/>           
-            <input type="hidden" name="mentorID" value="mentorID"/>
+            <input type="hidden" name="mentorName" value=<%= mentorName %>/>
             <input type="submit" name="action" value="Rate"/>
         </form>
     </body>

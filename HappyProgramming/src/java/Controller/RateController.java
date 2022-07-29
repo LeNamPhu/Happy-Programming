@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.MentorDAO;
 import DAO.RateDAO;
 import DTO.Account;
 import java.io.IOException;
@@ -33,7 +34,9 @@ public class RateController extends HttpServlet {
             HttpSession session = request.getSession();
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
             int userId = user.getId();
-            int mentorID = Integer.parseInt(request.getParameter("mentorID"));
+            String mentorName = request.getParameter("mentorName");
+            MentorDAO mentorDao = new MentorDAO();
+            int mentorID = mentorDao.getMentorIDByName(mentorName);
  //           int mentorID = 3;
    //         int userId = 2;
             String comment = request.getParameter("comment");
