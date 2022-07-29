@@ -199,4 +199,35 @@ public class InviteDAO {
 
         return check;
     }
+        public boolean checkInvite(int reqID) throws SQLException{
+        boolean check = true;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {                
+                    String sql = "SELECT * FROM INVITE WHERE ReqID=? AND Status=? ";
+                    stm = conn.prepareStatement(sql);
+                    stm.setInt(1, reqID);
+                    stm.setString(2,"Pending");
+                    rs = stm.executeQuery();
+                    if(rs.next()){
+                        check = false;
+                    }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 }

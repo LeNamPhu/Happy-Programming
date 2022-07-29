@@ -29,8 +29,7 @@ public class RequestDAO {
     public static final String DELETE_SKILL_REQUEST = "DELETE RequestSkill WHERE RequestID =? ";
     public static final String INSERT_REQUEST = "INSERT INTO Request(Title, Status, Content, MenteeID, DeadlineDate, DeadlineHour) VALUES (?,?,?,?,?,?)";
     public static final String LIST_REQUEST_BY_MENTOR = "SELECT Title, Content, DeadlineDate, DeadlineHour, Request.Status FROM ((Request join Invite on Request.ID = Invite.ReqID)) WHERE MentorID=? ";
-
-    public static final String LIST_FOLLOWING_REQUEST = "SELECT Request.ID, Title, MenteeID, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
+    public static final String LIST_FOLLOWING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Request.Status = 'Closed'";
     public static final String LIST_INVITING_REQUEST = "SELECT Title, Content, DeadlineDate, DeadlineHour, Name FROM ((Request join Invite on Request.ID = Invite.ReqID) join RequestSkill on Request.ID = RequestSkill.RequestID) join Skill on RequestSkill.SkillID = Skill.ID WHERE MentorID = ? And Invite.Status = 'Pending'";
 
     public ArrayList<Request> listRequestByMentee(int menteeID) throws SQLException {
@@ -122,13 +121,13 @@ public class RequestDAO {
                 stm.setInt(1, MentorID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    int ID = rs.getInt("ID");
+                   
                     String title = rs.getString("Title");
                     String content = rs.getString("Content");
-                    int menteeID = rs.getInt("MenteeID");
+                    
                     Date deadlineDate = rs.getDate("DeadlineDate");
                     int deadlineHour = rs.getInt("DeadlineHour");
-                    list.add(new Request(ID, title, "null", content, menteeID, deadlineDate, deadlineHour));
+                    list.add(new Request(0, title, "null", content, 0, deadlineDate, deadlineHour));
                 }
             }
         } catch (Exception e) {
@@ -159,13 +158,13 @@ public class RequestDAO {
                 stm.setInt(1, MentorID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    int ID = rs.getInt("ID");
+                    
                     String title = rs.getString("Title");
                     String content = rs.getString("Content");
-                    int menteeID = rs.getInt("MenteeID");
+                    
                     Date deadlineDate = rs.getDate("DeadlineDate");
                     int deadlineHour = rs.getInt("DeadlineHour");
-                    list.add(new Request(ID, title, "null", content, menteeID, deadlineDate, deadlineHour));
+                    list.add(new Request(0, title, "null", content, 0, deadlineDate, deadlineHour));
                 }
             }
         } catch (Exception e) {

@@ -7,6 +7,7 @@ import DTO.RequestError;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,61 +21,89 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CreateRequestController", urlPatterns = {"/CreateRequestController"})
 public class CreateRequestController extends HttpServlet {
+
     private final String ERROR = "CreateRequest.jsp";
-    private final String SUCCESS = "ListRequestByMentee.jsp";
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private final String SUCCESS = "ListRequestByMenteeController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        RequestError requestError = new RequestError();
         try {
             HttpSession session = request.getSession(true);
-             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-             String title = request.getParameter("title");
-             String status = "Open";
-             String content = request.getParameter("content");
-             int menteeID = user.getId();
-             Date deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
-             int deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
-
-             boolean valid = true;
-             Request req = new Request(0, title, status, content, menteeID, deadlineDate, deadlineHour);
-             RequestDAO reqdao = new RequestDAO();
-             int min = 1;
-             int max = 24;
-             
-             
-             
-             if(deadlineHour < 1 || deadlineHour > 24){     //cai nay
-                valid = false;
-                requestError.setHourError("Invalid");
+            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            boolean checkError = true;
+            RequestError reqE = new RequestError();
+            int menteeID = user.getId();
+            String status = "Open";
+            String title = request.getParameter("title");
+            if (title.isEmpty()) {
+                reqE.setTitleError("Please input the title!!");
+                checkError = false;
             }
-                 
-             
-             if(valid){         //cai nay
-                 boolean checkinsert = reqdao.insertREQ(req);
-                 url = SUCCESS;
-             }
-             
-             else{              //cai nay
-                request.setAttribute("REQUEST_ERROR", requestError);
+            String content = request.getParameter("content");
+            if (content.isEmpty()) {
+                reqE.setContentError("Please input the content!!");
+                checkError = false;
+            }
+            Date deadlineDate = (Date) new java.util.Date();
+            try {
+                deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
+            if (deadlineDate.before(new java.util.Date()) || deadlineDate.equals(new java.util.Date())) {
+                throw new IllegalArgumentException();
+            }
+            } catch (Exception e) {
+                reqE.setDateError("Please choose deadline date after today!!");
+                checkError = false;
+            }
+            if (deadlineDate.before(new java.util.Date())) {
+                reqE.setDateError("Please choose deadline date after today!!");
+                checkError = false;
+            }
+            int deadlineHour = 0;
+            try {
+                deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
+                if (deadlineHour <= 0) {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                checkError = false;
+                reqE.setHourError("Please input a positive integer!!");
             }
 
+            Request req = new Request(0, title, status, content, menteeID, deadlineDate, deadlineHour);
+            RequestDAO reqdao = new RequestDAO();
 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{
+            ArrayList<Integer> listSkillID = new ArrayList<>();
+            int skill1 = Integer.parseInt(request.getParameter("skill1"));
+            if (skill1 != 0) {
+                listSkillID.add(skill1);
+            }
+            int skill2 = Integer.parseInt(request.getParameter("skill2"));
+            if (skill2 != 0) {
+                listSkillID.add(skill2);
+            }
+            int skill3 = Integer.parseInt(request.getParameter("skill3"));
+            if (skill3 != 0) {
+                listSkillID.add(skill3);
+            }
+            if (skill1 == 0 && skill2 == 0 && skill3 == 0) {
+                checkError = false;
+                reqE.setSkillError("Please choose at least one skill!!");
+            }
+            request.setAttribute("REQUEST_ERROR", reqE);
+            if (checkError) {
+                boolean checkinsert = reqdao.insertREQ(req);
+                if (checkinsert) {
+                    int getReqID = reqdao.getMaxReqID();
+                    reqdao.insertSkillIDToRequestSkill(getReqID, listSkillID);
+                    url = SUCCESS;
+                }
+            }
+
+        } catch (Exception e) {
+            log("Error at CreateRequestController: " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
