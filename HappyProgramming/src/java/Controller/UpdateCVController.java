@@ -53,7 +53,8 @@ public class UpdateCVController extends HttpServlet {
             String serviceDesc = request.getParameter("serviceDesc");
             String achievement = request.getParameter("achievement");
             String avatar = request.getParameter("avatar");
-
+            if(avatar.isEmpty())
+                avatar = MentorDAO.getAMentorAvatar(mentorID);
             Mentor mentor = new Mentor(mentorID, null, null, null, null, null, null, profession, professionIntro, serviceDesc, achievement, framework, avatar, job, service, introducton);
             MentorDAO mentordao = new MentorDAO();
             boolean checkinsert = mentordao.insertcv(mentor);

@@ -28,8 +28,8 @@
         </header>
         <div class="body"style="font-size:  30px;">
             <% MentorDAO mentordao = new MentorDAO();
-                Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-                int mentorID = user.getId();
+                user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+                mentorID = user.getId();
                 if (mentordao.getMentorProfession(mentorID)) {
                     response.sendRedirect("UpdateCV.jsp");
                 }%>
@@ -39,7 +39,7 @@
                         <div class="col-md-4 " style="text-align:center">
                             <div class="p-4">
                                 <div style="height:162px; width:162px;position:relative;margin:auto">
-                                    <img id="avt" class="rounded-circle border"  src="image/avatar.png" style="height:100%;width:100%">
+                                    <img id="avt" class="rounded-circle border"  src="image/<%=MentorDAO.getAMentorAvatar(mentorID)%>" style="height:100%;width:100%">
 
                                     <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
                                         <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>

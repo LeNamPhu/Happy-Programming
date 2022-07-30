@@ -3,8 +3,8 @@
 <%@page import="DAO.InviteDAO"%>
 <%@page import="DTO.Account"%>
 <%
-            Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-            int userId = user.getId();
+            Account user1 = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int userId = user1.getId();
             InviteDAO dao = new InviteDAO();
             int accReq = dao.getCountReq(userId, "Accepted");
             int rejReq = dao.getCountReq(userId, "Rejected");

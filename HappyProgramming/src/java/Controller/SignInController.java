@@ -51,7 +51,6 @@ public class SignInController extends HttpServlet {
                         session.setAttribute("SIGNIN_ACCOUNT", account);
                         session.setAttribute("role", "Mentor");
                         session.setAttribute("signin", "true");
-                        session.setAttribute("ID", account.getId());
                         break;
                     case 3:
                         url = ADMIN;

@@ -40,11 +40,15 @@
         
         <form action="MainController" class="w-100">
             <div class="w-100 border border-2 border-dark mb-4 p-3">
-            <table  class="w-100  "style="text-align: center; font-size: 20px;">
+            <table  class="w-100" style="text-align: center; font-size: 20px;">
 
 
                 <tr>
+
                     <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="image/<%= mapMentor.get(acc).getAvatar()%> "></td>
+
+                    <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="image/<%=mapMentor.get(acc).getAvatar()%>"></td>
+
                     <td  style="width:25%; vertical-align: middle">Inviting Requests: <%=  mapInviteReq.get(acc)%> <br>
                         Accepted Requests: <%= mapAcceptedReq.get(acc)%></td>
                     <td rowspan="3" style="border: 1px solid lightgray;text-align: left;vertical-align:top;padding:15px; "> <%= mapMentor.get(acc).getServiceDesc()%></td>

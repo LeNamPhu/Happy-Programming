@@ -238,33 +238,13 @@ public class AccountDAO {
         return accountId;
     }
 
-    public boolean updateAccountName(String Name, int id) {
-        try {
-            Connection cn = DBUtils.makeConnection();
-            if (cn != null) {
-                String sql = "update dbo.Account\n"
-                        + "set AccountName = ?\n"
-                        + "where ID = ?";
-                PreparedStatement pst = cn.prepareCall(sql);
-                pst.setString(1, Name);
-                pst.setInt(2, id);
-                pst.executeUpdate();
-                cn.close();
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
-    }
 
-    public boolean updateAccountInfo(String Email, String FullName, Date DOB, String Sex, String Address, int id) {
+    public boolean updateAccountInfo(String Email, String FullName, Date DOB, String Sex, String Address, int id, String Avatar) {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
                 String sql = "update dbo.Mentee\n"
-                        + "set Email = ?, FullName = ?, Address = ? , DateOfBirth = ?, Sex = ?\n"
+                        + "set Email = ?, FullName = ?, Address = ? , DateOfBirth = ?, Sex = ?, Avatar=?\n"
                         + "where ID = ? ";
                 PreparedStatement pst = cn.prepareCall(sql);
                 pst.setString(1, Email);
@@ -272,7 +252,8 @@ public class AccountDAO {
                 pst.setString(3, Address);
                 pst.setDate(4, DOB);
                 pst.setString(5, Sex);
-                pst.setInt(6, id);
+                pst.setString(6, Avatar);
+                pst.setInt(7, id);
                 pst.executeUpdate();
                 cn.close();
                 return true;
