@@ -46,20 +46,17 @@ public class CreateRequestController extends HttpServlet {
                 reqE.setContentError("Please input the content!!");
                 checkError = false;
             }
-            Date deadlineDate = (Date) new java.util.Date();
+            Date deadlineDate = new Date(0);
             try {
                 deadlineDate = Date.valueOf(request.getParameter("deadlineDate"));
             if (deadlineDate.before(new java.util.Date()) || deadlineDate.equals(new java.util.Date())) {
                 throw new IllegalArgumentException();
             }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 reqE.setDateError("Please choose deadline date after today!!");
                 checkError = false;
             }
-            if (deadlineDate.before(new java.util.Date())) {
-                reqE.setDateError("Please choose deadline date after today!!");
-                checkError = false;
-            }
+            
             int deadlineHour = 0;
             try {
                 deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));

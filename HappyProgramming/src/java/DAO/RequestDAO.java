@@ -478,10 +478,10 @@ public class RequestDAO {
             conn = DBUtils.makeConnection();
             if (conn != null) {
                 for (Integer reqID : listInviteRequestID) {
-                    String sql = "SELECT Title, Content, MenteeID, DeadlineDate, DeadlineHour FROM Request WHERE  Status=?";
+                    String sql = "SELECT Title, Content, MenteeID, DeadlineDate, DeadlineHour FROM Request WHERE ID=? AND Status=?";
                     stm = conn.prepareStatement(sql);
-//                    stm.setInt(1, reqID);
-                    stm.setString(1, "Processing");
+                    stm.setInt(1, reqID);
+                    stm.setString(2, "Processing");
                     rs = stm.executeQuery();
                     if (rs.next()) {
                         listInviteRequest.add(new Request(reqID, rs.getString("Title"), "Processing", rs.getString("Content"), rs.getInt("MenteeID"), rs.getDate("DeadlineDate"), rs.getInt("DeadlineHour")));

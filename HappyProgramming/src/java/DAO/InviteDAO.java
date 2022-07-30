@@ -81,9 +81,10 @@ public class InviteDAO {
         try {
             conn = DBUtils.makeConnection();
             if (conn != null) {
-                    String sql = "SELECT MentorID FROM Invite WHERE ReqID=? ";
+                    String sql = "SELECT MentorID FROM Invite WHERE ReqID=? AND Status =?";
                     stm = conn.prepareStatement(sql);
                     stm.setInt(1, reqID);
+                    stm.setString(2, "Accepted");
                     rs = stm.executeQuery();
                     if (rs.next()) {
                         mentorID = rs.getInt("MentorID");

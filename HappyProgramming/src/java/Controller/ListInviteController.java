@@ -39,7 +39,9 @@ public class ListInviteController extends HttpServlet {
             Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
             int id = user.getId();
             RequestDAO dao = new RequestDAO();
-             ArrayList<Request> listInvite = dao.getListInviteRequest(dao.getListInviteRequestID(id));
+             
+            ArrayList<Integer> list = dao.getListInviteRequestID(id);
+            ArrayList<Request> listInvite = dao.getListInviteRequest(list);
             session.setAttribute("LIST_INVITE", listInvite);
              Map<Request, String> map = new HashMap<>();
              for (Request a : listInvite){

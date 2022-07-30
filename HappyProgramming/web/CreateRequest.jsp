@@ -43,12 +43,10 @@
                     }%>
             <form action="MainController" method="post">
                 <table style=";font-size: 25px" class="d-flex justify-content-center" id="createrequesttable">
-                    <tr><td id="createrequestpass">Title</td><td><input type="text" name="title" style="width: 400px"></td></tr>
-                    <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" style="width: 400px" id="createrequestform"/></td><td> <%= reqError.getDateError()%> </td></tr>
-                    <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td><td><%= reqError.getHourError()%></td></tr>
-                     <p style="color : red; font-size:20px"><%=requestError.getHourError()%></p></td></tr> //cai nay
-                    <tr><td id="createrequestpass">Content</td><td><textarea type="" name="content" style="width: 400px; height: 150px" id="createrequestform"> </textarea></td></tr>
-                    
+                    <tr><td id="createrequestpass">Title</td><td><input type="text" name="title" style="width: 400px"></td><td><p style="color : red; font-size:20px"><%= reqError.getTitleError()%></p></td></tr>
+                    <tr><td id="createrequestpass">Deadline date</td><td><input type="date" name="deadlineDate" style="width: 400px" id="createrequestform"/></td><td><p style="color : red; font-size:20px"> <%= reqError.getDateError()%></p> </td></tr>
+                    <tr><td id="createrequestpass">Deadline hour</td><td><input type="text" name="deadlineHour" style="width: 400px" id="createrequestform"/></td><td><p style="color : red; font-size:20px"><%=requestError.getHourError()%></p></td></tr>
+                    <tr><td id="createrequestpass">Content</td><td><input type="text" name="content" style="width: 400px; height: 150px" id="createrequestform"> </textarea></td><td><p style="color : red; font-size:20px"><%= reqError.getContentError()%></p></td></tr>                    
                     <tr>
                         <td id="first">Skill</td><td id="input">
                             <%
@@ -94,7 +92,7 @@
                                 %>
                             </select>
                         </td> 
-                        <td><%= reqError.getSkillError()%></td>
+                        <td><p style="color : red; font-size:20px"><%= reqError.getSkillError()%></p></td>
                     </tr>
 
                 </table>

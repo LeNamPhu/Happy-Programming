@@ -45,7 +45,14 @@
                     ArrayList<String> listSkill = (ArrayList) session.getAttribute("LIST_SKILL");
                     Map<Request, String> skillReq = (Map) session.getAttribute("SKILL_REQUEST");
                     ArrayList<Request> list = (ArrayList) session.getAttribute("LIST_REQUEST_BY_MENTEE");
-                    int reqID = Integer.parseInt((String) request.getParameter("reqID"));
+                    String requestID = (String) request.getParameter("reqID");
+                    int reqID = 0;
+                    if(requestID == null){
+                        String a = (String) request.getAttribute("REQ_ID");
+                        reqID = Integer.parseInt(a);
+                    }else{
+                        reqID = Integer.parseInt(requestID);
+                    }
 
                     for (Request req : list) {
                         if (reqID == req.getId()) {
@@ -69,20 +76,22 @@
                     <table style="" class="m-auto w-75">
                         <tr>
                             <td id="first">Title</td><td id="second"><input id="input" type="text" name="title" value="<%= req.getTitle()%>"> </td>
+                            <td><p style="color : red; font-size:20px"> <%= reqError.getTitleError()%> </p></td>
                         </tr>
                         <tr>
                             <td  id="first">Deadline Date</td><td id="second"><input id="input" type="date" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td> 
-                            <td> <%= reqError.getDateError()%> </td>
+                            <td><p style="color : red; font-size:20px"> <%= reqError.getDateError()%> </p></td>
                         </tr>
 
                         <tr>
                             <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
-                            <td><%= reqError.getHourError()%></td>
+                            <td><p style="color : red; font-size:20px"><%= reqError.getHourError()%></p></td>
                         </tr>
 
 
                         <tr>
-                            <td id="first">Content</td><td id="second"><textarea id="input" type="textarea" name="content" style="height:100px;"><%= req.getContent()%></textarea> </td>                                                                                            
+                            <td id="first">Content</td><td id="second"><input id="input" type="text" name="content" value="<%= req.getContent()%>" style="height:100px;">  </td>
+                            <td><p style="color : red; font-size:20px"> <%= reqError.getContentError()%> </p></td>
                         </tr>
                         <tr>
                             <td id="first">Skill</td><td id="input">
@@ -122,7 +131,7 @@
                                     <option value=""> </option>
                                 </select>
                             </td> 
-                            <td><%= reqError.getSkillError()%></td>
+                            <td><p style="color : red; font-size:20px"><%= reqError.getSkillError()%></p></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center; height:150px;">
