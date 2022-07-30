@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@page import="DTO.Account"%>
 <%@page import="DAO.MentorDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +18,8 @@
 
     </head>
     <body>
-        <%int ID = Integer.parseInt(session.getAttribute("ID").toString());%>
+        <%  Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+            int mentorID = user.getId();%>
 <nav class="container-fluid header ">
             <div class="row">
                 
@@ -30,8 +32,7 @@
                 <a class="col-md-1 nav-link" href="ViewSkill.jsp" >Skill</a>
                 <a class="col-md-1 nav-link" href="MainController?action=ListRequestByMentor" >Request</a>
                 <div class="col-md-1 d-flex">
-                    <img id="img" style="background-color: white" class="avatar" src="image/<%=MentorDAO.getAMentorAvatar(ID)%>" />
-                    <script src="imgError.js"></script>
+                    <img id="img" style="background-color: white" class="avatar" src="image/<%=MentorDAO.getAMentorAvatar(mentorID)%>" />
                     <div class="dropdown">
                         <button type="button" class="btn  dropdownbutton" data-bs-toggle="dropdown">
                             
