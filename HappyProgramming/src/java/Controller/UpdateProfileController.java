@@ -40,16 +40,17 @@ public class UpdateProfileController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            int id = 2;
-            String accountName = request.getParameter("accountname");
+            int id = Integer.parseInt(request.getParameter("ID"));
             String email = request.getParameter("email");
             String fullName = request.getParameter("fullName");
             Date dob = Date.valueOf(request.getParameter("dob"));
             String sex = request.getParameter("sex");
             String address = request.getParameter("address");
+            String avatar = request.getParameter("avatar");
+            if(avatar.isEmpty())
+                avatar = MenteeDAO.getAMenteeAvatar(id);
             AccountDAO accDao = new AccountDAO();
-            accDao.updateAccountName(accountName, id);
-            accDao.updateAccountInfo(email, fullName, dob, sex, address, id);
+            accDao.updateAccountInfo(email, fullName, dob, sex, address, id,avatar);
         } catch (Exception e) {
             log("Error at SignUpController" + e.toString());
         } finally {

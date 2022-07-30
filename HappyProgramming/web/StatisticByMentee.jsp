@@ -27,8 +27,8 @@
         <div class="body"> 
             <div style="width: 70%" class="m-auto ">
                 <%
-                    Account user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
-                    int menteeID = user.getId();
+                    user = (Account) session.getAttribute("SIGNIN_ACCOUNT");
+                    menteeID = user.getId();
                     String totalMentor = (String) request.getAttribute("TOTAL_MENTOR");
                     Map map = (Map) request.getAttribute("MAP");
                     ArrayList<Request> listRequest = (ArrayList) request.getAttribute("LIST_REQUEST");

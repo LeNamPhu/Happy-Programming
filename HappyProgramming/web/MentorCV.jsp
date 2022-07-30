@@ -101,7 +101,7 @@
             <div class="body d-flex flex-column align-items-center" style="text-align: center;width:70% " >
             <table>
             <tr><h1><%=list2.getFullname()%></h1></tr>
-            <tr><img style="background-color: white" class="avatarCv" src="<%=list2.getAvatar()%>"></tr>
+            <tr><img style="background-color: white" class="avatarCv" src="image/<%=list2.getAvatar()%>"></tr>
             <h5>Introduction</h5>
             <tr><%=list2.getIntroduction()%><tr>
             

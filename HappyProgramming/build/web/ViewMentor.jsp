@@ -111,7 +111,7 @@ System.out.println(mentor.getAvatar());%>
             
             <tr>
                 
-                    <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="<%=mentor.getAvatar()%>"></a></td>
+                    <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="image/<%=mentor.getAvatar()%>"></a></td>
                     <td style="width:20%;"><%=mentor.getFullname()%></td>
                     <td style="width:20%;"><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
                     <td style="text-align: left;" class=" m-2"><div style="border: 1px lightgray solid;height:190px; " class=""><%= mentor.getIntroduction()%></div></td>
