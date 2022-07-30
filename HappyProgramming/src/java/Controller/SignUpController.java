@@ -127,14 +127,14 @@ public class SignUpController extends HttpServlet {
                 int accountid = dao.getAccountId(acc.getAccountName());
                 if(checkinsert){
                     if(roleID == 1){
-                        Mentee tee = new Mentee(accountid, email, fullName, address, phone, dob, sex,null);
+                        Mentee tee = new Mentee(accountid, email, fullName, address, phone, dob, sex,"avatar.png");
                         boolean insertMentee = dao.insertMentee(tee);
                         if(insertMentee){
                             url = SUCCESS;
                         }
                     }
                     else if(roleID == 2){
-                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,null,null,null,null);
+                        Mentor tor = new Mentor(accountid, email, fullName, address, phone, dob, sex,null,null,null,null,null,"avatar.png",null,null,null);
                         boolean insertMentor = dao.insertMentor(tor);
                         if(insertMentor){
                             url = SUCCESS;
