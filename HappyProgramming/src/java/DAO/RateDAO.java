@@ -14,7 +14,6 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
-
 /**
  *
  * @author DELL
@@ -43,6 +42,37 @@ public class RateDAO {
         return Rate;
     }
 
+    public static String getRateComment(int mentorID) throws SQLException {
+        String rateComment = "";
+        Connection cn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            cn = DBUtils.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT Comment FROM Rating "
+                        + "WHERE MentorID = ?";
+                stm = cn.prepareStatement(sql);
+                stm.setInt(1, mentorID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    rateComment = rs.getString("Comment");
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return rateComment;
+    }
 
     public void insertRate(int mentorID, int menteeID, int rate, String comment) throws SQLException {
         Connection conn = null;
@@ -72,8 +102,8 @@ public class RateDAO {
             }
         }
     }
-    
-    public double getStar(int mentorID) throws SQLException{
+
+    public double getStar(int mentorID) throws SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -87,7 +117,7 @@ public class RateDAO {
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, mentorID);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     sum = sum + rs.getInt("Rate");
                     count++;
                 }
@@ -122,9 +152,9 @@ public class RateDAO {
                     while (rs.next()) {
                         int ID = rs.getInt("ID");
                         double rate = rs.getDouble("Rate");
-                        String comment = rs.getString("Commnent");
+                        String comment = rs.getString("Comment");
                         int MenteeID = rs.getInt("MenteeID");
-                        int MentorID = rs.getInt("MentorID");   
+                        int MentorID = rs.getInt("MentorID");
                         Rating rating = new Rating(ID, rate, comment, MenteeID, MentorID);
                         list.add(rating);
                     }
@@ -146,6 +176,5 @@ public class RateDAO {
         return list;
 
     }
-
 
 }
