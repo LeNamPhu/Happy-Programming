@@ -62,7 +62,7 @@
                         %>               
                 <tr><td><%=count++%></td>
                     <td><%=sk.getId()%></td>
-                    <td><img src="<%=sk.getImage()%>"style="width:150px; height:120px;"></td>
+                    <td><img src="image/<%=sk.getImage()%>"style="width:150px; height:120px;"></td>
                     <td><%=sk.getName()%></td>
 
 

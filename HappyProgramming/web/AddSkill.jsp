@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td>Image</td>
-                <td><input type="text" name="newimage" required></td>
+                <td><input type="file" name="newimage" accept="image/*"  required></td>
             </tr>
             <tr>
                 <td><button type="submit" name="action" value="addSkill" class="btn btn-primary btn-lg m-3" style="width: 80%;">OK</button></td>

@@ -45,7 +45,7 @@
 
                 <tr>
 
-                    <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="image/<%= mapMentor.get(acc).getAvatar()%> "></td>
+                    
 
                     <td style="width: 15%;" class="ratio ratio-1x1"> <img class="border border-dark rounded-circle" src="image/<%=mapMentor.get(acc).getAvatar()%>"></td>
 
@@ -79,17 +79,19 @@
         <%
             }
         %>                       
-        <div class="btn btn-lg btn-primary d-flex w-25 justify-content-center m-auto">
-            <a style="color:white" href="MainController?action=ListRequestByMentee"> Return</a>
-        </div>
+       
         <%
         } else {
         %>
         <h3> THERE ARE NO MENTOR AVAILABLE FOR THIS REQUEST</h3>
         <%
                 }
+
             }
         %>
+         <div class="btn btn-lg btn-primary d-flex w-25 justify-content-center m-auto">
+            <a style="color:white" href="MainController?action=ListRequestByMentee"> Return</a>
+        </div>
         </div>
         <footer>
             <%@include file = "Footer.jsp" %>

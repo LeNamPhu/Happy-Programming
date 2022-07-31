@@ -13,7 +13,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mentor CV</title>
+        <title>View Mentor</title>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
             var starWidth = 40;
@@ -112,7 +112,7 @@
 
                     <tr>
 
-                        <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="<%=mentor.getAvatar()%>"></a></td>
+                        <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="image/<%=mentor.getAvatar()%>"></a></td>
                         <td style="width:20%;"><%=mentor.getFullname()%></td>
                         <td style="width:20%;"><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
                         <td style="text-align: left;" class=" m-2"><div style="border: 1px lightgray solid;height:190px; " class=""><%= mentor.getIntroduction()%></div></td>

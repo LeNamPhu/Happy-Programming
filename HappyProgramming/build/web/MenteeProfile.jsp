@@ -48,13 +48,13 @@
         <div class="body">
             <h1 style="text-align: center; padding-top: 3%; padding-bottom:1%;font-size: 50px">Update Profile</h1>
             <div class="row " style="margin:0!important">
-                <div class="col-md-4 " style="text-align:center">
+                <div class="col-md-5 d-flex justify-content-end" style="text-align:center">
                     <div class="p-4">
                         <div style="height:162px; width:162px;position:relative;margin:auto">
                             <img id="avt" class="rounded-circle border"  src="image/<%=MenteeDAO.getAMenteeAvatar(menteeID)%>" style="height:100%;width:100%">
 
                             <div style=" position:absolute; right:5px; bottom:5px; height:30px; width:30px; border-radius: 50%; background-color: white">
-                                <i class="fa-solid fa-camera" style="height:100%; position:absolute; right:5px; bottom:5px;"></i>
+                                <i class="fa-solid fa-camera" style="font-size:30px;height:100%; position:absolute; right:5px; bottom:5px;"></i>
 
                                 <input  type="file" name="avatar" accept="image/*"
 
@@ -62,10 +62,10 @@
                             </div>
                         </div>
                     </div>
-                    <input  readonly style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="" class="form-control" name="accName" value="<%=user.getAccountName()%>"> 
+                 <%--   <input  readonly style="margin: auto; height:50px; width:300px; text-align: center" type="text" placeholder="" class="form-control" name="accName" value="<%=user.getAccountName()%>"> --%>
                 </div>
-                <div class="col-md-6 pt-2">
-                    <table style=";font-size: 25px" class="d-flex justify-content-center" id="updateform">
+                <div class="col-md-5 pt-2">
+                    <table style=";font-size: 25px" class="d-flex  " id="updateform">
                         <input type="hidden" name="ID" value="<%=mt.getId()%>">
                         <tr><td id="updatename">Account Name</td><td><input value="<%=MenteeDAO.getAccountNameByMenteeID(menteeID)%>" readonly="" type ="text", id="updateform", name="accountname", size="30"></td></tr>
                         <tr><td id="updatename">Email</td><td><input value="<%=mt.getEmail()%>" type ="text", id="updateform", name="email", size="30"></td></tr>

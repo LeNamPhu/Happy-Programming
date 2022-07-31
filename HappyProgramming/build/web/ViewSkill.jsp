@@ -68,7 +68,7 @@ Collections.sort(list, new Comparator<Skill>(){
                             <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;width:25.5%;" class="m-5 row p-3">
                             <table class=" " >
                                 <tr><%--<td style=""><%=count++%></td>--%>
-                            <td><img src="<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%; object-fit: scale-down" class="border border-secondary m-2"></td></tr>
+                            <td><img src="image/<%=sk.getImage()%>"style="width:150px; height:150px; border-radius: 50%; object-fit: scale-down" class="border border-secondary m-2"></td></tr>
                         <tr> <td style="text-align: center; width:100%;"><%=sk.getName()%></td></tr>
                         </table>   
                         </div>

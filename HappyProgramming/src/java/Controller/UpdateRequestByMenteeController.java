@@ -55,13 +55,18 @@ public class UpdateRequestByMenteeController extends HttpServlet {
             int deadlineHour = 0;
             try {
                 deadlineHour = Integer.parseInt(request.getParameter("deadlineHour"));
-                if (deadlineHour <= 0) {
+                if (deadlineHour < 0) {
                     throw new NumberFormatException();
+                }
+                if (deadlineHour >= 24){
+                     checkError = false;
+                reqE.setHourError("Please input an hour from 0 to 23!!");
                 }
             } catch (NumberFormatException e) {
                 checkError = false;
                 reqE.setHourError("Please input a positive integer!!");
             }
+            
             String content = request.getParameter("content");
             if (content.isEmpty()) {
                 reqE.setContentError("Please input the content!!");

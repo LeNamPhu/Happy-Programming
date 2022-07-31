@@ -144,7 +144,7 @@
                     }
                     if (flag == 1) {
                 %>
-                <h3 style="text-align: center;">You do not have any request</h3>
+                <h3 style="text-align: center;">You do not have any ongoing request!</h3>
                 <%
                     }
                 %>

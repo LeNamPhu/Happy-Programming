@@ -25,16 +25,13 @@
 
         <style>
             table, table tr{
-                border: 1px solid;
+               
                 width:99%;
                 margin: auto;
                 margin-top: 5%;
                 text-align: center;
             }
-            table th,td{
-                width: 10%;
-                border: 1px solid;
-            }
+           
         </style>
     </head>
     <body>
@@ -44,7 +41,7 @@
 
         <div class="body">
             <%ArrayList<Mentee> list = MenteeDAO.getAllMentees(); %>
-            <table>
+            <table class="table "> 
                 <tr>
                     <th>Name</th>
                     <th>Account Name</th>
@@ -62,7 +59,7 @@
                 <%}
                     }
                 %>
-            </table><br>
+            </table ><br>
             <b style="margin-left: 1%">Number of mentee(s): <%=list.size()%></b>
 
         </div>

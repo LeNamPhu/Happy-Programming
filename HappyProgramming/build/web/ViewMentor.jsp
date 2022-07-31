@@ -13,7 +13,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mentor CV</title>
+        <title>View Mentor</title>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
             var starWidth = 40;
@@ -37,13 +37,13 @@
 
             table, table tr{
 
-                
+
                 margin: auto;
                 margin-top: 5%;
                 text-align: center;
             }
             table th,td{
-                
+
                 margin-right: 30px;
 
             }
@@ -83,9 +83,9 @@
 
     </head>
     <body>
-        
-       <% String signin = (String) session.getAttribute("signin");
-        if (signin==null) {
+
+        <% String signin = (String) session.getAttribute("signin");
+            if (signin == null) {
                 session.setAttribute("role", "Unregistered");
             }
         %>
@@ -96,30 +96,32 @@
         <div class="body"> 
             <div class=" mx-auto my-3" style="width:70%;"> 
                 <table class="table w-100 border-secondary" style="vertical-align: middle">
-                
+
                     <thead>
                         <tr>
-                    <th>Avatar</th>
-                    <th>Full Name</th>
-                    <th>Ratings</th>
-                    <th>Introduction</th>
+                            <th>Avatar</th>
+                            <th>Full Name</th>
+                            <th>Ratings</th>
+                            <th>Introduction</th>
                         </tr>
-                </thead>
-        <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
-            for (Mentor mentor : list) {
-System.out.println(mentor.getAvatar());%>
-            
-            <tr>
-                
-                    <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="image/<%=mentor.getAvatar()%>"></a></td>
-                    <td style="width:20%;"><%=mentor.getFullname()%></td>
-                    <td style="width:20%;"><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
-                    <td style="text-align: left;" class=" m-2"><div style="border: 1px lightgray solid;height:190px; " class=""><%= mentor.getIntroduction()%></div></td>
-            </tr>
-            
-        <%}
-        %>
-        </table>
+
+                    </thead>
+                    <%ArrayList<Mentor> list = (ArrayList) session.getAttribute("LIST_OF_MENTOR");
+                        for (Mentor mentor : list) {
+                            System.out.println(mentor.getAvatar());%>
+
+                    <tr>
+
+                        <td style="width:20%;"><a class="w-100"  href="MentorCV.jsp?id=<%=mentor.getId()%>"><img style="background-color: white; " class="avatarCv " src="image/<%=mentor.getAvatar()%>"></a></td>
+                        <td style="width:20%;"><%=mentor.getFullname()%></td>
+                        <td style="width:20%;"><span class="stars"><%=RateDAO.getRateStar(mentor.getId())%></span></td>
+                        <td style="text-align: left;" class=" m-2"><div style="border: 1px lightgray solid;height:190px; " class=""><%= mentor.getIntroduction()%></div></td>
+                    </tr>
+
+                    <%}
+                    %>
+                </table>
+
             </div>
         </div>
         <footer>

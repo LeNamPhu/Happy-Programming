@@ -124,12 +124,12 @@
 
 
         <div class="body " style="font-size: 120%" >
-            <div class=" py-5 my-5"style="width: 60%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class=" py-5 my-5"style="width: 30%; margin:auto; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                 <div class="row " style="margin:0!important">
                     <div class="col-md-4 " style="text-align:center">
                         <div class="p-4">
                             <div style="height:75%; width:75%;position:relative;margin:auto">
-                                <img class="rounded-circle border" src="image/avatar.png<%--=list2.getAvatar()--%>" style="height:100%;width:100%">
+                                <img class="rounded-circle border" src="image/<%=list2.getAvatar()%>" style="height:100%;width:100%">
                             </div>
                         </div>
                     </div>

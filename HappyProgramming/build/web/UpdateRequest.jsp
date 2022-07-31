@@ -75,23 +75,22 @@
                 <form action="MainController">
                     <table style="" class="m-auto w-75">
                         <tr>
-                            <td id="first">Title</td><td id="second"><input id="input" type="text" name="title" value="<%= req.getTitle()%>"> </td>
-                            <td><p style="color : red; font-size:20px"> <%= reqError.getTitleError()%> </p></td>
+                            <td id="first">Title</td><td id="second"><input id="input" type="text" name="title" value="<%= req.getTitle()%>"> <p style="color : red; font-size:20px"> <%= reqError.getTitleError()%> </p></td>
                         </tr>
                         <tr>
-                            <td  id="first">Deadline Date</td><td id="second"><input id="input" type="date" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> </td> 
-                            <td><p style="color : red; font-size:20px"> <%= reqError.getDateError()%> </p></td>
+                            <td  id="first">Deadline Date</td><td id="second"><input id="input" type="date" name="deadlineDate" value="<%= req.getDeadlineDate()%>"> 
+                            <p style="color : red; font-size:20px"> <%= reqError.getDateError()%> </p></td>
                         </tr>
 
                         <tr>
-                            <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> </td>
-                            <td><p style="color : red; font-size:20px"><%= reqError.getHourError()%></p></td>
+                            <td id="first">Deadline Hour</td><td id="second"><input id="input" type="text" name="deadlineHour" value="<%= req.getDeadlineHour()%>"> 
+                            <p style="color : red; font-size:20px"><%= reqError.getHourError()%></p></td>
                         </tr>
 
 
                         <tr>
-                            <td id="first">Content</td><td id="second"><input id="input" type="text" name="content" value="<%= req.getContent()%>" style="height:100px;">  </td>
-                            <td><p style="color : red; font-size:20px"> <%= reqError.getContentError()%> </p></td>
+                            <td id="first">Content</td><td id="second"><input id="input" type="text" name="content" value="<%= req.getContent()%>" style="height:100px;">  
+                            <p style="color : red; font-size:20px"> <%= reqError.getContentError()%> </p></td>
                         </tr>
                         <tr>
                             <td id="first">Skill</td><td id="input">
@@ -130,12 +129,12 @@
                                     %>
                                     <option value=""> </option>
                                 </select>
-                            </td> 
-                            <td><p style="color : red; font-size:20px"><%= reqError.getSkillError()%></p></td>
+                            <p style="color : red; font-size:20px"><%= reqError.getSkillError()%></p></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center; height:150px;">
-                                <input class="btn btn-primary btn-lg"type="submit" name="action" value="UpdateRequest"/>
+                                <input class="btn btn-primary btn-lg"type="submit" name="action" value="UpdateRequest" style="font-size: 25px;width:400px;height: 60px;"/>
+                                 <input type="submit" name="action" class="createrequest btn btn-light btn-outline-dark" value="Cancel" style="font-size: 25px;width:400px;height: 60px;" >
                                 <input type="hidden" name="reqIDForUpdate" value="<%= req.getId()%>"/>                      
                             </td>
                         </tr>

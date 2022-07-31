@@ -22,7 +22,7 @@
         <header>
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
-        <p><%=request.getAttribute("accountName")%></p>
+        
         <%  String accountName = request.getAttribute("accountName").toString();
             int roleId = Integer.parseInt(request.getAttribute("roleId").toString());
             String email = request.getAttribute("email").toString();
@@ -50,8 +50,8 @@
                             document.getElementById("submit").addEventListener("click", check1);
                             document.getElementById("resend").addEventListener("click", resend);
                             function check1() {
-                                alert("help");
-                                document.getElementById("green").innerHTML = "aaaa;";
+                                
+                                
                                 var otp = document.getElementById("otp").value;
                                 if (otp == <%=otp%>) {
                             <%AccountDAO.changeStatus(roleId, accountName);
@@ -67,8 +67,7 @@
                             function resend() {
                                 <%   
             
-             otp = RandomNumberUtil.RandomNumber();
-            EmailUtils.sendMail(email, otp);
+           
                     %>
                             }
 
