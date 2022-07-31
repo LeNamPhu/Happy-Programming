@@ -27,8 +27,8 @@ public class AccountDAO {
     private static final Logger LOGGER = Logger.getLogger(AccountDAO.class.getName());
 
     private static final String INSERTACCOUNT = "INSERT INTO Account(AccountName,Password,RoleID) VALUES (?,?,?)";
-    private static final String INSERTRMENTOR = "INSERT INTO Mentor(ID, Email, FullName, Phone, Address, DateOfBirth, Sex) VALUES (?,?,?,?,?,?,?)";
-    private static final String INSERTRMENTEE = "INSERT INTO Mentee(ID, Email, FullName, Phone, Address, DateOfBirth, Sex) VALUES (?,?,?,?,?,?,?)";
+    private static final String INSERTRMENTOR = "INSERT INTO Mentor(ID, Email, FullName, Phone, Address, DateOfBirth, Sex, Avatar) VALUES (?,?,?,?,?,?,?,?)";
+    private static final String INSERTRMENTEE = "INSERT INTO Mentee(ID, Email, FullName, Phone, Address, DateOfBirth, Sex, Avatar) VALUES (?,?,?,?,?,?,?,?)";
     private static final String UPDATE_PASSWORD = "UPDATE Account SET password=? WHERE AccountName=?";
     private static final String CHECK_DUPLICATE = "SELECT AccountName FROM Account WHERE AccountName=?";
     private static final String GET_ACCOUNT_ID = "SELECT ID FROM Account WHERE AccountName=?";
@@ -280,6 +280,7 @@ public class AccountDAO {
                 stm.setString(5, mentee.getAddress());
                 stm.setDate(6, mentee.getDob());
                 stm.setString(7, mentee.getSex());
+                stm.setString(8, mentee.getAvatar());
                 check = stm.executeUpdate() > 0;
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -312,6 +313,7 @@ public class AccountDAO {
                 stm.setString(5, mentor.getAddress());
                 stm.setDate(6, mentor.getDob());
                 stm.setString(7, mentor.getSex());
+                stm.setString(8, mentor.getAvatar());
                 check = stm.executeUpdate() > 0;
             }
         } catch (Exception e) {
