@@ -22,7 +22,7 @@
         <header>
             <%@include file = "UnregisteredHeader.jsp" %>
         </header>
-        
+
         <%  String accountName = request.getAttribute("accountName").toString();
             int roleId = Integer.parseInt(request.getAttribute("roleId").toString());
             String email = request.getAttribute("email").toString();
